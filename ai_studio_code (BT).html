@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreatheTherm | Premium Heritage Insulation Systems</title>
+    
+    <!-- Typography: Playfair Display for Georgian Elegance, Montserrat for Modern Technical feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --stone-light: #F9F8F6;
+            --stone-mid: #E5E2DB;
+            --slate: #2C3E50;
+            --sage: #7B8C7E;
+            --gold-subtle: #A69076;
+            --white: #FFFFFF;
+            --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--stone-light);
+            color: var(--slate);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        /* --- UI Components --- */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition-slow);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--slate);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--sage);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--slate);
+            color: var(--slate);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--slate);
+            color: var(--white);
+        }
+
+        /* --- Layout --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition-slow);
+        }
+
+        header.scrolled {
+            background: rgba(249, 248, 246, 0.95);
+            padding: 15px 5%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--slate);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--slate);
+            margin-left: 30px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        section {
+            padding: 120px 10%;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* --- Scrollytelling Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-slow);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+            background-color: #E5E2DB; /* Fallback */
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%; /* For parallax */
+            background: linear-gradient(rgba(249,248,246,0.4), rgba(249,248,246,0.4)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            transform: translateY(0);
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-style: italic;
+            color: var(--sage);
+        }
+
+        /* --- Placeholder Blocks --- */
+        .image-placeholder {
+            background-color: var(--stone-mid);
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            margin: 20px 0;
+        }
+
+        .image-placeholder::after {
+            content: attr(data-label);
+            font-family: 'Playfair Display', serif;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* --- Split Sections --- */
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        /* --- Problem/Solution Detail --- */
+        .feature-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+        }
+
+        /* --- Audience Paths --- */
+        .paths-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .path-card {
+            background: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+            border: 1px solid var(--stone-mid);
+            transition: var(--transition-slow);
+        }
+
+        .path-card:hover {
+            border-color: var(--sage);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .path-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .path-card p {
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            min-height: 80px;
+        }
+
+        /* --- Proof Markers --- */
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background: var(--slate);
+            color: var(--white);
+            padding: 60px 10%;
+            margin-top: 50px;
+        }
+
+        .stat-item h4 {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-item p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* --- Footer/Contact --- */
+        footer {
+            background: var(--stone-mid);
+            padding: 100px 10% 40px;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            display: grid;
+            gap: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background: transparent;
+            font-family: inherit;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 968px) {
+            .split-grid, .paths-container, .stats-bar {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .stats-bar {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+            header nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="logo">BreatheTherm</div>
+        <nav>
+            <a href="#story">Our Story</a>
+            <a href="#technical">Technical</a>
+            <a href="#paths">Solutions</a>
+            <a href="#contact" class="btn btn-outline" style="padding: 10px 20px;">Contact</a>
+        </nav>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-content reveal">
+            <h1>Insulating History,<br>Beautifully.</h1>
+            <p>Vapour-open mineral insulation engineered for the UK's heritage architecture.</p>
+            <div style="margin-top: 30px;">
+                <a href="#contact" class="btn btn-primary">Book Free Assessment</a>
+                <a href="#story" class="btn btn-outline" style="margin-left:15px; background: rgba(255,255,255,0.2);">Explore the System</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. THE PROBLEM -->
+    <section id="story">
+        <div class="split-grid">
+            <div class="reveal">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">The Heritage Challenge</h2>
+                <p>Traditional solid walls (pre-1919) were designed to <em>breathe</em>. When modern, non-permeable insulation is applied, moisture becomes trapped within the masonry, leading to structural damp, mould, and decaying timber.</p>
+                <div class="image-placeholder" data-label="Diagram: How moisture gets trapped in solid walls" style="height: 250px; margin-top: 30px;"></div>
+            </div>
+            <div class="reveal">
+                <div class="image-placeholder" data-label="Photo: Victorian Terrace undergoing renovation" style="height: 500px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. THE SOLUTION -->
+    <section style="background-color: var(--white);">
+        <div class="split-grid">
+            <div class="reveal">
+                <div class="image-placeholder" data-label="Detail: The BreatheTherm Mineral Board Texture" style="height: 500px;"></div>
+            </div>
+            <div class="reveal">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">The BreatheTherm System</h2>
+                <p>Our mineral-based system mimics the capillary action of traditional lime, allowing moisture to transition through the wall while providing industry-leading thermal performance.</p>
+                <ul class="feature-list">
+                    <li><strong>Fully Vapour-Open:</strong> No more damp or interstitial condensation.</li>
+                    <li><strong>A1 Non-Combustible:</strong> The highest standard of fire safety.</li>
+                    <li><strong>Dimensionally Stable:</strong> Won't warp, shrink, or degrade over time.</li>
+                    <li><strong>Heritage Approved:</strong> Specified for Grade I and II listed properties.</li>
+                </ul>
+                <a href="#paths" class="btn btn-primary" style="margin-top: 30px;">View Technical Specs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PROOF & AUTHORITY -->
+    <section id="technical">
+        <div style="text-align: center; margin-bottom: 60px;" class="reveal">
+            <h2>Proven Performance</h2>
+            <p>Combining Victorian craftsmanship with modern hygrothermal science.</p>
+        </div>
+        
+        <div class="split-grid">
+            <div class="reveal">
+                <div class="image-placeholder" data-label="Case Study: Georgian Townhouse Before/After" style="height: 350px;"></div>
+                <h3 style="margin-top: 20px;">The Bath Project</h3>
+                <p>Reduced heat loss by 65% while maintaining the building's historic breathability profile.</p>
+            </div>
+            <div class="reveal">
+                <div class="image-placeholder" data-label="Technical: U-Value & Moisture Modelling Graph" style="height: 350px;"></div>
+                <h3 style="margin-top: 20px;">WTA Certified</h3>
+                <p>Our systems are rigorously tested for moisture safety using WuFi® hygrothermal modelling.</p>
+            </div>
+        </div>
+
+        <div class="stats-bar reveal">
+            <div class="stat-item">
+                <h4>500+</h4>
+                <p>Buildings Protected</p>
+            </div>
+            <div class="stat-item">
+                <h4>60%</h4>
+                <p>Avg. Energy Reduction</p>
+            </div>
+            <div class="stat-item">
+                <h4>A1</h4>
+                <p>Fire Rated Security</p>
+            </div>
+            <div class="stat-item">
+                <h4>100%</h4>
+                <p>Breathable Materials</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CHOOSE YOUR PATH -->
+    <section id="paths" style="background-color: var(--stone-mid);">
+        <div style="text-align: center; margin-bottom: 40px;" class="reveal">
+            <h2>Tailored Solutions</h2>
+            <p>Choose your profile to access specific documentation and support.</p>
+        </div>
+
+        <div class="paths-container">
+            <!-- Homeowner -->
+            <div class="path-card reveal">
+                <h3>Homeowners</h3>
+                <p>Future-proof your heritage home. Reduce bills and increase comfort without risking your building's fabric.</p>
+                <ul class="feature-list" style="text-align: left; font-size: 0.8rem; margin-bottom: 30px;">
+                    <li>Expert Installation</li>
+                    <li>Comfort & Health Focus</li>
+                    <li>Grant Eligibility Check</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Book Assessment</a>
+            </div>
+
+            <!-- Architect -->
+            <div class="path-card reveal">
+                <h3>Architects & COs</h3>
+                <p>Specified for sensitive conservation. Full technical support from design to site sign-off.</p>
+                <ul class="feature-list" style="text-align: left; font-size: 0.8rem; margin-bottom: 30px;">
+                    <li>BIM Objects & CAD Details</li>
+                    <li>Hygrothermal Modelling</li>
+                    <li>CPD Training Available</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Request Tech Pack</a>
+            </div>
+
+            <!-- Installer -->
+            <div class="path-card reveal">
+                <h3>Installers</h3>
+                <p>Join our network of approved contractors. Systems designed by installers, for installers.</p>
+                <ul class="feature-list" style="text-align: left; font-size: 0.8rem; margin-bottom: 30px;">
+                    <li>Full System Training</li>
+                    <li>Project Lead Generation</li>
+                    <li>Site Support & Guidance</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Request Installer Pack</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FINAL CTA & FOOTER -->
+    <section id="contact">
+        <div style="text-align: center;" class="reveal">
+            <h2 style="font-size: 3rem;">Start the Conversation</h2>
+            <p>Our technical team is ready to discuss your specific heritage project.</p>
+            
+            <form class="contact-form">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Email Address">
+                </div>
+                <select style="width: 100%; padding: 15px; background: transparent; border: 1px solid #ccc;">
+                    <option>I am a Homeowner</option>
+                    <option>I am an Architect / Conservation Officer</option>
+                    <option>I am a Contractor</option>
+                </select>
+                <textarea rows="5" placeholder="Tell us about your project..."></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+
+            <div style="margin-top: 40px; font-size: 0.9rem; letter-spacing: 1px;">
+                <p>01234 567 890 &nbsp; | &nbsp; hello@breathetherm.co.uk</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 BreatheTherm Insulation Systems. <br> Built for the next century of heritage preservation.</p>
+    </footer>
+
+    <script>
+        // 1. Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Simple Parallax for Hero
+        window.addEventListener('scroll', () => {
+            const heroBg = document.getElementById('heroBg');
+            let offset = window.pageYOffset;
+            heroBg.style.transform = `translateY(${offset * 0.4}px)`;
+        });
+
+        // 3. Reveal on Scroll (Intersection Observer)
+        // This is much more stable than scroll-event based fades
+        const revealOptions = {
+            threshold: 0.15
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once revealed to improve performance
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // 4. Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
