@@ -5,537 +5,440 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BreatheTherm | Premium Heritage Insulation Systems</title>
     
-    <!-- Typography: Playfair Display for Georgian Elegance, Montserrat for Modern Technical feel -->
+    <!-- Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --stone-light: #F9F8F6;
-            --stone-mid: #E5E2DB;
-            --slate: #2C3E50;
-            --sage: #7B8C7E;
-            --gold-subtle: #A69076;
-            --white: #FFFFFF;
-            --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --stone-100: #FDFCFB;
+            --stone-200: #F4F1EE;
+            --stone-300: #E5E0DA;
+            --slate-900: #1C1F22;
+            --slate-700: #3A3F44;
+            --sage: #7D8C7E;
+            --accent: #A69076; /* Muted Gold/Bronze */
+            --transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--stone-light);
-            color: var(--slate);
+        /* Base Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--stone-100); 
+            color: var(--slate-900);
             line-height: 1.6;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-        }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; }
 
-        /* --- UI Components --- */
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: var(--transition-slow);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--slate);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--sage);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--slate);
-            color: var(--slate);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--slate);
-            color: var(--white);
-        }
-
-        /* --- Layout --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: var(--transition-slow);
-        }
-
-        header.scrolled {
-            background: rgba(249, 248, 246, 0.95);
-            padding: 15px 5%;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--slate);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--slate);
-            margin-left: 30px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        section {
-            padding: 120px 10%;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-        }
-
-        /* --- Scrollytelling Animations --- */
+        /* Scrollytelling Reveal Classes */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: var(--transition-slow);
+            transform: translateY(30px);
+            transition: var(--transition);
         }
-
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- Hero Section --- */
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        nav.scrolled {
+            background: rgba(253, 252, 251, 0.95);
+            padding: 15px 5%;
+            border-bottom: 1px solid var(--stone-300);
+            backdrop-filter: blur(10px);
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--slate-900); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-dark { background: var(--slate-900); color: white; }
+        .btn-dark:hover { background: var(--accent); transform: translateY(-2px); }
+        .btn-outline { border: 1px solid var(--slate-900); color: var(--slate-900); }
+        .btn-outline:hover { background: var(--slate-900); color: white; }
+
+        /* Hero Section */
         .hero {
             height: 100vh;
-            padding: 0;
-            text-align: center;
-            overflow: hidden;
-            background-color: #E5E2DB; /* Fallback */
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%; /* For parallax */
-            background: linear-gradient(rgba(249,248,246,0.4), rgba(249,248,246,0.4)), 
-                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000') no-repeat center center;
-            background-size: cover;
-            z-index: -1;
-            transform: translateY(0);
-        }
-
-        .hero-content {
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            font-style: italic;
-            color: var(--sage);
-        }
-
-        /* --- Placeholder Blocks --- */
-        .image-placeholder {
-            background-color: var(--stone-mid);
-            width: 100%;
-            height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            padding: 0 10%;
             position: relative;
             overflow: hidden;
-            border-radius: 2px;
-            margin: 20px 0;
         }
-
-        .image-placeholder::after {
-            content: attr(data-label);
-            font-family: 'Playfair Display', serif;
-            color: #888;
-            font-style: italic;
-        }
-
-        /* --- Split Sections --- */
-        .split-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        /* --- Problem/Solution Detail --- */
-        .feature-list {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .feature-list li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-        }
-
-        .feature-list li::before {
-            content: '—';
+        .hero-bg {
             position: absolute;
-            left: 0;
-            color: var(--sage);
+            top: 0; left: 0; width: 100%; height: 120%; /* Extra height for parallax */
+            z-index: -1;
+            background: linear-gradient(rgba(253,252,251,0.5), rgba(253,252,251,0.5)),
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 1.25rem; max-width: 600px; margin: 0 auto 40px; color: var(--slate-700); }
+
+        /* Generic Section Styling */
+        section { padding: 120px 10%; }
+        .section-tag { font-size: 0.75rem; text-transform: uppercase; color: var(--accent); letter-spacing: 3px; font-weight: 700; margin-bottom: 20px; display: block; }
+        
+        /* Placeholder styling */
+        .img-placeholder {
+            background-color: var(--stone-300);
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            font-family: 'Playfair Display';
+            font-style: italic;
+            color: var(--slate-700);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* --- Audience Paths --- */
-        .paths-container {
+        /* Split Layouts */
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+
+        /* Problem/Solution Blocks */
+        .problem-section { background: var(--stone-200); }
+        .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; text-align: center; }
+        .stat-item h3 { font-size: 2.5rem; color: var(--accent); }
+        .stat-item p { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; }
+
+        /* Pathways */
+        .pathways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .path-card { 
+            background: white; 
+            padding: 50px 40px; 
+            border: 1px solid var(--stone-300); 
+            transition: var(--transition);
+        }
+        .path-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+
+        /* --- THE CONVERSION TAB SYSTEM --- */
+        .conversion-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            background: white;
+            border: 1px solid var(--stone-300);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        }
+        .tab-headers {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 60px;
+            border-bottom: 1px solid var(--stone-300);
         }
-
-        .path-card {
-            background: var(--white);
-            padding: 60px 40px;
-            text-align: center;
-            border: 1px solid var(--stone-mid);
-            transition: var(--transition-slow);
-        }
-
-        .path-card:hover {
-            border-color: var(--sage);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-
-        .path-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .path-card p {
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            min-height: 80px;
-        }
-
-        /* --- Proof Markers --- */
-        .stats-bar {
-            display: flex;
-            justify-content: space-between;
-            background: var(--slate);
-            color: var(--white);
-            padding: 60px 10%;
-            margin-top: 50px;
-        }
-
-        .stat-item h4 {
-            font-size: 2.5rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .stat-item p {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.8;
-        }
-
-        /* --- Footer/Contact --- */
-        footer {
-            background: var(--stone-mid);
-            padding: 100px 10% 40px;
-            text-align: center;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 40px auto;
-            display: grid;
-            gap: 20px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ccc;
-            background: transparent;
+        .tab-btn {
+            padding: 25px;
+            background: var(--stone-200);
+            border: none;
             font-family: inherit;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--slate-700);
         }
-
-        /* --- Responsive --- */
-        @media (max-width: 968px) {
-            .split-grid, .paths-container, .stats-bar {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .stats-bar {
-                flex-direction: column;
-                gap: 40px;
-                text-align: center;
-            }
-            header nav { display: none; }
+        .tab-btn.active {
+            background: white;
+            color: var(--slate-900);
+            position: relative;
         }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 3px; background: var(--accent);
+        }
+        .tab-content { padding: 60px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        input, textarea, select {
+            width: 100%; padding: 15px; border: 1px solid var(--stone-300); font-family: inherit; font-size: 1rem;
+        }
+        .full-width { grid-column: span 2; }
+        
+        footer { padding: 60px 10%; background: var(--slate-900); color: white; text-align: center; }
     </style>
 </head>
 <body>
 
-    <header id="header">
+    <nav id="navbar">
         <div class="logo">BreatheTherm</div>
-        <nav>
-            <a href="#story">Our Story</a>
-            <a href="#technical">Technical</a>
-            <a href="#paths">Solutions</a>
-            <a href="#contact" class="btn btn-outline" style="padding: 10px 20px;">Contact</a>
-        </nav>
-    </header>
+        <div class="nav-links">
+            <a href="#story">The Story</a>
+            <a href="#system">The System</a>
+            <a href="#proof">Proof</a>
+            <a href="#convert" class="btn btn-dark" style="padding: 10px 20px;">Get Started</a>
+        </div>
+    </nav>
 
-    <!-- 1. HERO SECTION -->
+    <!-- 1. HERO -->
     <section class="hero">
-        <div class="hero-bg" id="heroBg"></div>
-        <div class="hero-content reveal">
-            <h1>Insulating History,<br>Beautifully.</h1>
-            <p>Vapour-open mineral insulation engineered for the UK's heritage architecture.</p>
-            <div style="margin-top: 30px;">
-                <a href="#contact" class="btn btn-primary">Book Free Assessment</a>
-                <a href="#story" class="btn btn-outline" style="margin-left:15px; background: rgba(255,255,255,0.2);">Explore the System</a>
+        <div class="hero-bg" id="hero-parallax"></div>
+        <div class="reveal">
+            <span class="section-tag">Science Meets Heritage</span>
+            <h1>The Breathable Future of British History.</h1>
+            <p>High-performance mineral insulation designed specifically for pre-1919 solid wall construction.</p>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="#convert" class="btn btn-dark" onclick="switchTab('homeowner')">Book Free Assessment</a>
+                <a href="#story" class="btn btn-outline">Explore the System</a>
             </div>
         </div>
     </section>
 
     <!-- 2. THE PROBLEM -->
-    <section id="story">
-        <div class="split-grid">
+    <section id="story" class="problem-section">
+        <div class="split">
             <div class="reveal">
-                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">The Heritage Challenge</h2>
-                <p>Traditional solid walls (pre-1919) were designed to <em>breathe</em>. When modern, non-permeable insulation is applied, moisture becomes trapped within the masonry, leading to structural damp, mould, and decaying timber.</p>
-                <div class="image-placeholder" data-label="Diagram: How moisture gets trapped in solid walls" style="height: 250px; margin-top: 30px;"></div>
+                <span class="section-tag">The Challenge</span>
+                <h2>Traditional Walls Need to Breathe.</h2>
+                <p>Most modern insulation acts like a plastic wrap, trapping moisture within Georgian and Victorian masonry. This leads to structural damp, mould, and the decay of historic fabric.</p>
+                <div style="margin-top: 30px;">
+                    <h4 style="margin-bottom: 10px;">The Vapour Crisis:</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">✕</span>
+                            Standard PIR boards cause interstitial condensation.
+                        </li>
+                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">✕</span>
+                            Synthetic renders trap rising damp.
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="reveal">
-                <div class="image-placeholder" data-label="Photo: Victorian Terrace undergoing renovation" style="height: 500px;"></div>
+                <div class="img-placeholder">
+                    [Image: High-contrast close-up of a damp Victorian brickwork section vs. a healthy lime-pointed wall]
+                </div>
             </div>
         </div>
     </section>
 
     <!-- 3. THE SOLUTION -->
-    <section style="background-color: var(--white);">
-        <div class="split-grid">
+    <section id="system">
+        <div class="split">
             <div class="reveal">
-                <div class="image-placeholder" data-label="Detail: The BreatheTherm Mineral Board Texture" style="height: 500px;"></div>
+                <div class="img-placeholder">
+                    [Image: Architectural drawing of the BreatheTherm 5-layer system - Mineral Board, Adhesive, Mesh, and Breathable Plaster]
+                </div>
             </div>
             <div class="reveal">
-                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">The BreatheTherm System</h2>
-                <p>Our mineral-based system mimics the capillary action of traditional lime, allowing moisture to transition through the wall while providing industry-leading thermal performance.</p>
-                <ul class="feature-list">
-                    <li><strong>Fully Vapour-Open:</strong> No more damp or interstitial condensation.</li>
-                    <li><strong>A1 Non-Combustible:</strong> The highest standard of fire safety.</li>
-                    <li><strong>Dimensionally Stable:</strong> Won't warp, shrink, or degrade over time.</li>
-                    <li><strong>Heritage Approved:</strong> Specified for Grade I and II listed properties.</li>
+                <span class="section-tag">The Solution</span>
+                <h2>A Vapour-Open Mineral Shield.</h2>
+                <p>BreatheTherm is a fully breathable, mineral-based system that works <em>with</em> your building's natural capillary action, not against it.</p>
+                <ul style="margin: 30px 0; list-style: none;">
+                    <li style="margin-bottom: 15px;"><strong>+ Vapour Permeable:</strong> Allows moisture to escape safely.</li>
+                    <li style="margin-bottom: 15px;"><strong>+ A1 Fire Rated:</strong> Pure mineral composition, zero fire risk.</li>
+                    <li style="margin-bottom: 15px;"><strong>+ Thermal Excellence:</strong> Drastic reduction in heat loss.</li>
                 </ul>
-                <a href="#paths" class="btn btn-primary" style="margin-top: 30px;">View Technical Specs</a>
+                <a href="#convert" class="btn btn-outline" onclick="switchTab('architect')">Download Technical Data</a>
             </div>
         </div>
     </section>
 
-    <!-- 4. PROOF & AUTHORITY -->
-    <section id="technical">
-        <div style="text-align: center; margin-bottom: 60px;" class="reveal">
-            <h2>Proven Performance</h2>
-            <p>Combining Victorian craftsmanship with modern hygrothermal science.</p>
+    <!-- 4. PROOF -->
+    <section id="proof" style="background-color: var(--stone-200);">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;" class="reveal">
+            <span class="section-tag">Proof of Performance</span>
+            <h2>Trusted in the UK's Most Sensitive Properties.</h2>
         </div>
         
-        <div class="split-grid">
-            <div class="reveal">
-                <div class="image-placeholder" data-label="Case Study: Georgian Townhouse Before/After" style="height: 350px;"></div>
-                <h3 style="margin-top: 20px;">The Bath Project</h3>
-                <p>Reduced heat loss by 65% while maintaining the building's historic breathability profile.</p>
+        <div class="stat-grid reveal">
+            <div class="stat-item">
+                <h3>850+</h3>
+                <p>Projects Completed</p>
             </div>
-            <div class="reveal">
-                <div class="image-placeholder" data-label="Technical: U-Value & Moisture Modelling Graph" style="height: 350px;"></div>
-                <h3 style="margin-top: 20px;">WTA Certified</h3>
-                <p>Our systems are rigorously tested for moisture safety using WuFi® hygrothermal modelling.</p>
+            <div class="stat-item">
+                <h3>65%</h3>
+                <p>Avg. Bill Reduction</p>
+            </div>
+            <div class="stat-item">
+                <h3>WTA</h3>
+                <p>Certified Systems</p>
+            </div>
+            <div class="stat-item">
+                <h3>0%</h3>
+                <p>Moisture Failure</p>
             </div>
         </div>
 
-        <div class="stats-bar reveal">
-            <div class="stat-item">
-                <h4>500+</h4>
-                <p>Buildings Protected</p>
+        <div class="split" style="margin-top: 80px;">
+            <div class="reveal">
+                <div class="img-placeholder" style="min-height: 300px;">
+                    [Image: Case Study - A restored Grade II listed Bath Stone terrace]
+                </div>
+                <h4 style="margin-top:20px;">The Bath Preservation Project</h4>
+                <p style="font-size: 0.9rem;">Achieving 0.18 U-Value in a 1840s heritage terrace without compromising the facade.</p>
             </div>
-            <div class="stat-item">
-                <h4>60%</h4>
-                <p>Avg. Energy Reduction</p>
-            </div>
-            <div class="stat-item">
-                <h4>A1</h4>
-                <p>Fire Rated Security</p>
-            </div>
-            <div class="stat-item">
-                <h4>100%</h4>
-                <p>Breathable Materials</p>
+            <div class="reveal">
+                <div class="img-placeholder" style="min-height: 300px;">
+                    [Image: Case Study - Modern Victorian retrofit in London]
+                </div>
+                <h4 style="margin-top:20px;">The Kensington Retrofit</h4>
+                <p style="font-size: 0.9rem;">Internal wall insulation system combined with hygrothermal monitoring.</p>
             </div>
         </div>
     </section>
 
-    <!-- 5. CHOOSE YOUR PATH -->
-    <section id="paths" style="background-color: var(--stone-mid);">
-        <div style="text-align: center; margin-bottom: 40px;" class="reveal">
-            <h2>Tailored Solutions</h2>
-            <p>Choose your profile to access specific documentation and support.</p>
+    <!-- 5. PATHWAYS -->
+    <section>
+        <div style="text-align: center; margin-bottom: 60px;" class="reveal">
+            <h2>How can we help?</h2>
         </div>
-
-        <div class="paths-container">
-            <!-- Homeowner -->
+        <div class="pathways">
             <div class="path-card reveal">
                 <h3>Homeowners</h3>
-                <p>Future-proof your heritage home. Reduce bills and increase comfort without risking your building's fabric.</p>
-                <ul class="feature-list" style="text-align: left; font-size: 0.8rem; margin-bottom: 30px;">
-                    <li>Expert Installation</li>
-                    <li>Comfort & Health Focus</li>
-                    <li>Grant Eligibility Check</li>
-                </ul>
-                <a href="#contact" class="btn btn-primary">Book Assessment</a>
+                <p>Protect your investment and your health. Create a warm, dry, and efficient home.</p>
+                <a href="#convert" class="btn btn-outline" onclick="switchTab('homeowner')" style="margin-top: 20px;">Homeowner Path</a>
             </div>
-
-            <!-- Architect -->
             <div class="path-card reveal">
-                <h3>Architects & COs</h3>
-                <p>Specified for sensitive conservation. Full technical support from design to site sign-off.</p>
-                <ul class="feature-list" style="text-align: left; font-size: 0.8rem; margin-bottom: 30px;">
-                    <li>BIM Objects & CAD Details</li>
-                    <li>Hygrothermal Modelling</li>
-                    <li>CPD Training Available</li>
-                </ul>
-                <a href="#contact" class="btn btn-outline">Request Tech Pack</a>
+                <h3>Architects</h3>
+                <p>Specify with confidence. Access WuFi modelling, BIM objects, and heritage-compliant details.</p>
+                <a href="#convert" class="btn btn-outline" onclick="switchTab('architect')" style="margin-top: 20px;">Technical Path</a>
             </div>
-
-            <!-- Installer -->
             <div class="path-card reveal">
                 <h3>Installers</h3>
-                <p>Join our network of approved contractors. Systems designed by installers, for installers.</p>
-                <ul class="feature-list" style="text-align: left; font-size: 0.8rem; margin-bottom: 30px;">
-                    <li>Full System Training</li>
-                    <li>Project Lead Generation</li>
-                    <li>Site Support & Guidance</li>
-                </ul>
-                <a href="#contact" class="btn btn-outline">Request Installer Pack</a>
+                <p>Join our approved network. Get technical training and project leads from our pipeline.</p>
+                <a href="#convert" class="btn btn-outline" onclick="switchTab('installer')" style="margin-top: 20px;">Installer Path</a>
             </div>
         </div>
     </section>
 
-    <!-- 6. FINAL CTA & FOOTER -->
-    <section id="contact">
+    <!-- 6. THE CONVERSION SECTION (TABBED) -->
+    <section id="convert" style="background: var(--stone-100);">
         <div style="text-align: center;" class="reveal">
-            <h2 style="font-size: 3rem;">Start the Conversation</h2>
-            <p>Our technical team is ready to discuss your specific heritage project.</p>
-            
-            <form class="contact-form">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Email Address">
-                </div>
-                <select style="width: 100%; padding: 15px; background: transparent; border: 1px solid #ccc;">
-                    <option>I am a Homeowner</option>
-                    <option>I am an Architect / Conservation Officer</option>
-                    <option>I am a Contractor</option>
-                </select>
-                <textarea rows="5" placeholder="Tell us about your project..."></textarea>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
+            <span class="section-tag">Final Step</span>
+            <h2>Let’s Secure Your Project.</h2>
+        </div>
 
-            <div style="margin-top: 40px; font-size: 0.9rem; letter-spacing: 1px;">
-                <p>01234 567 890 &nbsp; | &nbsp; hello@breathetherm.co.uk</p>
+        <div class="conversion-container reveal">
+            <div class="tab-headers">
+                <button class="tab-btn active" id="btn-homeowner" onclick="switchTab('homeowner')">Homeowners</button>
+                <button class="tab-btn" id="btn-architect" onclick="switchTab('architect')">Architects / COs</button>
+                <button class="tab-btn" id="btn-installer" onclick="switchTab('installer')">Contractors</button>
+            </div>
+
+            <div class="tab-content">
+                <div id="cta-message">
+                    <h3 id="tab-title">Book Your Free Home Assessment</h3>
+                    <p id="tab-desc">Our experts will visit your property to assess masonry condition and provide a bespoke breathability report.</p>
+                </div>
+
+                <form class="form-grid">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" placeholder="Project Postcode" required>
+                    <select id="audience-select">
+                        <option value="homeowner">Homeowner</option>
+                        <option value="architect">Architect / Specifier</option>
+                        <option value="installer">Contractor / Installer</option>
+                    </select>
+                    <textarea class="full-width" rows="4" placeholder="How can we help with your project?"></textarea>
+                    <button type="submit" class="btn btn-dark full-width">Submit Request</button>
+                </form>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 BreatheTherm Insulation Systems. <br> Built for the next century of heritage preservation.</p>
+        <div class="logo" style="color: white; margin-bottom: 20px;">BreatheTherm</div>
+        <p style="opacity: 0.6; font-size: 0.8rem;">&copy; 2024 BreatheTherm Insulation Systems. <br> UK Heritage Approved Mineral Solutions.</p>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // 1. Header scroll effect
+        // 1. Navigation Scroll Effect
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
         });
 
-        // 2. Simple Parallax for Hero
+        // 2. Parallax Hero
         window.addEventListener('scroll', () => {
-            const heroBg = document.getElementById('heroBg');
+            const heroBg = document.getElementById('hero-parallax');
             let offset = window.pageYOffset;
             heroBg.style.transform = `translateY(${offset * 0.4}px)`;
         });
 
         // 3. Reveal on Scroll (Intersection Observer)
-        // This is much more stable than scroll-event based fades
-        const revealOptions = {
-            threshold: 0.15
-        };
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    // Stop observing once revealed to improve performance
-                    observer.unobserve(entry.target);
                 }
             });
-        }, revealOptions);
+        }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => {
-            revealObserver.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 4. Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // 4. Tab Logic
+        const tabData = {
+            homeowner: {
+                title: "Book Your Free Home Assessment",
+                desc: "Our heritage experts will evaluate your masonry and provide a custom thermal strategy for your home.",
+                select: "homeowner"
+            },
+            architect: {
+                title: "Request Technical Design Pack",
+                desc: "Get instant access to BIM objects, CAD details, and WuFi hygrothermal modelling templates.",
+                select: "architect"
+            },
+            installer: {
+                title: "Request Installer Training Pack",
+                desc: "Apply to become a certified BreatheTherm installer and receive project leads in your area.",
+                select: "installer"
+            }
+        };
+
+        function switchTab(type) {
+            // Update Buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${type}`).classList.add('active');
+
+            // Update Content
+            document.getElementById('tab-title').innerText = tabData[type].title;
+            document.getElementById('tab-desc').innerText = tabData[type].desc;
+            document.getElementById('audience-select').value = tabData[type].select;
+        }
     </script>
 </body>
 </html>
