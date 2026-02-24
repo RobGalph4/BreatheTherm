@@ -79,7 +79,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* ── TYPOGRAPHY ── */
 h1, h2, h3, h4, h5, .serif {
-    font-family: 'Lora', Georgia, serif;
+    font-family: Georgia, serif; /* ── was "font-family: 'Lora'," ── */
 }
 
 h1 {
