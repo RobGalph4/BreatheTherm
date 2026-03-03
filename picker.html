@@ -3,174 +3,411 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BreatheTherm Interactive System</title>
-
+<title>BreatheTherm — Layer Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f5f5f5;
-    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .container {
-        display: flex;
-        height: 100vh;
-    }
+  :root {
+    --cream:      #f4ede2;
+    --warm-white: #faf7f2;
+    --stone:      #c8b89a;
+    --terracotta: #b5694a;
+    --sage:       #7a8c72;
+    --ink:        #2e2820;
+    --ink-muted:  #7a6f62;
+    --border:     rgba(139,117,90,0.25);
+    --serif:      'Playfair Display', Georgia, serif;
+    --body:       'Lora', Georgia, serif;
+  }
 
-    /* 70% Image */
-    .viewer {
-        width: 70%;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #fafafa;
-        overflow: hidden;
-    }
+  html, body { height: 100%; overflow: hidden; background: var(--cream); }
 
-    .image-wrapper {
-        position: relative;
-        transition: transform 0.6s ease;
-    }
+  /* VIEWER */
+  .viewer {
+    position: relative;
+    left: 20vw;
+    width: 70vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+  }
 
-    .image-wrapper img {
-        max-width: 90%;
-        max-height: 90%;
-    }
+  /* Vignette */
+  .viewer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 45%, transparent 38%, rgba(185,160,120,0.30) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
 
-    .hotspot {
-        position: absolute;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: #2c7a7b;
-        border: 2px solid #fff;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
+  .image-wrapper {
+    position: relative;
+    height: 92vh;
+    max-width: 92vw;
+    z-index: 2;
+  }
 
-    .hotspot:hover {
-        transform: scale(1.3);
-    }
+  .image-wrapper img {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    filter: sepia(5%) brightness(1.01);
+    border-radius: 2px;
+  }
 
-    /* 30% Data Panel */
-    .panel {
-        width: 30%;
-        padding: 40px;
-        background: #ffffff;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.08);
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
+  /* HOTSPOTS */
+  .hotspot {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+  }
 
-    .panel.active {
-        opacity: 1;
-    }
+  .hotspot-core {
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    transition: background 0.25s, transform 0.25s;
+    box-shadow: 0 1px 4px rgba(181,105,74,0.4);
+  }
 
-    .panel h2 {
-        margin-top: 0;
-        color: #1f2937;
-    }
+  .hotspot-halo {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--terracotta);
+    opacity: 0.45;
+    animation: halo 3s ease-out infinite;
+  }
 
-    .panel p {
-        margin: 8px 0;
-        color: #444;
-    }
+  .hotspot-halo-2 {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--terracotta);
+    opacity: 0.2;
+    animation: halo 3s ease-out 1s infinite;
+  }
 
-    .meta {
-        margin-top: 20px;
-        padding-top: 15px;
-        border-top: 1px solid #eee;
-    }
+  @keyframes halo {
+    0%  { transform: scale(1);   opacity: 0.45; }
+    80% { transform: scale(2.5); opacity: 0; }
+    100%{ transform: scale(2.5); opacity: 0; }
+  }
 
-    .label {
-        font-weight: bold;
-    }
+  .hotspot:hover .hotspot-core,
+  .hotspot.active .hotspot-core {
+    background: var(--sage);
+    transform: scale(1.3);
+  }
+  .hotspot:hover .hotspot-halo,
+  .hotspot.active .hotspot-halo { border-color: var(--sage); }
+
+  /* BRANDING — top left */
+  .brand-stamp {
+    position: fixed;
+    top: 28px;
+    left: 36px;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .brand-name {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+
+  .brand-name em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .brand-rule {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 6px 0 5px;
+  }
+
+  .brand-sub {
+    font-family: var(--body);
+    font-size: 9.5px;
+    font-style: italic;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+  }
+
+  /* IDLE HINT — bottom left */
+  .idle-hint {
+    position: fixed;
+    bottom: 32px;
+    left: 36px;
+    z-index: 10;
+    font-family: var(--body);
+    font-size: 10.5px;
+    font-style: italic;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  .idle-hint.hidden { opacity: 0; }
+
+  .idle-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    flex-shrink: 0;
+    opacity: 0.65;
+    animation: blink 2.5s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%,100%{ opacity:0.65; }
+    50%{ opacity:0.2; }
+  }
+
+  /* INFO CARD — bottom right */
+  .info-card {
+    position: fixed;
+    bottom: 36px;
+    left: 20vw;
+    width: 310px;
+    z-index: 20;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 24px 26px 20px;
+    box-shadow:
+      0 2px 4px rgba(46,40,32,0.05),
+      0 10px 32px rgba(46,40,32,0.11),
+      inset 0 0 0 1px rgba(255,255,255,0.6);
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition:
+      opacity 0.45s cubic-bezier(0.23,1,0.32,1),
+      transform 0.45s cubic-bezier(0.23,1,0.32,1);
+  }
+
+  .info-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .card-ornament {
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--stone);
+    letter-spacing: 0.2em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .card-ornament-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .card-id {
+    font-family: var(--body);
+    font-size: 9px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 7px;
+  }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .card-desc {
+    font-family: var(--body);
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--ink-muted);
+    font-style: italic;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 15px;
+  }
+
+  .card-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11px 14px;
+    margin-bottom: 16px;
+  }
+
+  .spec { display: flex; flex-direction: column; gap: 3px; }
+
+  .spec-key {
+    font-family: var(--body);
+    font-size: 8px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  .spec-val {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .card-price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-top: 13px;
+    border-top: 1px solid var(--border);
+  }
+
+  .price-key {
+    font-family: var(--body);
+    font-size: 9px;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+
+  .price-val {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--terracotta);
+  }
 </style>
 </head>
 <body>
 
-<div class="container">
+<div class="viewer">
+  <div class="image-wrapper">
+    <img src="/assets/images/BT demohouse.png" alt="BreatheTherm cross-section model">
 
-    <div class="viewer">
-        <div class="image-wrapper">
-            <img src="assets/images/BT demohouse.png" alt="Demo House">
+    <!-- Wall hotspots -->
+    <div class="hotspot" style="top:46%; left:57%;"  data-id="W1"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:36%; left:61%;"  data-id="W2"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:54%; left:71%;"  data-id="W3"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:41%; left:21%;"  data-id="W4"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:59%; left:41%;"  data-id="W5"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
 
-            <!-- Wall Layers -->
-            <div class="hotspot" style="top:20%; left:50%;" data-id="W1"></div>
-            <div class="hotspot" style="top:35%; left:50%;" data-id="W2"></div>
-            <div class="hotspot" style="top:50%; left:50%;" data-id="W3"></div>
-            <div class="hotspot" style="top:65%; left:50%;" data-id="W4"></div>
-            <div class="hotspot" style="top:80%; left:50%;" data-id="W5"></div>
+    <!-- Floor hotspots -->
+    <div class="hotspot" style="top:73%; left:35%;"  data-id="F1"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:78%; left:47%;"  data-id="F2"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:82%; left:38%;"  data-id="F3"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:86%; left:51%;"  data-id="F4"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:90%; left:42%;"  data-id="F5"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+    <div class="hotspot" style="top:93%; left:55%;"  data-id="F6"><div class="hotspot-halo-2"></div><div class="hotspot-halo"></div><div class="hotspot-core"></div></div>
+  </div>
+</div>
 
-            <!-- Floor Layers -->
-            <div class="hotspot" style="top:70%; left:30%;" data-id="F1"></div>
-            <div class="hotspot" style="top:75%; left:40%;" data-id="F2"></div>
-            <div class="hotspot" style="top:80%; left:35%;" data-id="F3"></div>
-            <div class="hotspot" style="top:85%; left:45%;" data-id="F4"></div>
-            <div class="hotspot" style="top:88%; left:30%;" data-id="F5"></div>
-            <div class="hotspot" style="top:92%; left:40%;" data-id="F6"></div>
+<!-- Branding -->
+<div class="brand-stamp">
+  <div class="brand-name">Breathe<em>Therm</em></div>
+  <div class="brand-rule"></div>
+  <div class="brand-sub">Breathable insulation systems</div>
+</div>
 
-        </div>
-    </div>
+<!-- Idle hint -->
+<div class="idle-hint" id="idleHint">
+  <div class="idle-dot"></div>
+  Hover a marker to explore layers
+</div>
 
-    <div class="panel" id="infoPanel">
-        <h2 id="title">Select a Layer</h2>
-        <p id="description">Click on a highlighted layer to view system details.</p>
-
-        <div class="meta">
-            <p><span class="label">Thickness:</span> <span id="thickness"></span></p>
-            <p><span class="label">λ (Lambda):</span> <span id="lambda"></span></p>
-            <p><span class="label">Sd Range:</span> <span id="sd"></span></p>
-            <p><span class="label">Indicative U:</span> <span id="uvalue"></span></p>
-            <p><span class="label">Price (ex VAT):</span> <span id="price"></span></p>
-        </div>
-    </div>
-
+<!-- Info card -->
+<div class="info-card" id="infoCard">
+  <div class="card-ornament">
+    <div class="card-ornament-line"></div>
+    ❧
+    <div class="card-ornament-line"></div>
+  </div>
+  <div class="card-id" id="cardId">—</div>
+  <div class="card-title" id="cardTitle">Layer name</div>
+  <div class="card-desc" id="cardDesc">Description</div>
+  <div class="card-specs">
+    <div class="spec"><div class="spec-key">Thickness</div><div class="spec-val" id="specThickness">—</div></div>
+    <div class="spec"><div class="spec-key">λ Lambda</div><div class="spec-val" id="specLambda">—</div></div>
+    <div class="spec"><div class="spec-key">Sd Range</div><div class="spec-val" id="specSd">—</div></div>
+    <div class="spec"><div class="spec-key">Indicative U</div><div class="spec-val" id="specU">—</div></div>
+  </div>
+  <div class="card-price-row">
+    <div class="price-key">guide price, ex. VAT</div>
+    <div class="price-val" id="specPrice">—</div>
+  </div>
 </div>
 
 <script>
-
 const data = {
-
-    // WALL SYSTEM – PerliTherm 50mm example base
-    W1: { title: "W1 – PerliTherm 50mm", desc: "Mineral breathable wall base insulation.", thickness:"50mm", lambda:"0.064", sd:"0.2–0.4m", u:"See project calc", price:"£45.00 /m²" },
-    W2: { title: "W2 – Aerogel Boost 10mm", desc: "High-performance aerogel layer for constrained builds.", thickness:"10mm", lambda:"0.017", sd:"0.04–0.08m", u:"See project calc", price:"£23.25 /m²" },
-    W3: { title: "W3 – Lime Render 20mm", desc: "Breathable lime finish layer.", thickness:"20mm", lambda:"—", sd:"0.10–0.20m", u:"—", price:"Project specific" },
-    W4: { title: "W4 – Existing Masonry", desc: "Original structural wall substrate.", thickness:"Varies", lambda:"—", sd:"Varies", u:"Project specific", price:"—" },
-    W5: { title: "W5 – Internal Finish", desc: "Final breathable internal surface.", thickness:"Varies", lambda:"—", sd:"Vapour open", u:"—", price:"Project specific" },
-
-    // FLOOR SYSTEM – PerliBase 100mm example
-    F1: { title: "F1 – PerliBase 100mm", desc: "Internal breathable floor insulation.", thickness:"100mm", lambda:"0.045", sd:"0.4–0.8m", u:"See project calc", price:"£79.00 /m²" },
-    F2: { title: "F2 – PerliStruct Layer", desc: "Structural load distribution layer.", thickness:"Varies", lambda:"0.045", sd:"—", u:"—", price:"Project specific" },
-    F3: { title: "F3 – Mineral Levelling", desc: "Levelled breathable substrate.", thickness:"Varies", lambda:"—", sd:"Vapour open", u:"—", price:"—" },
-    F4: { title: "F4 – Screed Finish", desc: "Dense finish screed layer.", thickness:"Varies", lambda:"—", sd:"0.6–1.2m", u:"—", price:"Project specific" },
-    F5: { title: "F5 – Underlay", desc: "Substrate under final floor covering.", thickness:"Varies", lambda:"—", sd:"—", u:"—", price:"—" },
-    F6: { title: "F6 – Final Floor Finish", desc: "Tile, timber or surface finish.", thickness:"Varies", lambda:"—", sd:"—", u:"—", price:"Project specific" }
-
+  W1:{id:"W1",title:"PerliTherm 50mm",   desc:"Mineral breathable wall base insulation providing excellent vapour management alongside thermal performance.",thickness:"50mm",  lambda:"0.064 W/m·K",sd:"0.2 – 0.4 m",  u:"See project calc",price:"£45.00 /m²"},
+  W2:{id:"W2",title:"Aerogel Boost 10mm",desc:"Ultra-thin aerogel layer for thermally constrained retrofits where build depth is at a premium.",           thickness:"10mm",  lambda:"0.017 W/m·K",sd:"0.04 – 0.08 m",u:"See project calc",price:"£23.25 /m²"},
+  W3:{id:"W3",title:"Lime Render 20mm",  desc:"Traditional breathable lime finish. Compatible with historic masonry; allows the wall to breathe freely.",  thickness:"20mm",  lambda:"—",          sd:"0.10 – 0.20 m",u:"—",               price:"Project specific"},
+  W4:{id:"W4",title:"Existing Masonry",  desc:"Original structural wall substrate. Thermal properties assessed by site survey prior to specification.",    thickness:"Varies",lambda:"—",          sd:"Varies",       u:"Project specific",price:"—"},
+  W5:{id:"W5",title:"Internal Finish",   desc:"Breathable internal surface treatment — paints and plasters are specified vapour-open throughout.",         thickness:"Varies",lambda:"—",          sd:"Vapour open",  u:"—",               price:"Project specific"},
+  F1:{id:"F1",title:"PerliBase 100mm",   desc:"Primary breathable floor insulation. Load-rated and hygroscopic; acts as a moisture buffer for the whole floor assembly.",thickness:"100mm",lambda:"0.045 W/m·K",sd:"0.4 – 0.8 m",u:"See project calc",price:"£79.00 /m²"},
+  F2:{id:"F2",title:"PerliStruct Layer", desc:"Structural load distribution layer, spreading point loads evenly across the PerliBase insulation below.",   thickness:"Varies",lambda:"0.045 W/m·K",sd:"—",            u:"—",               price:"Project specific"},
+  F3:{id:"F3",title:"Mineral Levelling", desc:"Breathable levelling substrate forming a consistent bed for screed or direct finish over irregular sub-floors.",thickness:"Varies",lambda:"—",       sd:"Vapour open",  u:"—",               price:"—"},
+  F4:{id:"F4",title:"Screed Finish",     desc:"Dense cementitious or anhydrite screed. Specified to suit underfloor heating and final floor covering.",    thickness:"Varies",lambda:"—",          sd:"0.6 – 1.2 m",  u:"—",               price:"Project specific"},
+  F5:{id:"F5",title:"Underlay",          desc:"Impact and acoustic underlay substrate positioned beneath the final floor covering.",                       thickness:"Varies",lambda:"—",          sd:"—",            u:"—",               price:"—"},
+  F6:{id:"F6",title:"Final Floor Finish",desc:"Tile, engineered timber, stone or surface finish — specified by architect or designer to suit the project.",thickness:"Varies",lambda:"—",          sd:"—",            u:"—",               price:"Project specific"},
 };
 
-const panel = document.getElementById("infoPanel");
+const card=document.getElementById('infoCard');
+const idleHint=document.getElementById('idleHint');
+let active=null;
 
-document.querySelectorAll('.hotspot').forEach(h => {
-    h.addEventListener('mouseover', function() {
-        const id = this.dataset.id;
-        const layer = data[id];
-        if(!layer) return;
+function show(id){
+  const l=data[id]; if(!l)return;
+  document.getElementById('cardId').textContent=l.id;
+  document.getElementById('cardTitle').textContent=l.title;
+  document.getElementById('cardDesc').textContent=l.desc;
+  document.getElementById('specThickness').textContent=l.thickness;
+  document.getElementById('specLambda').textContent=l.lambda;
+  document.getElementById('specSd').textContent=l.sd;
+  document.getElementById('specU').textContent=l.u;
+  document.getElementById('specPrice').textContent=l.price;
+  card.classList.add('visible');
+  idleHint.classList.add('hidden');
+}
 
-        document.getElementById('title').innerText = layer.title;
-        document.getElementById('description').innerText = layer.desc;
-        document.getElementById('thickness').innerText = layer.thickness;
-        document.getElementById('lambda').innerText = layer.lambda;
-        document.getElementById('sd').innerText = layer.sd;
-        document.getElementById('uvalue').innerText = layer.u;
-        document.getElementById('price').innerText = layer.price;
-
-        panel.classList.add("active");
-    });
+document.querySelectorAll('.hotspot').forEach(h=>{
+  h.addEventListener('mouseenter',function(){
+    if(active)active.classList.remove('active');
+    active=this; this.classList.add('active');
+    show(this.dataset.id);
+  });
 });
-
 </script>
-
 </body>
 </html>
