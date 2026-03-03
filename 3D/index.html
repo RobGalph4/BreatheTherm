@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>BreatheTherm Configurator Prototype</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="ui-panel">
+    <h2>BreatheTherm Build-Up Configurator</h2>
+
+    <label>Wall Type</label>
+    <select id="wallType">
+        <option value="brick">Brick</option>
+        <option value="stone">Stone</option>
+    </select>
+
+    <label>Strategy</label>
+    <select id="strategy">
+        <option value="perlite">Perlite</option>
+        <option value="aerogel">Aerogel</option>
+        <option value="hybrid">Hybrid</option>
+    </select>
+
+    <label>Thickness (mm)</label>
+    <select id="thickness">
+        <option value="30">30mm</option>
+        <option value="50">50mm</option>
+        <option value="80">80mm</option>
+    </select>
+
+    <label>Explode View</label>
+    <input type="range" id="explode" min="0" max="2" step="0.01" value="0" />
+
+    <div class="results">
+        <p>Estimated U-Value:</p>
+        <h3 id="uValue">0.60 W/m²K</h3>
+    </div>
+</div>
+
+<div id="canvas-container"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

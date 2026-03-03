@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BreatheTherm Interactive System</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .container {
+        display: flex;
+        height: 100vh;
+    }
+
+    /* 70% Image */
+    .viewer {
+        width: 70%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fafafa;
+        overflow: hidden;
+    }
+
+    .image-wrapper {
+        position: relative;
+        transition: transform 0.6s ease;
+    }
+
+    .image-wrapper img {
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .hotspot {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #2c7a7b;
+        border: 2px solid #fff;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .hotspot:hover {
+        transform: scale(1.3);
+    }
+
+    /* 30% Data Panel */
+    .panel {
+        width: 30%;
+        padding: 40px;
+        background: #ffffff;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.08);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .panel.active {
+        opacity: 1;
+    }
+
+    .panel h2 {
+        margin-top: 0;
+        color: #1f2937;
+    }
+
+    .panel p {
+        margin: 8px 0;
+        color: #444;
+    }
+
+    .meta {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+
+    .label {
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="viewer">
+        <div class="image-wrapper">
+            <img src="ChatGPT Image Mar 3, 2026, 09_28_59 PM.png" alt="Demo House">
+
+            <!-- Wall Layers -->
+            <div class="hotspot" style="top:20%; left:50%;" data-id="W1"></div>
+            <div class="hotspot" style="top:35%; left:50%;" data-id="W2"></div>
+            <div class="hotspot" style="top:50%; left:50%;" data-id="W3"></div>
+            <div class="hotspot" style="top:65%; left:50%;" data-id="W4"></div>
+            <div class="hotspot" style="top:80%; left:50%;" data-id="W5"></div>
+
+            <!-- Floor Layers -->
+            <div class="hotspot" style="top:70%; left:30%;" data-id="F1"></div>
+            <div class="hotspot" style="top:75%; left:40%;" data-id="F2"></div>
+            <div class="hotspot" style="top:80%; left:35%;" data-id="F3"></div>
+            <div class="hotspot" style="top:85%; left:45%;" data-id="F4"></div>
+            <div class="hotspot" style="top:88%; left:30%;" data-id="F5"></div>
+            <div class="hotspot" style="top:92%; left:40%;" data-id="F6"></div>
+
+        </div>
+    </div>
+
+    <div class="panel" id="infoPanel">
+        <h2 id="title">Select a Layer</h2>
+        <p id="description">Click on a highlighted layer to view system details.</p>
+
+        <div class="meta">
+            <p><span class="label">Thickness:</span> <span id="thickness"></span></p>
+            <p><span class="label">λ (Lambda):</span> <span id="lambda"></span></p>
+            <p><span class="label">Sd Range:</span> <span id="sd"></span></p>
+            <p><span class="label">Indicative U:</span> <span id="uvalue"></span></p>
+            <p><span class="label">Price (ex VAT):</span> <span id="price"></span></p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+const data = {
+
+    // WALL SYSTEM – PerliTherm 50mm example base
+    W1: { title: "W1 – PerliTherm 50mm", desc: "Mineral breathable wall base insulation.", thickness:"50mm", lambda:"0.064", sd:"0.2–0.4m", u:"See project calc", price:"£45.00 /m²" },
+    W2: { title: "W2 – Aerogel Boost 10mm", desc: "High-performance aerogel layer for constrained builds.", thickness:"10mm", lambda:"0.017", sd:"0.04–0.08m", u:"See project calc", price:"£23.25 /m²" },
+    W3: { title: "W3 – Lime Render 20mm", desc: "Breathable lime finish layer.", thickness:"20mm", lambda:"—", sd:"0.10–0.20m", u:"—", price:"Project specific" },
+    W4: { title: "W4 – Existing Masonry", desc: "Original structural wall substrate.", thickness:"Varies", lambda:"—", sd:"Varies", u:"Project specific", price:"—" },
+    W5: { title: "W5 – Internal Finish", desc: "Final breathable internal surface.", thickness:"Varies", lambda:"—", sd:"Vapour open", u:"—", price:"Project specific" },
+
+    // FLOOR SYSTEM – PerliBase 100mm example
+    F1: { title: "F1 – PerliBase 100mm", desc: "Internal breathable floor insulation.", thickness:"100mm", lambda:"0.045", sd:"0.4–0.8m", u:"See project calc", price:"£79.00 /m²" },
+    F2: { title: "F2 – PerliStruct Layer", desc: "Structural load distribution layer.", thickness:"Varies", lambda:"0.045", sd:"—", u:"—", price:"Project specific" },
+    F3: { title: "F3 – Mineral Levelling", desc: "Levelled breathable substrate.", thickness:"Varies", lambda:"—", sd:"Vapour open", u:"—", price:"—" },
+    F4: { title: "F4 – Screed Finish", desc: "Dense finish screed layer.", thickness:"Varies", lambda:"—", sd:"0.6–1.2m", u:"—", price:"Project specific" },
+    F5: { title: "F5 – Underlay", desc: "Substrate under final floor covering.", thickness:"Varies", lambda:"—", sd:"—", u:"—", price:"—" },
+    F6: { title: "F6 – Final Floor Finish", desc: "Tile, timber or surface finish.", thickness:"Varies", lambda:"—", sd:"—", u:"—", price:"Project specific" }
+
+};
+
+const panel = document.getElementById("infoPanel");
+
+document.querySelectorAll('.hotspot').forEach(h => {
+    h.addEventListener('click', function() {
+        const id = this.dataset.id;
+        const layer = data[id];
+        if(!layer) return;
+
+        document.getElementById('title').innerText = layer.title;
+        document.getElementById('description').innerText = layer.desc;
+        document.getElementById('thickness').innerText = layer.thickness;
+        document.getElementById('lambda').innerText = layer.lambda;
+        document.getElementById('sd').innerText = layer.sd;
+        document.getElementById('uvalue').innerText = layer.u;
+        document.getElementById('price').innerText = layer.price;
+
+        panel.classList.add("active");
+    });
+});
+
+</script>
+
+</body>
+</html>
