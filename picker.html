@@ -153,7 +153,7 @@ const data = {
 const panel = document.getElementById("infoPanel");
 
 document.querySelectorAll('.hotspot').forEach(h => {
-    h.addEventListener('click', function() {
+    h.addEventListener('mouseover', function() {
         const id = this.dataset.id;
         const layer = data[id];
         if(!layer) return;
