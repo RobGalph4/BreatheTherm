@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BreatheTherm — Interactive Build-up Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-name">BreatheTherm</span>
+        <span class="brand-tag">Modular Insulation System</span>
+      </div>
+      <p class="header-subtitle">Click a zone on the model to explore the build-up</p>
+    </div>
+  </header>
+
+  <main class="main-layout">
+
+    <!-- LEFT: House image map -->
+    <aside class="map-panel">
+      <div class="map-label">SELECT A ZONE</div>
+      <div class="map-container" id="mapContainer">
+        <img src="BT_demohouse.png" alt="BreatheTherm demo house model" class="house-image" id="houseImage">
+
+        <!-- SVG hotspot overlay — zones are percentage-based on the image -->
+        <svg class="hotspot-overlay" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"
+          xmlns="http://www.w3.org/2000/svg" id="hotspotSvg">
+
+          <!-- Left wall — brick column -->
+          <g class="zone-group" data-zone="brickWall" role="button" aria-label="Left wall – brick">
+            <rect class="zone-hit" x="5.5" y="11" width="10" height="78" rx="1"/>
+            <rect class="zone-visual" x="5.5" y="11" width="10" height="78" rx="1"/>
+            <text class="zone-label zone-label-left" x="10.5" y="52">Left<tspan x="10.5" dy="5">Wall</tspan></text>
+          </g>
+
+          <!-- Right wall — stone column -->
+          <g class="zone-group" data-zone="stoneWall" role="button" aria-label="Right wall – stone">
+            <rect class="zone-hit" x="83" y="11" width="10.5" height="75" rx="1"/>
+            <rect class="zone-visual" x="83" y="11" width="10.5" height="75" rx="1"/>
+            <text class="zone-label zone-label-right" x="88.3" y="50">Right<tspan x="88.3" dy="5">Wall</tspan></text>
+          </g>
+
+          <!-- Floor — interior base -->
+          <g class="zone-group" data-zone="floor" role="button" aria-label="Floor system">
+            <rect class="zone-hit" x="15.5" y="78" width="67" height="14" rx="1"/>
+            <rect class="zone-visual" x="15.5" y="78" width="67" height="14" rx="1"/>
+            <text class="zone-label" x="49" y="87">Floor</text>
+          </g>
+
+          <!-- Ceiling / roof interior -->
+          <g class="zone-group" data-zone="ceiling" role="button" aria-label="Ceiling and roof insulation">
+            <rect class="zone-hit" x="18" y="17" width="60" height="38" rx="1"/>
+            <rect class="zone-visual" x="18" y="17" width="60" height="38" rx="1"/>
+            <text class="zone-label" x="48" y="37">Ceiling<tspan x="48" dy="5">/ Roof</tspan></text>
+          </g>
+
+        </svg>
+      </div>
+
+      <!-- Zone legend chips -->
+      <div class="zone-chips" id="zoneChips">
+        <button class="zone-chip" data-zone="brickWall">Left Wall</button>
+        <button class="zone-chip" data-zone="stoneWall">Right Wall</button>
+        <button class="zone-chip" data-zone="floor">Floor</button>
+        <button class="zone-chip" data-zone="ceiling">Ceiling / Roof</button>
+      </div>
+    </aside>
+
+    <!-- RIGHT: Build-up panel -->
+    <section class="buildup-panel" id="buildupPanel">
+
+      <!-- Empty state -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">↖</div>
+        <p>Select a zone on the<br>house model to explore<br>the build-up</p>
+      </div>
+
+      <!-- Active build-up content (hidden initially) -->
+      <div class="buildup-content" id="buildupContent" hidden>
+
+        <div class="buildup-header">
+          <div>
+            <h2 class="zone-title" id="zoneTitle">—</h2>
+            <p class="zone-subtitle" id="zoneSubtitle">—</p>
+          </div>
+          <div class="u-value-badge" id="uValueBadge">
+            <span class="u-label">Indicative U-value</span>
+            <span class="u-number" id="uValueNum">—</span>
+            <span class="u-unit">W/m²K</span>
+          </div>
+        </div>
+
+        <p class="zone-description" id="zoneDescription"></p>
+
+        <!-- Cross-section diagram -->
+        <div class="section-heading">CROSS-SECTION</div>
+        <div class="crosssection-wrap">
+          <div class="crosssection-diagram" id="crosssectionDiagram">
+            <!-- layers injected by JS -->
+          </div>
+          <!-- Direction labels -->
+          <div class="direction-labels" id="directionLabels"></div>
+        </div>
+
+        <!-- Product info panel — updates on layer hover -->
+        <div class="section-heading">PRODUCT DATA <span class="hover-hint">— hover a layer</span></div>
+        <div class="product-panel" id="productPanel">
+          <div class="product-placeholder" id="productPlaceholder">
+            <span>Hover over a layer in the cross-section above</span>
+          </div>
+          <div class="product-data" id="productData" hidden>
+            <div class="product-header">
+              <div>
+                <div class="product-tag" id="productTag"></div>
+                <h3 class="product-name" id="productName"></h3>
+              </div>
+            </div>
+            <p class="product-description" id="productDescription"></p>
+            <div class="product-specs" id="productSpecs">
+              <!-- spec pills injected by JS -->
+            </div>
+            <div class="product-note" id="productNote"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>All prices ex VAT. Material costs only — transport and labour excluded. U-values indicative; confirm by project-specific calculation. Sd ranges aligned to Retrofit Paradox logic (μ ≈ 4–8).</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

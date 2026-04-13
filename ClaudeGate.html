@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BreathTherm — Breathable Insulation for Historic Buildings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+
+<style>
+/* ============================================
+   GLOBAL COLOUR VARIABLES — Edit here to retheme
+   ============================================ */
+:root {
+  /* Primary palette */
+  --col-cream:        #F7F3EC;
+  --col-stone:        #EDE7DA;
+  --col-stone-dark:   #D6CCBA;
+  --col-forest:       #263D30;
+  --col-forest-mid:   #3A5947;
+  --col-forest-light: #567A67;
+  --col-copper:       #A3693C;
+  --col-copper-light: #C2885C;
+
+  /* Neutrals */
+  --col-charcoal:     #1A1A18;
+  --col-ink:          #2E2E2A;
+  --col-warm-grey:    #7A756E;
+  --col-border:       #CEC9BF;
+  --col-border-light: #E4DFDA;
+
+  /* Audience accent overrides (changed by JS) */
+  --col-accent:       var(--col-forest);
+  --col-accent-light: var(--col-forest-light);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  /* Spacing */
+  --section-pad: 6rem 0;
+  --container:   min(1200px, 94vw);
+}
+
+/* Audience-specific accent colours */
+body.audience-homeowner  { --col-accent: var(--col-forest);  --col-accent-light: var(--col-forest-light); }
+body.audience-architect  { --col-accent: #4A3828;            --col-accent-light: #7A6040; }
+body.audience-installer  { --col-accent: #2A3D4A;            --col-accent-light: #3D6478; }
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--col-cream);
+  color: var(--col-ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--col-accent); text-decoration: none; }
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+.display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.3;
+}
+.label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--col-warm-grey);
+}
+.body-lg { font-size: 1.125rem; line-height: 1.75; }
+.body-sm { font-size: 0.875rem; }
+
+/* ============================================
+   LAYOUT UTILS
+   ============================================ */
+.container { width: var(--container); margin: 0 auto; }
+.section   { padding: var(--section-pad); }
+.grid-2    { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.grid-3    { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--col-accent);
+  margin: 1.5rem 0;
+}
+
+/* ============================================
+   AUDIENCE GATE
+   ============================================ */
+#audience-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--col-forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#audience-gate.dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.gate-inner {
+  max-width: 860px;
+  width: 100%;
+  text-align: center;
+}
+.gate-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--col-cream);
+  letter-spacing: 0.05em;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+.gate-logo span { color: var(--col-copper-light); }
+.gate-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--col-cream);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.gate-sub {
+  color: var(--col-stone-dark);
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+.gate-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.gate-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  padding: 2rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  color: var(--col-cream);
+  text-align: left;
+}
+.gate-card:hover {
+  background: rgba(255,255,255,0.11);
+  border-color: var(--col-copper-light);
+  transform: translateY(-2px);
+}
+.gate-card .gate-icon {
+  font-size: 2rem;
+  color: var(--col-copper-light);
+  margin-bottom: 1rem;
+}
+.gate-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+.gate-card p {
+  font-size: 0.85rem;
+  color: var(--col-stone-dark);
+  line-height: 1.5;
+}
+.gate-card .gate-arrow {  
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--col-copper-light);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+#site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(247,243,236,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--col-border-light);
+  padding: 0;
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+}
+#site-nav.visible { transform: translateY(0); }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  width: var(--container);
+  margin: 0 auto;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--col-charcoal);
+  font-weight: 600;
+}
+.nav-logo span { color: var(--col-accent); }
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--col-warm-grey);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--col-accent); }
+.nav-cta {
+  background: var(--col-accent);
+  color: var(--col-cream) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2px;
+  font-size: 0.75rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--col-forest) !important; }
+
+/* Audience pill in nav */
+.audience-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  background: var(--col-stone);
+  border: 1px solid var(--col-border);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  cursor: pointer;
+  color: var(--col-warm-grey);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.audience-pill:hover { background: var(--col-stone-dark); }
+#audience-label { font-weight: 500; color: var(--col-accent); }
+
+/* ============================================
+   HERO
+   ============================================ */
+#hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  background: var(--col-forest);
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0 6rem;
+}
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 70% 50%, rgba(163,105,60,0.15) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 3rem;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--col-copper-light);
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+  font-weight: 300;
+  line-height: 1.08;
+  color: var(--col-cream);
+  margin-bottom: 1.75rem;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--col-copper-light);
+}
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--col-stone-dark);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--col-copper);
+  color: #fff;
+  padding: 0.9rem 1.8rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  font-family: var(--font-body);
+}
+.btn-primary:hover { background: var(--col-copper-light); transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--col-stone);
+  padding: 0.9rem 1.8rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  font-family: var(--font-body);
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 2rem;
+}
+.hero-card-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--col-copper-light);
+  margin-bottom: 1.25rem;
+}
+.warning-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: var(--col-stone);
+  font-size: 0.9rem;
+}
+.warning-item:last-child { border-bottom: none; }
+.warning-item i { color: #E07050; margin-top: 0.1rem; flex-shrink: 0; }
+
+/* ============================================
+   PROBLEM SECTION
+   ============================================ */
+#problem {
+  background: var(--col-cream);
+  padding: 7rem 0;
+  border-bottom: 1px solid var(--col-border-light);
+}
+.problem-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--col-charcoal);
+  margin-bottom: 1rem;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 6rem;
+  align-items: start;
+  margin-top: 4rem;
+}
+.problem-sticky {
+  position: sticky;
+  top: 90px;
+}
+.problem-intro {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--col-charcoal);
+}
+.problem-intro em { font-style: italic; color: var(--col-accent); }
+.scenario-box {
+  background: var(--col-stone);
+  border-left: 3px solid var(--col-copper);
+  padding: 1.5rem;
+  border-radius: 0 4px 4px 0;
+  margin: 2.5rem 0;
+  font-size: 0.925rem;
+  font-style: italic;
+  color: var(--col-ink);
+  line-height: 1.65;
+}
+.scenario-box cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--col-warm-grey);
+  letter-spacing: 0.05em;
+}
+.problem-facts { display: grid; gap: 1.5rem; }
+.fact-card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--col-border-light);
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+.fact-card:hover { border-color: var(--col-accent); }
+.fact-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--col-stone);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--col-accent);
+  font-size: 1.25rem;
+}
+.fact-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--col-charcoal);
+}
+.fact-card p { font-size: 0.875rem; color: var(--col-warm-grey); line-height: 1.6; }
+
+/* Audience-specific content toggling */
+[data-audience] { display: none; }
+[data-audience].active { display: block; }
+
+/* ============================================
+   APPROACH SECTION
+   ============================================ */
+#approach {
+  background: var(--col-accent);
+  padding: 7rem 0;
+  color: var(--col-cream);
+}
+.approach-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.approach-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1rem;
+}
+.approach-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.approach-title em { font-style: italic; color: var(--col-copper-light); }
+.approach-body { color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.75; }
+.approach-benefits { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
+.benefit-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.benefit-row:last-child { border-bottom: none; }
+.benefit-tick {
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--col-copper-light);
+  font-size: 1rem;
+}
+.benefit-row h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.benefit-row p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+.approach-mechanic {
+  background: rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 2.5rem;
+}
+.mechanic-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: var(--col-copper-light);
+}
+.mechanic-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+.step-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.2);
+  line-height: 1;
+  min-width: 2rem;
+}
+.mechanic-step p { font-size: 0.875rem; color: rgba(255,255,255,0.7); padding-top: 0.1rem; }
+.mechanic-step strong { color: var(--col-cream); display: block; margin-bottom: 0.2rem; font-weight: 500; }
+
+/* Spec table for architects */
+.spec-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.85rem; }
+.spec-table th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  background: rgba(255,255,255,0.08);
+  color: var(--col-copper-light);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.spec-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.75);
+  vertical-align: top;
+}
+.spec-table td:first-child { color: var(--col-cream); }
+
+/* ============================================
+   PLANNING CONSENT SECTION
+   ============================================ */
+#planning {
+  background: #fff;
+  padding: 7rem 0;
+}
+.planning-header { max-width: 660px; margin-bottom: 4rem; }
+.consent-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+.consent-step {
+  padding: 1.75rem 1.5rem;
+  border: 1px solid var(--col-border);
+  border-radius: 4px;
+  position: relative;
+}
+.consent-step::after {
+  content: '';
+  position: absolute;
+  right: -1.5rem;
+  top: 50%;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--col-border);
+}
+.consent-step:last-child::after { display: none; }
+.step-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--col-warm-grey);
+  margin-bottom: 0.75rem;
+}
+.step-icon { font-size: 1.5rem; color: var(--col-accent); margin-bottom: 0.75rem; }
+.consent-step h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--col-charcoal);
+}
+.consent-step p { font-size: 0.8rem; color: var(--col-warm-grey); line-height: 1.5; }
+
+.case-study {
+  background: var(--col-stone);
+  border-radius: 4px;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.cs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--col-accent);
+  color: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+.cs-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  color: var(--col-charcoal);
+}
+.cs-body { font-size: 0.9rem; color: var(--col-warm-grey); line-height: 1.65; }
+.cs-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.cs-stat { text-align: center; }
+.cs-stat .num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--col-accent);
+  line-height: 1;
+}
+.cs-stat .unit { font-size: 0.75rem; color: var(--col-warm-grey); margin-top: 0.3rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ============================================
+   PRICE SECTION
+   ============================================ */
+#price {
+  background: var(--col-stone);
+  padding: 7rem 0;
+  border-top: 1px solid var(--col-border);
+  border-bottom: 1px solid var(--col-border);
+}
+.price-header { max-width: 580px; margin-bottom: 4rem; }
+.comparison-table-wrap { overflow-x: auto; }
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+}
+.comparison-table th {
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.comparison-table th:first-child { text-align: left; color: var(--col-warm-grey); }
+.th-bad { background: #F5EEEA; color: var(--col-warm-grey); border-radius: 4px 4px 0 0; }
+.th-good { background: var(--col-accent); color: #fff; border-radius: 4px 4px 0 0; }
+.comparison-table td {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--col-border);
+}
+.comparison-table td:not(:first-child) { text-align: center; }
+.comparison-table tr:hover td { background: rgba(0,0,0,0.02); }
+.tick-good { color: #3A7D44; font-size: 1.1rem; }
+.tick-bad  { color: #C0392B; font-size: 1.1rem; }
+
+.price-callout {
+  margin-top: 3rem;
+  background: var(--col-forest);
+  color: var(--col-cream);
+  padding: 2.5rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.price-callout i { font-size: 2.5rem; color: var(--col-copper-light); flex-shrink: 0; }
+.price-callout h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+}
+.price-callout p { font-size: 0.875rem; color: var(--col-stone-dark); }
+
+/* ============================================
+   SOCIAL PROOF
+   ============================================ */
+#proof {
+  background: var(--col-cream);
+  padding: 7rem 0;
+}
+.proof-header { max-width: 560px; margin-bottom: 4rem; }
+.testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.testimonial {
+  background: #fff;
+  border: 1px solid var(--col-border-light);
+  border-radius: 4px;
+  padding: 2rem;
+}
+.stars { color: #D4A853; font-size: 0.8rem; letter-spacing: 0.1rem; margin-bottom: 1rem; }
+.testimonial blockquote {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--col-charcoal);
+  margin-bottom: 1.25rem;
+}
+.testimonial cite {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--col-warm-grey);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.testimonial cite strong { color: var(--col-ink); font-weight: 500; }
+
+.trust-row {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--col-border-light);
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.trust-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--col-warm-grey);
+  white-space: nowrap;
+}
+.trust-badges { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; }
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--col-warm-grey);
+}
+.trust-badge i { color: var(--col-accent); font-size: 1.1rem; }
+
+/* ============================================
+   LEAD CAPTURE
+   ============================================ */
+#contact {
+  background: var(--col-forest);
+  padding: 7rem 0;
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.contact-left .label { color: rgba(255,255,255,0.4); }
+.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 300;
+  color: var(--col-cream);
+  line-height: 1.2;
+  margin: 1rem 0;
+}
+.contact-title em { font-style: italic; color: var(--col-copper-light); }
+.contact-body { font-size: 0.925rem; color: var(--col-stone-dark); line-height: 1.7; margin-bottom: 2rem; }
+.contact-features { display: grid; gap: 0.75rem; }
+.contact-feat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--col-stone-dark);
+}
+.contact-feat i { color: var(--col-copper-light); }
+
+.contact-form-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 2.5rem;
+}
+.form-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.form-tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.form-tab.active { color: var(--col-copper-light); border-bottom-color: var(--col-copper-light); }
+.form-panel { display: none; }
+.form-panel.active { display: block; }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 2px;
+  padding: 0.75rem 1rem;
+  color: var(--col-cream);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--col-copper-light); }
+.form-group select option { background: var(--col-forest); }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-submit {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--col-copper);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+.form-submit:hover { background: var(--col-copper-light); }
+.form-note {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Download panel */
+.download-panel {
+  text-align: center;
+  padding: 1rem 0;
+}
+.download-panel i { font-size: 3rem; color: var(--col-copper-light); margin-bottom: 1rem; }
+.download-panel h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--col-cream);
+  margin-bottom: 0.5rem;
+}
+.download-panel p { font-size: 0.85rem; color: var(--col-stone-dark); margin-bottom: 2rem; }
+
+/* ============================================
+   FAQ
+   ============================================ */
+#faq {
+  background: var(--col-cream);
+  padding: 7rem 0;
+  border-top: 1px solid var(--col-border-light);
+}
+.faq-header { max-width: 560px; margin-bottom: 4rem; }
+.faq-list { max-width: 780px; }
+.faq-item {
+  border-bottom: 1px solid var(--col-border);
+  overflow: hidden;
+}
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--col-charcoal);
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--col-accent); }
+.faq-q i { flex-shrink: 0; color: var(--col-accent); transition: transform 0.3s; }
+.faq-item.open .faq-q i { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
+.faq-a p { font-size: 0.9rem; color: var(--col-warm-grey); line-height: 1.7; }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background: var(--col-charcoal);
+  color: rgba(255,255,255,0.5);
+  padding: 3rem 0;
+}
+.footer-inner {
+  width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: #fff;
+}
+.footer-logo span { color: var(--col-copper-light); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+.footer-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-reg { font-size: 0.72rem; }
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* Stagger delays */
+.fade-up:nth-child(1) { transition-delay: 0s; }
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-card { display: none; }
+  .problem-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .problem-sticky { position: static; }
+  .approach-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .consent-steps { grid-template-columns: 1fr 1fr; }
+  .case-study { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .testimonials { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .gate-cards { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  .consent-steps { grid-template-columns: 1fr; }
+  .consent-step::after { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .cs-stats { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     AUDIENCE GATE
+     ============================================ -->
+<div id="audience-gate">
+  <div class="gate-inner">
+    <div class="nav-logo"><img src="/assets/images/Breathatherm-logo-22-3-1.png" style="height: 60px" alt=""></div>
+    <h1 class="gate-headline">How can we help?</h1>
+    <p class="gate-sub">We'll tailor our site to your needs.</p>
+    <div class="gate-cards">
+
+      <div class="gate-card" onclick="setAudience('homeowner')">
+        <div class="gate-icon"><i class="ph ph-house-line"></i></div>
+        <h3>Homeowner</h3>
+        <p>You own or are buying a heritage property and want to find the best insulation for the job.</p>
+        <div class="gate-arrow"><i class="ph ph-arrow-right"></i> I'm an owner</div>
+      </div>
+
+      <div class="gate-card" onclick="setAudience('architect')">
+        <div class="gate-icon"><i class="ph ph-pencil-ruler"></i></div>
+        <h3>Architect / Surveyor</h3>
+        <p>You're specifying insulation for a heritage or listed project and need technical performance data, planning guidance, and certifications.</p>
+        <div class="gate-arrow"><i class="ph ph-arrow-right"></i> I'm an advisor</div>
+      </div>
+
+      <div class="gate-card" onclick="setAudience('installer')">
+        <div class="gate-icon"><i class="ph ph-check-fat"></i></div>
+        <h3>Installer / Contractor</h3>
+        <p>You're a tradesperson or contractor looking to expand your offering into breathable insulation for older buildings.</p>
+        <div class="gate-arrow"><i class="ph ph-arrow-right"></i> I'm an installer </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     NAVIGATION
+     ============================================ -->
+<nav id="site-nav">
+  <div class="nav-inner">
+    <div class="nav-logo"><img src="/assets/images/Breathatherm-logo-22-3-1.png" style="height: 60px" alt=""></div>
+    <ul class="nav-links">
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#approach">Our Approach</a></li>
+      <li><a href="#planning">Planning</a></li>
+      <li><a href="#proof">Case Studies</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Survey</a></li>
+    </ul>
+    <div class="audience-pill" onclick="resetAudience()">
+      <i class="ph ph-user" style="font-size:0.85rem"></i>
+      <span id="audience-label">Homeowner</span>
+      <i class="ph ph-arrows-clockwise" style="font-size:0.75rem"></i>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <div>
+      <p class="hero-eyebrow">Historic Building Specialists · Listed &amp; Pre-1919 Properties</p>
+
+      <!-- Homeowner hero -->
+      <div data-audience="homeowner">
+        <h1 class="hero-title">Modern insulation kills heritage buildings<br><em>BreatheTherm saves them</em></h1>
+        <p class="hero-sub">Modern vapour-barrier insulation was designed for new builds. In heritage buildings, it traps moisture in the walls; causing the very damp problems it was meant to prevent.</p>
+      </div>
+
+      <!-- Architect hero -->
+      <div data-audience="architect">
+        <h1 class="hero-title">Specify insulation your heritage project <em>won't come to regret.</em></h1>
+        <p class="hero-sub">Retrofit insulation on pre-1919 and listed buildings demands a different approach. BreathTherm's vapour-permeable systems meet BS EN 15026 and carry full LABC approval — with a planning consent track record to match.</p>
+      </div>
+
+      <!-- Installer hero -->
+      <div data-audience="installer">
+        <h1 class="hero-title">Offer what 90% of installers <em>can't&nbsp;touch.</em></h1>
+        <p class="hero-sub">The heritage insulation market is underserved and highly regulated. We train and certify installers in breathable systems that command premium project values — and have a pipeline of demand we can't fulfil alone.</p>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollTo('#contact')">
+          <i class="ph ph-calendar-blank"></i>
+          <span id="hero-cta-primary">Book a Free Survey</span>
+        </button>
+        <button class="btn-ghost" onclick="scrollTo('#problem')">
+          <i class="ph ph-info"></i>
+          <span id="hero-cta-secondary">Why it matters</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <p class="hero-card-label"><i class="ph ph-warning"></i> &nbsp;Common warning signs</p>
+
+      <div data-audience="homeowner">
+        <div class="warning-item"><i class="ph ph-drop"></i><span>Persistent damp patches after insulation fitted</span></div>
+        <div class="warning-item"><i class="ph ph-thermometer-cold"></i><span>Cold walls despite recent retrofit works</span></div>
+        <div class="warning-item"><i class="ph ph-bacteria"></i><span>New mould growth near window reveals or corners</span></div>
+        <div class="warning-item"><i class="ph ph-currency-pound"></i><span>Energy bills barely improved after installation</span></div>
+        <div class="warning-item"><i class="ph ph-file-x"></i><span>Insurer queries about wall construction type</span></div>
+      </div>
+
+      <div data-audience="architect">
+        <div class="warning-item"><i class="ph ph-x-circle"></i><span>Interstitial condensation risk in hygroscopic masonry</span></div>
+        <div class="warning-item"><i class="ph ph-wall"></i><span>Impermeable membranes trapping historic fabric moisture</span></div>
+        <div class="warning-item"><i class="ph ph-file-x"></i><span>LBC refusal citing inappropriate modern materials</span></div>
+        <div class="warning-item"><i class="ph ph-chart-line-down"></i><span>Post-retrofit EPC underperformance vs. modelled values</span></div>
+        <div class="warning-item"><i class="ph ph-clock"></i><span>Delayed consent for vapour-barrier specifications</span></div>
+      </div>
+
+      <div data-audience="installer">
+        <div class="warning-item"><i class="ph ph-x-circle"></i><span>Callbacks from customers with new damp problems</span></div>
+        <div class="warning-item"><i class="ph ph-currency-pound"></i><span>Low-margin work on mainstream insulation</span></div>
+        <div class="warning-item"><i class="ph ph-file-x"></i><span>Turning down listed building enquiries due to compliance</span></div>
+        <div class="warning-item"><i class="ph ph-users-three"></i><span>Growing demand in your area you can't meet</span></div>
+        <div class="warning-item"><i class="ph ph-certificate"></i><span>Lack of certified heritage retrofit accreditation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PROBLEM SECTION
+     ============================================ -->
+<section id="problem" class="section">
+  <div class="container">
+    <p class="problem-label">01 · The Problem</p>
+
+    <div class="problem-grid">
+      <div class="problem-sticky">
+
+        <!-- Homeowner -->
+        <div data-audience="homeowner">
+          <p class="problem-intro">Modern insulation wasn't designed for <em>your</em> home.</p>
+          <div class="divider"></div>
+          <p style="font-size:0.9rem;color:var(--col-warm-grey);line-height:1.7">Victorian and Edwardian walls were designed to breathe — absorbing and releasing moisture as conditions changed. Sealing them with modern vapour barriers interrupts this cycle, trapping moisture inside the structure.</p>
+          <div class="scenario-box">
+            "We spent £14,000 on cavity fill insulation. Within eight months, the plaster was staining and we had mould behind the new kitchen units. The original surveyor never warned us."
+            <cite>— Homeowner, Grade II listed Georgian terrace, Bath</cite>
+          </div>
+        </div>
+
+        <!-- Architect -->
+        <div data-audience="architect">
+          <p class="problem-intro">Impermeable retrofits create <em>hygrothermal failure</em> in solid-wall masonry.</p>
+          <div class="divider"></div>
+          <p style="font-size:0.9rem;color:var(--col-warm-grey);line-height:1.7">Pre-1919 construction relies on vapour diffusion equilibrium. A standard PIR or mineral wool system with foil facing creates a dew-point trap at the inner leaf — accelerating masonry decay and timber rot.</p>
+          <div class="scenario-box">
+            "Interstitial condensation behind an impermeable board system destroyed original lath and plaster within two winters. Historic England guidance Section 6.4 is unambiguous — and too often ignored."
+            <cite>— Conservation Architect, practice submission to IHBC</cite>
+          </div>
+        </div>
+
+        <!-- Installer -->
+        <div data-audience="installer">
+          <p class="problem-intro">Most installers fit the wrong product in <em>the wrong building</em> — without knowing it.</p>
+          <div class="divider"></div>
+          <p style="font-size:0.9rem;color:var(--col-warm-grey);line-height:1.7">Standard training doesn't cover pre-1919 construction physics. Fitting modern board or cavity systems in solid-wall or listed buildings creates liability exposure — and a growing wave of callbacks you can't bill for.</p>
+          <div class="scenario-box">
+            "I'd been doing loft and cavity work for twelve years before I realised I'd probably caused damp problems in at least four Victorian properties. That's what made me retrain."
+            <cite>— Retrofit Installer, West Midlands (BreathTherm certified)</cite>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-facts">
+        <p class="label" style="margin-bottom:1.5rem">Why conventional insulation fails older homes</p>
+
+        <div class="fact-card fade-up">
+          <div class="fact-icon"><i class="ph ph-drop-half"></i></div>
+          <div>
+            <h4>Solid walls breathe: vapour barriers don't</h4>
+            <p>Pre-1919 masonry relies on capillary action and vapour diffusion. Impermeable insulation blocks this cycle, forcing moisture to accumulate inside the wall structure rather than dispersing naturally.</p>
+          </div>
+        </div>
+
+        <div class="fact-card fade-up">
+          <div class="fact-icon"><i class="ph ph-thermometer"></i></div>
+          <div>
+            <h4>The energy performance paradox</h4>
+            <p>Wet walls conduct heat up to 3× faster than dry ones. Conventional insulation that causes dampness can actively worsen energy performance over time — the opposite of its intended purpose.</p>
+          </div>
+        </div>
+
+        <div class="fact-card fade-up">
+          <div class="fact-icon"><i class="ph ph-scales"></i></div>
+          <div>
+            <h4>Listed building consent complications</h4>
+            <p>Local planning authorities increasingly refuse conventional insulation materials on listed or conservation area properties — or require removal of previously fitted systems that have caused damage.</p>
+          </div>
+        </div>
+
+        <div class="fact-card fade-up">
+          <div class="fact-icon"><i class="ph ph-currency-pound"></i></div>
+          <div>
+            <h4>Loss of Heritage Character</h4>
+            <p>Bulky systems alter window reveals, mouldings and proportions: the very features that define a Georgian or Victorian building. BreatheTherm achieves excellence in as little as 50mm.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     APPROACH SECTION
+     ============================================ -->
+<section id="approach">
+  <div class="container">
+    <div class="approach-inner">
+      <div>
+        <p class="approach-label">02 · Our Approach</p>
+
+        <!-- Homeowner -->
+        <div data-audience="homeowner">
+          <h2 class="approach-title">Insulation that works <em>with</em> your walls,<br>not against them.</h2>
+          <p class="approach-body">BreathTherm breathable insulation is specifically formulated for pre-1919 and listed buildings. Our systems use natural vapour-permeable materials — including hemp-lime, wood fibre, and aerogel — that maintain the hygric balance your walls depend on.</p>
+          <div class="approach-benefits">
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>Protects historic fabric</h4><p>No trapped moisture, no accelerated decay. Your walls stay structurally sound.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>Fixes damp — doesn't mask it</h4><p>Breathable systems allow walls to dry out, resolving existing moisture issues rather than concealing them.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>Smoother planning consent</h4><p>Our materials are recognised by Historic England and typically approved faster than conventional systems.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>Real energy savings</h4><p>Dry walls insulate better. Proper breathable insulation delivers the energy performance improvements you were promised.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architect -->
+        <div data-audience="architect">
+          <h2 class="approach-title">Specify with confidence — <em>technically and legally.</em></h2>
+          <p class="approach-body">BreathTherm systems are fully documented to meet PAS 2035:2023, satisfy BS EN 15026 hygrothermal modelling requirements, and have an established precedent with English, Welsh, and Scottish listed building authorities. We provide the specification documentation your appointments require.</p>
+          <div class="approach-benefits">
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>PAS 2035:2023 compliant</h4><p>Full fabric-first retrofit documentation pack available for each project.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>Hygrothermal modelling support</h4><p>We can provide WUFI modelling data or work with your own consultant's assessment.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>LBC precedent database</h4><p>Access to our database of 200+ approved listed building consent applications using BreathTherm systems.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>CPD &amp; expert witness</h4><p>We offer CPD sessions and can provide expert statements if a consent decision is contested.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Installer -->
+        <div data-audience="installer">
+          <h2 class="approach-title">Become the installer <em>heritage projects call first.</em></h2>
+          <p class="approach-body">BreathTherm's certified installer programme gives you the training, materials supply, and ongoing technical support to work confidently on listed and pre-1919 buildings. You quote more, you earn more, and you take on work your competitors refuse.</p>
+          <div class="approach-benefits">
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>3-day certification course</h4><p>Practical training covering building physics, material handling, and planning compliance.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>Preferred installer network</h4><p>We refer project enquiries from architects and homeowners directly to our certified partners.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>Technical helpline &amp; site visits</h4><p>Support on complex or unusual projects — we won't leave you to figure it out alone.</p></div>
+            </div>
+            <div class="benefit-row">
+              <div class="benefit-tick"><i class="ph ph-check-fat"></i></div>
+              <div><h4>Materials at trade pricing</h4><p>Preferred supply terms for certified partners, with next-day delivery to most UK postcodes.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="approach-mechanic">
+        <!-- Homeowner mechanic -->
+        <div data-audience="homeowner">
+          <p class="mechanic-title">How breathable insulation works</p>
+          <div class="mechanic-step"><span class="step-num">1</span><p><strong>Moisture moves freely</strong>Vapour-permeable materials allow moisture to pass through rather than accumulating at the insulation boundary.</p></div>
+          <div class="mechanic-step"><span class="step-num">2</span><p><strong>Walls self-regulate</strong>Hygroscopic materials (hemp, wood fibre) absorb peak moisture loads and release them gradually — just as original lime plaster was designed to.</p></div>
+          <div class="mechanic-step"><span class="step-num">3</span><p><strong>Thermal performance improves</strong>Dry walls are better insulators. As moisture balances, heat loss reduces and your heating becomes genuinely more efficient.</p></div>
+          <div class="mechanic-step"><span class="step-num">4</span><p><strong>The building lasts</strong>No interstitial condensation means no accelerated timber decay, no masonry spalling, no failed renders.</p></div>
+        </div>
+
+        <!-- Architect spec table -->
+        <div data-audience="architect">
+          <p class="mechanic-title">System performance data</p>
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Wood Fibre</th>
+                <th>Hemp-Lime</th>
+                <th>Aerogel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>λ value (W/m·K)</td><td>0.038–0.042</td><td>0.060–0.080</td><td>0.015–0.020</td></tr>
+              <tr><td>Vapour resistance (MNs/g)</td><td>2–5</td><td>1–3</td><td>3–8</td></tr>
+              <tr><td>Sd value (m)</td><td>0.1–0.5</td><td>0.03–0.15</td><td>0.15–0.6</td></tr>
+              <tr><td>Density (kg/m³)</td><td>50–200</td><td>250–350</td><td>150–200</td></tr>
+              <tr><td>Fire class (EN 13501-1)</td><td>D-s2,d0</td><td>A1</td><td>A1</td></tr>
+              <tr><td>LBC typically granted</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>PAS 2035 reference</td><td>TM-5</td><td>TM-4</td><td>TM-6</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Installer mechanic -->
+        <div data-audience="installer">
+          <p class="mechanic-title">The certification pathway</p>
+          <div class="mechanic-step"><span class="step-num">1</span><p><strong>Online induction (self-paced, 4 hrs)</strong>Building physics of pre-1919 properties, moisture behaviour, material selection.</p></div>
+          <div class="mechanic-step"><span class="step-num">2</span><p><strong>3-day practical course</strong>Hands-on installation of wood fibre, hemp-lime and aerogel systems. Assessment included.</p></div>
+          <div class="mechanic-step"><span class="step-num">3</span><p><strong>Supervised first project</strong>BreathTherm technical advisor attends your first live installation. Signed off on completion.</p></div>
+          <div class="mechanic-step"><span class="step-num">4</span><p><strong>Listed on installer finder</strong>Your business appears on our public-facing installer locator — and receives direct referrals from us.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PLANNING CONSENT
+     ============================================ -->
+<section id="planning" class="section">
+  <div class="container">
+    <div class="planning-header">
+      <p class="label">03 · Planning &amp; Consent</p>
+      <div class="section-number" style="margin-top:0.5rem;font-size:4rem">Fit for purpose.</div>
+      <div class="divider"></div>
+
+      <div data-audience="homeowner">
+        <p class="body-lg">The most common reason homeowners delay insulation? They're not sure whether they need listed building consent, or whether they'll get it. BreatheTherm can help.</p>
+      </div>
+      <div data-audience="architect">
+        <p class="body-lg">Our consent track record with English Heritage, Historic Environment Scotland, and Cadw is demonstrable. We'll give you the data upfront so you can advise clients with confidence.</p>
+      </div>
+      <div data-audience="installer">
+        <p class="body-lg">Planning compliance is one of the biggest knowledge gaps for installers working in heritage properties. Our programme covers everything you need to quote and work without risk.</p>
+      </div>
+    </div>
+
+    <div class="consent-steps">
+      <div class="consent-step fade-up">
+        <p class="step-label">Step 01</p>
+        <div class="step-icon"><i class="ph ph-magnifying-glass"></i></div>
+        <h4>Free site assessment</h4>
+        <p>We assess your property's listing status, wall construction, and current condition — before recommending a system or route.</p>
+      </div>
+      <div class="consent-step fade-up">
+        <p class="step-label">Step 02</p>
+        <div class="step-icon"><i class="ph ph-file-text"></i></div>
+        <h4>Consent application</h4>
+        <p>We prepare all documentation for listed building consent, referencing Historic England guidance and our precedent record.</p>
+      </div>
+      <div class="consent-step fade-up">
+        <p class="step-label">Step 03</p>
+        <div class="step-icon"><i class="ph ph-check-circle"></i></div>
+        <h4>Approval &amp; install</h4>
+        <p>Average consent time for BreathTherm systems: 6–8 weeks. We schedule installation to follow immediately on approval.</p>
+      </div>
+      <div class="consent-step fade-up">
+        <p class="step-label">Step 04</p>
+        <div class="step-icon"><i class="ph ph-seal-check"></i></div>
+        <h4>Certification pack</h4>
+        <p>You receive a full compliance and warranty documentation pack — including for insurers, mortgage lenders, and future buyers.</p>
+      </div>
+    </div>
+
+    <div class="case-study">
+      <div>
+        <div class="cs-badge"><i class="ph ph-trophy"></i> Case Study</div>
+        <h3 class="cs-title">Grade II listed Georgian terrace, Cheltenham</h3>
+        <p class="cs-body">A four-bed mid-terrace with persistent damp on the north-facing rear elevation. The owners had been refused planning consent for cavity fill twice. BreathTherm specified a 75mm wood fibre internal wall insulation system with lime plaster finish — consent granted in 7 weeks. Damp resolved within one heating season. EPC improved from F to D.</p>
+      </div>
+      <div class="cs-stats">
+        <div class="cs-stat">
+          <div class="num">7</div>
+          <div class="unit">weeks to consent</div>
+        </div>
+        <div class="cs-stat">
+          <div class="num">2</div>
+          <div class="unit">grades EPC improvement</div>
+        </div>
+        <div class="cs-stat">
+          <div class="num">£0</div>
+          <div class="unit">remediation cost</div>
+        </div>
+        <div class="cs-stat">
+          <div class="num">32%</div>
+          <div class="unit">heating bill reduction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PRICE SECTION
+     ============================================ -->
+<section id="price" class="section">
+  <div class="container">
+    <div class="price-header">
+      <p class="label">04 · Invest to save</p>
+      <h2 class="display-lg" style="margin:1rem 0;color:var(--col-charcoal)">Invest in BreatheTherm.<br><em>Enjoy real savings for years.</em></h2>
+      <div class="divider"></div>
+      <p style="color:var(--col-warm-grey);font-size:0.925rem;line-height:1.7">The cheapest insulation for an old building can be the most expensive in the long run. Here's the full picture.</p>
+    </div>
+
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="th-bad">Conventional Insulation</th>
+            <th class="th-good">BreathTherm System</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Upfront material + installation cost</td>
+            <td>Lower</td>
+            <td>Moderate–higher</td>
+          </tr>
+          <tr>
+            <td>Listed building consent likelihood</td>
+            <td><i class="ph ph-x-circle tick-bad"></i> Often refused</td>
+            <td><i class="ph ph-check-circle tick-good"></i> Typically granted</td>
+          </tr>
+          <tr>
+            <td>Risk of moisture damage</td>
+            <td><i class="ph ph-warning tick-bad"></i> High in solid-wall properties</td>
+            <td><i class="ph ph-check-circle tick-good"></i> Eliminated</td>
+          </tr>
+          <tr>
+            <td>Average remediation cost if damp caused</td>
+            <td><i class="ph ph-currency-pound tick-bad"></i> £8,000–£25,000</td>
+            <td><i class="ph ph-check-circle tick-good"></i> Not applicable</td>
+          </tr>
+          <tr>
+            <td>Energy performance over 10 years</td>
+            <td>Degrades if damp develops</td>
+            <td><i class="ph ph-check-circle tick-good"></i> Stable and improving</td>
+          </tr>
+          <tr>
+            <td>Impact on property value</td>
+            <td>Risk of devaluation</td>
+            <td><i class="ph ph-check-circle tick-good"></i> Positive — mortgage-friendly</td>
+          </tr>
+          <tr>
+            <td>Insurer acceptance</td>
+            <td>Increasingly questioned</td>
+            <td><i class="ph ph-check-circle tick-good"></i> Full documentation provided</td>
+          </tr>
+          <tr>
+            <td>10-year warranty</td>
+            <td><i class="ph ph-x-circle tick-bad"></i> Rarely available for heritage</td>
+            <td><i class="ph ph-check-circle tick-good"></i> Included</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="price-callout">
+      <i class="ph ph-piggy-bank"></i>
+      <div>
+        <h4>Government grants may apply</h4>
+        <p>Depending on property type, household income, and local authority schemes, breathable insulation may qualify for Great British Insulation Scheme or ECO4 funding. Ask us to check eligibility during your free survey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SOCIAL PROOF
+     ============================================ -->
+<section id="proof" class="section">
+  <div class="container">
+    <div class="proof-header">
+      <p class="label">05 · What People Say</p>
+      <h2 class="display-lg" style="margin:1rem 0;color:var(--col-charcoal)">The proof is in the walls.</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="testimonials">
+      <!-- Homeowner testimonials -->
+      <div class="testimonial" data-audience="homeowner">
+        <div class="stars">★★★★★</div>
+        <blockquote>"After two failed cavity fill attempts with other companies, BreathTherm finally solved our damp problem. The walls are dry for the first time in a decade."</blockquote>
+        <cite><strong>Sarah & Tom Whitfield</strong>Grade II listed farmhouse, Somerset</cite>
+      </div>
+      <div class="testimonial" data-audience="homeowner">
+        <div class="stars">★★★★★</div>
+        <blockquote>"They handled the planning consent entirely — we just approved the application. Consent came through faster than our surveyor expected and the installation was clean and professional."</blockquote>
+        <cite><strong>James Fortescue</strong>Victorian terrace, Edinburgh New Town</cite>
+      </div>
+      <div class="testimonial" data-audience="homeowner">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Our heating bills dropped by about 28% in the first year. The surveyor who valued the house afterwards specifically noted the breathable insulation as a positive."</blockquote>
+        <cite><strong>Priya Nair</strong>Edwardian semi-detached, Manchester</cite>
+      </div>
+
+      <!-- Architect testimonials -->
+      <div class="testimonial" data-audience="architect">
+        <div class="stars">★★★★★</div>
+        <blockquote>"BreathTherm's specification documentation is the most thorough I've encountered. The WUFI data and LBC precedent pack made a complex consent straightforward."</blockquote>
+        <cite><strong>Mark Saunders RIBA</strong>Conservation Architect, Bristol</cite>
+      </div>
+      <div class="testimonial" data-audience="architect">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We've used BreathTherm on nine listed building projects. Zero consent refusals. Their technical support on unusual construction types has been genuinely impressive."</blockquote>
+        <cite><strong>Claire Hodges</strong>Partner, Hodges & Porter LLP, York</cite>
+      </div>
+      <div class="testimonial" data-audience="architect">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I specify BreathTherm as default for any pre-1919 project. The performance data holds up under scrutiny from planning officers and independent surveyors alike."</blockquote>
+        <cite><strong>Dr. Andrew Fell</strong>Heritage Consultant, London</cite>
+      </div>
+
+      <!-- Installer testimonials -->
+      <div class="testimonial" data-audience="installer">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I went from turning away listed building enquiries to actively marketing for them. The training was practical, not classroom theory. I recovered the course cost on my second job."</blockquote>
+        <cite><strong>Darren Coates</strong>Certified Installer, West Yorkshire</cite>
+      </div>
+      <div class="testimonial" data-audience="installer">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The referral network alone is worth it. BreathTherm sent me three architect-specified projects within my first month on the installer finder — solid jobs at proper margins."</blockquote>
+        <cite><strong>Mo Osei</strong>Retrofit Contractor, Birmingham</cite>
+      </div>
+      <div class="testimonial" data-audience="installer">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Their technical helpline is the real differentiator. On a complex rubble-stone property last spring, I called twice and got a site visit within three days. That kind of support is rare."</blockquote>
+        <cite><strong>Fiona MacKay</strong>Building Contractor, Inverness</cite>
+      </div>
+    </div>
+
+    <div class="trust-row">
+      <span class="trust-label">Endorsed by</span>
+      <div class="trust-badges">
+        <div class="trust-badge"><i class="ph ph-seal-check"></i> Historic England Guidance Aligned</div>
+        <div class="trust-badge"><i class="ph ph-seal-check"></i> IHBC Member Company</div>
+        <div class="trust-badge"><i class="ph ph-seal-check"></i> PAS 2035:2023 Certified</div>
+        <div class="trust-badge"><i class="ph ph-seal-check"></i> LABC Registered</div>
+        <div class="trust-badge"><i class="ph ph-seal-check"></i> TrustMark Registered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     LEAD CAPTURE
+     ============================================ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <p class="label" style="color:rgba(255,255,255,0.4)">06 · Get Started</p>
+
+        <!-- Homeowner -->
+        <div data-audience="homeowner">
+          <h2 class="contact-title">Let's look at <em>your</em> building.</h2>
+          <p class="contact-body">Book a free site survey and we'll assess your wall construction, any existing moisture issues, and what breathable insulation system would be right for your property — with a no-obligation written report.</p>
+          <div class="contact-features">
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Free site visit, no obligation</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Written assessment and recommendation</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Listed building consent advice included</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Grant eligibility check</div>
+          </div>
+        </div>
+
+        <!-- Architect -->
+        <div data-audience="architect">
+          <h2 class="contact-title">Let's talk about <em>your project.</em></h2>
+          <p class="contact-body">Download our full specification guide or speak to our technical team. We'll match you with the right system, provide WUFI modelling support, and prepare your LBC documentation pack.</p>
+          <div class="contact-features">
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Full technical specification pack</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> LBC precedent case database access</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> CPD sessions available</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Dedicated technical contact</div>
+          </div>
+        </div>
+
+        <!-- Installer -->
+        <div data-audience="installer">
+          <h2 class="contact-title">Ready to become a <em>certified installer?</em></h2>
+          <p class="contact-body">Register your interest in the installer programme. We run certification courses monthly across the UK and have a dedicated support team to get you trading in heritage insulation as quickly as possible.</p>
+          <div class="contact-features">
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Next course dates within 3–4 weeks</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Immediate access to installer finder on certification</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Trade pricing from day one</div>
+            <div class="contact-feat"><i class="ph ph-check-fat"></i> Ongoing technical support included</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-box">
+        <div class="form-tabs">
+          <div class="form-tab active" onclick="switchTab(this,'tab-survey')">
+            <i class="ph ph-calendar-blank"></i>
+            <span id="tab1-label"> Book a Survey</span>
+          </div>
+          <div class="form-tab" onclick="switchTab(this,'tab-download')">
+            <i class="ph ph-file-arrow-down"></i>
+            <span id="tab2-label"> Download Guide</span>
+          </div>
+        </div>
+
+        <!-- Survey form -->
+        <div class="form-panel active" id="tab-survey">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First name</label>
+              <input type="text" placeholder="Jane">
+            </div>
+            <div class="form-group">
+              <label>Last name</label>
+              <input type="text" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" placeholder="jane@example.com">
+          </div>
+          <div class="form-group">
+            <label>Phone number</label>
+            <input type="tel" placeholder="07700 000000">
+          </div>
+          <div class="form-group">
+            <label>Property postcode</label>
+            <input type="text" placeholder="GL50 1AB">
+          </div>
+          <div class="form-group">
+            <label>Property type</label>
+            <select>
+              <option value="">Select one…</option>
+              <option>Victorian (pre-1900)</option>
+              <option>Edwardian (1900–1914)</option>
+              <option>Interwar (1914–1939)</option>
+              <option>Listed building — Grade I</option>
+              <option>Listed building — Grade II*</option>
+              <option>Listed building — Grade II</option>
+              <option>Other pre-1919</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Main concern</label>
+            <textarea placeholder="E.g. persistent damp on rear elevation, cold rooms despite existing loft insulation, planning questions…"></textarea>
+          </div>
+          <button class="form-submit">
+            <i class="ph ph-calendar-check"></i> Request Free Survey
+          </button>
+          <p class="form-note">We respond within one working day. No sales calls — a surveyor will contact you directly.</p>
+        </div>
+
+        <!-- Download panel -->
+        <div class="form-panel" id="tab-download">
+          <div class="download-panel">
+            <i class="ph ph-file-pdf"></i>
+            <div data-audience="homeowner">
+              <h4>Listed Building Insulation Guide for Homeowners</h4>
+              <p>A plain-English guide to planning consent, material selection, and what to ask your surveyor.</p>
+            </div>
+            <div data-audience="architect">
+              <h4>Technical Specification &amp; LBC Documentation Pack</h4>
+              <p>Full system performance data, hygrothermal guidance, and consent application templates.</p>
+            </div>
+            <div data-audience="installer">
+              <h4>Installer Programme Prospectus</h4>
+              <p>Certification pathway, course dates, trade pricing, and the BreathTherm installer network.</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" placeholder="jane@example.com">
+          </div>
+          <div class="form-group">
+            <label>I am a…</label>
+            <select>
+              <option>Homeowner</option>
+              <option>Architect / Surveyor</option>
+              <option>Installer / Contractor</option>
+              <option>Other professional</option>
+            </select>
+          </div>
+          <button class="form-submit">
+            <i class="ph ph-download-simple"></i> Send me the guide
+          </button>
+          <p class="form-note">We'll email it to you immediately. No spam — just the document you asked for.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FAQ
+     ============================================ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="faq-header">
+      <p class="label">07 · FAQ</p>
+      <h2 class="display-lg" style="margin:1rem 0;color:var(--col-charcoal)">Remaining questions.</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item" data-audience="homeowner">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I definitely need listed building consent?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>Not always. Listed building consent is required if your property is listed (Grade I, II* or II) and the works would affect its character. Internally applied breathable insulation often does require consent, but in many cases your local planning authority will grant it quickly for appropriate materials. We assess this as part of our free survey.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-audience="homeowner">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does the planning process take?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>For breathable insulation systems using appropriate materials, we typically see listed building consent granted within 6–10 weeks. Standard (non-listed) properties in conservation areas are often faster. We prepare and submit all documentation on your behalf.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-audience="homeowner">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can breathable insulation fix existing damp?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>In many cases, yes — particularly where the damp is caused or worsened by existing inappropriate insulation or impermeable renders. Breathable systems allow walls to dry out over time. If there is a structural water ingress issue (roof, gutters, etc.), that must be resolved first. Our survey will identify and distinguish between causes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-audience="homeowner">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What energy savings can I realistically expect?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>Typically 20–40% reduction in space heating demand, depending on wall area treated, current construction type, and how dry the walls were before installation. Unlike conventional insulation, breathable systems often improve in performance over the first 1–2 years as residual moisture dissipates.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-audience="architect">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Which standards and certifications do BreathTherm systems carry?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>Our systems are assessed against PAS 2035:2023, carry LABC Product Approval, and are referenced in our own technical documentation aligned with BS EN 15026. Individual products carry relevant European Technical Assessments (ETAs) and CE/UKCA marking. Full certification schedule on request.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-audience="architect">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you provide hygrothermal modelling data?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>Yes. We can provide WUFI Pro simulation data for standard construction assemblies, or work with your own hygrothermal consultant to validate custom assemblies. We also maintain a library of completed assessments for common wall types (London stock brick, Yorkshire stone, rubble limestone, etc.).</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-audience="installer">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does certification take?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>The full certification pathway — online induction, 3-day practical course, and supervised first project — typically takes 4–6 weeks from enrolment. You can start taking on heritage projects immediately after the practical assessment; the supervised project can be a live job.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-audience="installer">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What margins do heritage insulation projects carry?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>Considerably higher than mainstream retrofit. BreathTherm certified installers typically quote 35–55% gross margin on materials and installation combined, compared to 15–25% on standard cavity or loft work. Listed building projects also attract less competitive quoting — the specialist barrier reduces price competition significantly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you offer guarantees?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>Yes. All BreathTherm installations carry a 10-year workmanship guarantee backed by deposit protection insurance. Product warranties of 15–25 years apply depending on the system selected. Full guarantee and insurance documentation is provided in your post-installation pack.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What areas of the UK do you cover?
+          <i class="ph ph-plus-circle"></i>
+        </button>
+        <div class="faq-a">
+          <p>We cover England, Wales, and Scotland. Direct BreathTherm installation teams operate from hubs in London, Bristol, Manchester, Edinburgh, and Birmingham. Certified partner installers extend coverage to most of the UK — check postcode availability during the survey booking process.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Breath<span>Therm</span> <span style="font-family:var(--font-body);font-size:0.7rem;color:rgba(255,255,255,0.3);margin-left:0.75rem">www.breaththerm.co.uk</span></div>
+    <nav class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookie Settings</a>
+      <a href="#">Contact</a>
+    </nav>
+    <p class="footer-reg">BreathTherm Ltd · Registered in England &amp; Wales · Company No. 12345678<br>TrustMark Registered · PAS 2035:2023 Certified Retrofit Coordinator</p>
+  </div>
+</footer>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+/* ─── Global State ─── */
+let currentAudience = 'homeowner';
+
+/* ─── Audience Selection ─── */
+function setAudience(type) {
+  currentAudience = type;
+
+  // Remove gate
+  document.getElementById('audience-gate').classList.add('dismissed');
+
+  // Body class for CSS variable overrides
+  document.body.className = 'audience-' + type;
+
+  // Show nav
+  document.getElementById('site-nav').classList.add('visible');
+
+  // Update audience pill label
+  const labels = { homeowner: 'Owner', architect: 'Architect', installer: 'Installer' };
+  document.getElementById('audience-label').textContent = labels[type];
+
+  // Toggle audience-specific content
+  refreshAudienceContent();
+
+  // Update hero CTAs
+  const ctas = {
+    homeowner: { primary: 'Book a Free Survey', secondary: 'Why it matters' },
+    architect:  { primary: 'Request Spec Pack', secondary: 'Technical detail' },
+    installer:  { primary: 'Join the Programme', secondary: 'How it works' }
+  };
+  document.getElementById('hero-cta-primary').textContent   = ctas[type].primary;
+  document.getElementById('hero-cta-secondary').textContent = ctas[type].secondary;
+
+  // Update form tab labels
+  const tabLabels = {
+    homeowner: [' Book a Survey', ' Download Guide'],
+    architect:  [' Spec Request', ' Download Pack'],
+    installer:  [' Register Interest', ' Download Prospectus']
+  };
+  document.getElementById('tab1-label').textContent = tabLabels[type][0];
+  document.getElementById('tab2-label').textContent = tabLabels[type][1];
+
+  // Trigger fade-up animations
+  setTimeout(() => observeFadeUps(), 100);
+}
+
+function refreshAudienceContent() {
+  // Handle data-audience elements
+  document.querySelectorAll('[data-audience]').forEach(el => {
+    const audiences = el.dataset.audience.split(' ');
+    el.classList.toggle('active', audiences.includes(currentAudience));
+  });
+
+  // FAQ items: show ones matching current audience or no audience (generic)
+  document.querySelectorAll('.faq-item').forEach(item => {
+    if (item.dataset.audience) {
+      item.style.display = item.dataset.audience === currentAudience ? '' : 'none';
+    }
+  });
+}
+
+function resetAudience() {
+  document.getElementById('audience-gate').classList.remove('dismissed');
+  document.getElementById('site-nav').classList.remove('visible');
+  document.body.className = '';
+}
+
+/* ─── Tabs ─── */
+function switchTab(tabEl, panelId) {
+  tabEl.closest('.contact-form-box').querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+  tabEl.closest('.contact-form-box').querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+  tabEl.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+/* ─── FAQ Accordion ─── */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ─── Smooth scroll helper ─── */
+function scrollTo(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ─── Fade-up intersection observer ─── */
+function observeFadeUps() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => io.observe(el));
+}
+
+/* ─── Prevent scrolling behind gate ─── */
+document.getElementById('audience-gate').addEventListener('transitionend', () => {
+  if (document.getElementById('audience-gate').classList.contains('dismissed')) {
+    document.body.style.overflow = '';
+  }
+});
+document.body.style.overflow = 'hidden'; // locked until gate dismissed
+
+/* Init on load */
+window.addEventListener('DOMContentLoaded', () => {
+  // Default audience data shown while gate is up
+  document.querySelectorAll('[data-audience="homeowner"]').forEach(el => el.classList.add('active'));
+});
+</script>
+</body>
+</html>

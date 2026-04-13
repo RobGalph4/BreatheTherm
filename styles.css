@@ -351,7 +351,7 @@ em { font-style: italic; }
 
 .hero-stat {
   position: absolute;
-  right: 0; bottom: 80px;
+  right: 80px; bottom: 120px;
   z-index: 2;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
@@ -409,7 +409,7 @@ em { font-style: italic; }
 /* ============================================================
    PROBLEM
    ============================================================ */
-.challenge-section { background: var(--bg); padding: 100px 0; }
+.challenge-section { background: var(--cream-mid); padding: 100px 0; }
 
 .challenge-layout {
   display: grid;
@@ -450,7 +450,7 @@ em { font-style: italic; }
 /* ============================================================
    STATS BAND
    ============================================================ */
-.stats-band { background: var(--primary); padding: 56px 0; }
+.stats-band { background: var(--cream-mid); padding: 56px 0; }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
 
 .stat-item { text-align: center; padding: 12px 24px; position: relative; }
@@ -696,6 +696,64 @@ em { font-style: italic; }
   .spec-box:nth-child(2) { border-right: none; }
   .explorer-legend { grid-template-columns: 1fr 1fr 1fr; }
 }
+
+
+/* ============================================
+   PRICE SECTION
+   ============================================ */
+#price {
+  background: var(--cream-mid);
+  padding: 7rem 0;
+  border-top: 1px solid var(--col-border);
+  border-bottom: 1px solid var(--col-border);
+}
+.price-header { max-width: 580px; margin-bottom: 4rem; }
+.comparison-table-wrap { overflow-x: auto; }
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+}
+.comparison-table th {
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.comparison-table th:first-child { text-align: left; color: var(--col-warm-grey); }
+.th-bad { background: var(--primary-light); color: var(--col-warm-grey); border-radius: 4px 4px 0 0; }
+.th-good { background: var(--primary-mid); color: #fff; border-radius: 4px 4px 0 0; }
+.comparison-table td {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--col-border);
+}
+.comparison-table td:not(:first-child) { text-align: center; }
+.comparison-table tr:hover td { background: rgba(0,0,0,0.02); }
+.tick-good { color: #3A7D44; font-size: 1.1rem; }
+.tick-bad  { color: #C0392B; font-size: 1.1rem; }
+
+.price-callout {
+  margin-top: 3rem;
+  background: var(--col-forest);
+  color: var(--col-cream);
+  padding: 2.5rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.price-callout i { font-size: 2.5rem; color: var(--col-copper-light); flex-shrink: 0; }
+.price-callout h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+}
+.price-callout p { font-size: 0.875rem; color: var(--col-stone-dark); }
+
 
 /* ============================================================
    AUDIENCE PATHS
