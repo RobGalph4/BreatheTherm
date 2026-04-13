@@ -537,7 +537,7 @@ em { font-style: italic; }
    APPROACH SECTION
    ============================================ */
 #approach {
-  background: var(--col-accent);
+  background: var(--primary-mid);
   padding: 7rem 0;
   color: var(--col-cream);
 }
