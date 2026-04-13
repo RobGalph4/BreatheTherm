@@ -533,6 +533,112 @@ em { font-style: italic; }
 }
 .system-element.visible .element-bar::after { transform: scaleX(1); }
 
+/* ============================================
+   APPROACH SECTION
+   ============================================ */
+#approach {
+  background: var(--col-accent);
+  padding: 7rem 0;
+  color: var(--col-cream);
+}
+.approach-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.approach-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1rem;
+}
+.approach-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.approach-title em { font-style: italic; color: var(--col-copper-light); }
+.approach-body { color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.75; }
+.approach-benefits { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
+.benefit-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.benefit-row:last-child { border-bottom: none; }
+.benefit-tick {
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--col-copper-light);
+  font-size: 1rem;
+}
+.benefit-row h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.benefit-row p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+.approach-mechanic {
+  background: rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 2.5rem;
+}
+.mechanic-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: var(--col-copper-light);
+}
+.mechanic-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+.step-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.2);
+  line-height: 1;
+  min-width: 2rem;
+}
+.mechanic-step p { font-size: 0.875rem; color: rgba(255,255,255,0.7); padding-top: 0.1rem; }
+.mechanic-step strong { color: var(--col-cream); display: block; margin-bottom: 0.2rem; font-weight: 500; }
+
+/* Spec table for architects */
+.spec-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.85rem; }
+.spec-table th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  background: rgba(255,255,255,0.08);
+  color: var(--col-copper-light);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.spec-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.75);
+  vertical-align: top;
+}
+.spec-table td:first-child { color: var(--col-cream); }
+
 /* ============================================================
    WALL LAYER EXPLORER
    ============================================================ */
