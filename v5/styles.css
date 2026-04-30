@@ -202,8 +202,8 @@ em { font-style: italic; }
 .btn-full { width: 100%; justify-content: center; margin-bottom: 10px; }
 
 .btn-nav {
-  background: var(--primary);
-  color: var(--white);
+  background: var(--primary-mid);
+  color: var(--cream) !important;
   padding: 9px 18px;
   font-size: 0.82rem;
 }
@@ -644,7 +644,7 @@ em { font-style: italic; }
 .approach__steps {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-top: 20px;
 }
 
 .approach__steps li {
@@ -669,6 +669,7 @@ em { font-style: italic; }
 .approach__steps p {
   opacity: 0.75;
   font-size: 0.95rem;
+  color: var(--cream-deep);
 }
 
 /* --- Approach Benefits List --- */
@@ -679,6 +680,7 @@ em { font-style: italic; }
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  color: var(--cream-deep);
 }
 
 .approach__benefits li {

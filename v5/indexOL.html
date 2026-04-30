@@ -276,8 +276,7 @@
 
                 <h3>How breathable insulation works</h3>
 
-                <em>Moisture is always present (rain, ground moisture, occupancy). The aim is not to "block" it, but to
-                    manage its movement safely</em>
+                <em>Moisture is always present (rain, ground moisture, occupancy). The aim is not to "block" it, but to manage its movement safely</em>
                 <br>
                 <ol class="approach__steps">
                     <li>
@@ -285,7 +284,7 @@
                             <strong>Moisture moves freely</strong>
                             <p>Vapour‑permeable materials allow moisture to pass through rather than accumulate at the
                                 insulation boundary.</p>
-
+                            
                         </div>
                     </li>
                     <li>
@@ -301,15 +300,13 @@
                             <strong>Thermal performance improves</strong>
                             <p>Dry walls insulate better. As moisture balances, heat loss reduces and efficiency
                                 genuinely improves.</p>
-                            <em>Our breathable systems help walls operate closer to their intended thermal
-                                performance</em>
+                                <em>Our breathable systems help walls operate closer to their intended thermal performance</em>
                         </div>
                     </li>
                     <li>
                         <div>
                             <strong>Building fabric lasts longer</strong>
-                            <p>No interstitial condensation means no timber decay, masonry spalling, failed renders or
-                                mould growth.
+                            <p>No interstitial condensation means no timber decay, masonry spalling, failed renders or mould growth.
                             </p>
                         </div>
                     </li>
@@ -971,8 +968,7 @@
                             mineral wool are vapour-resistant — when installed in old walls, they trap moisture inside
                             the structure. This causes interstitial condensation, accelerated decay of historic fabric,
                             and serious structural damp. BreatheTherm uses vapour-permeable mineral materials that work
-                            <em>with</em> the natural moisture cycle rather than against it.
-                        </div>
+                            <em>with</em> the natural moisture cycle rather than against it.</div>
                     </details>
 
                     <details class="faq-item">
@@ -1171,44 +1167,67 @@
                 </div>
 
                 <div class="reveal d1">
-                    <div >
-                        <div class="path-card path-terra reveal">
-                            <div class="path-accent-bar"></div>
-                  
-                            <h3>Homeowners</h3>
-                            <p class="path-intro-text">Future-proof your heritage home. Reduce energy bills and
-                                eliminate damp
-                                without compromising the character or fabric of your building.</p>
-                
-                            <button class="btn btn-terra btn-arrow path-trigger" data-modal="homeowner">Book free
-                                assessment</button>
+                    <form class="lead-form" id="leadForm" novalidate>
+                        <div class="form-heading">Book Your Free Assessment</div>
+                        <p class="form-sub">Tell us about your property and we'll be in touch within one working day.
+                        </p>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="f-name">Full name *</label>
+                                <input type="text" id="f-name" name="name" class="form-input" placeholder="Jane Smith"
+                                    required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="f-phone">Phone number *</label>
+                                <input type="tel" id="f-phone" name="phone" class="form-input"
+                                    placeholder="07700 900000" required autocomplete="tel">
+                            </div>
                         </div>
 
-                        <div class="path-card path-green reveal d1">
-                            <div class="path-accent-bar"></div>
-                   
-                            <h3>Architects &amp; Conservation Officers</h3>
-                            <p class="path-intro-text">Specification-ready systems for the most sensitive buildings.
-                                Full
-                                technical support from design stage to site sign-off and LPA approval.</p>
-            
-                            <button class="btn btn-green btn-arrow path-trigger" data-modal="architect">Get the
-                                technical
-                                pack</button>
+                        <div class="form-group">
+                            <label for="f-email">Email address *</label>
+                            <input type="email" id="f-email" name="email" class="form-input"
+                                placeholder="jane@example.com" required autocomplete="email">
                         </div>
 
-                        <div class="path-card path-navy reveal d2">
-                            <div class="path-accent-bar"></div>
-                        
-                            <h3>Installers &amp; Contractors</h3>
-                            <p class="path-intro-text">Join the approved installer network and tap into the UK's 5.9
-                                million
-                                pre-1919 buildings waiting to be retrofitted properly. First in your area.</p>
-                           
-                            <button class="btn btn-navy btn-arrow path-trigger" data-modal="installer">Become
-                                certified</button>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="f-type">Property type</label>
+                                <select id="f-type" name="proptype" class="form-input">
+                                    <option value="">Select type…</option>
+                                    <option>Georgian (pre-1830)</option>
+                                    <option>Victorian (1830–1901)</option>
+                                    <option>Edwardian (1901–1919)</option>
+                                    <option>Pre-Georgian (pre-1780)</option>
+                                    <option>Post-1919 solid wall</option>
+                                    <option>Not sure</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="f-listed">Listed status</label>
+                                <select id="f-listed" name="listed" class="form-input">
+                                    <option value="">Select…</option>
+                                    <option>Not listed</option>
+                                    <option>Conservation area only</option>
+                                    <option>Grade II listed</option>
+                                    <option>Grade II* listed</option>
+                                    <option>Grade I listed</option>
+                                    <option>Not sure</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <label for="f-msg">How can we help?</label>
+                            <textarea id="f-msg" name="message" class="form-input"
+                                placeholder="Tell us about your building, the problem you're experiencing, or what you'd like to achieve…"></textarea>
+                        </div>
+
+                        <button type="submit" class="form-submit">Book My Free Assessment →</button>
+                        <p class="form-privacy">Your details are kept private and only used to arrange your assessment.
+                            No spam, ever.</p>
+                    </form>
 
                     <div class="form-success" id="formSuccess">
                         <div class="form-success-icon">✓</div>
