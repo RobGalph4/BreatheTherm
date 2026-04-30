@@ -15,7 +15,7 @@
   --sage:           #3CC6B0; 
   --sage-light:     rgba(60, 198, 176, 0.18);
   
-  --terra:          #F1513B; 
+  --terra:          #25D366; /* #F1513B; */
   --terra-dark:     #C93F2B;
   --terra-light:    rgba(241, 81, 59, 0.13);
   
@@ -409,14 +409,14 @@ em { font-style: italic; }
 .hero-stat .stat-num {
   display: block;
   font-family: var(--font-serif);
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 700;
   color: var(--terra);
   line-height: 1;
 }
 .hero-stat .stat-lbl {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.9rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.45);
@@ -692,8 +692,8 @@ em { font-style: italic; }
 }
 
 .benefit-icon {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -1077,7 +1077,7 @@ em { font-style: italic; }
 .testi-card:hover { box-shadow: var(--sh-md); }
 
 .testi-stars { display: flex; gap: 3px; margin-bottom: 18px; }
-.star        { color: var(--terra); font-size: 1rem; }
+.star        { color: var(--terra); font-size: 2rem; }
 
 .testi-quote {
   font-family: var(--font-serif);
@@ -1091,11 +1091,11 @@ em { font-style: italic; }
 }
 .testi-quote::before {
   content: '\201C';
-  font-size: 3rem;
+  font-size: 5rem;
   line-height: 0;
   position: absolute;
-  top: 16px; left: -8px;
-  color: var(--terra);
+  top: 16px; left: -18px;
+  color: var(--primary);
   opacity: 0.25;
   font-style: normal;
 }
