@@ -324,7 +324,7 @@ em { font-style: italic; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("/assets/images/BT bad wall.png");
+  background-image: url("assets/images/BT bad wall.png");
   background-size: contain ;
   background-position: left;
   background-repeat: no-repeat;
