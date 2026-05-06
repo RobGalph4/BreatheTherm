@@ -16,7 +16,7 @@
   --sage-light:     rgba(60, 198, 176, 0.18);
   
   --terra:          #25D366; /* #F1513B; */
-  --terra-dark:     #C93F2B;
+  --terra-dark:     #c9402b;
   --terra-light:    rgba(241, 81, 59, 0.13);
   
   --navy:           #1664AD; 
@@ -757,36 +757,37 @@ em { font-style: italic; }
   background: var(--cream);
   box-shadow: var(--sh-md);
 }
-.wall-svg { width: 100%; height: auto; display: block; cursor: crosshair; }
+.wall-svg { width: 100%; height: auto; display: block; cursor: default ; }
 
 /* SVG hotspots */
 .hs-group { cursor: pointer; }
+ /* 
 .hs-outer {
   fill: none;
   stroke: var(--terra);
   stroke-width: 1.5;
   opacity: 0;
-  animation: hsPulse 3s ease-out infinite;
+ animation: hsPulse 3s ease-out infinite;
 }
 .hs-outer-2 { animation-delay: 1s; }
 @keyframes hsPulse {
-  0%   { r: 9; opacity: 0.5; }
-  100% { r: 18; opacity: 0; }
-}
+  0%   { r: 32; opacity: 0.5; }
+  100% { r: 40; opacity: 0; } 
+}*/
 .hs-dot {
-  fill: var(--terra);
-  opacity: 0.9;
-  transition: all 0.2s;
+  fill: var(--primary-mid);
+  opacity: 1.0;
+  transition: all 0.4s;
 }
 .hs-label {
   fill: var(--white);
   font-family: var(--font-sans);
-  font-size: 8.5px;
+  font-size: 12px;
   font-weight: 600;
   pointer-events: none;
 }
 .hs-group:hover .hs-dot,
-.hs-group.hactive .hs-dot { fill: var(--primary); opacity: 1; }
+.hs-group.hactive .hs-dot { fill: var(--primary-dark); opacity: 1; }
 
 /* Layer info card */
 .layer-card {

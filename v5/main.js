@@ -124,7 +124,7 @@
     },
     W2: {
       id: 'W2',
-      title: 'Aerogel Boost 10mm',
+      title: 'Aerogel Layer 10mm',
       desc: 'Ultra-thin silica aerogel blanket for thermally constrained retrofits where build depth is at a premium — window reveals, recessed frames, and tight junctions. Highest thermal resistance per mm available.',
       thick: '10mm',
       lambda: '0.017 W/m·K',
@@ -133,8 +133,8 @@
     },
     W3: {
       id: 'W3',
-      title: 'Lime Render 20mm',
-      desc: 'Traditional breathable lime finish coat. Fully compatible with historic masonry and allows the wall to manage vapour freely. A hydrophobic additive resists driving rain without impeding vapour transfer.',
+      title: 'Perlifinish 5mm',
+      desc: 'Traditional breathable lime finish coat. Fully compatible with historic masonry and allows the wall to manage vapour freely.',
       thick: '20mm',
       lambda: '—',
       sd: '0.10 – 0.20 m',
@@ -149,13 +149,40 @@
       sd: 'Varies',
       price: '—'
     },
-    W5: {
-      id: 'W5',
-      title: 'Internal Finish',
-      desc: 'Breathable internal surface treatment. All paints and plasters are specified as vapour-open throughout to maintain the complete breathing principle. Lime plaster or breathable mineral finish recommended.',
+    F1: {
+      id: 'F1',
+      title: 'Perlilay Screed 125-200mm',
+      desc: '[undefloor heating not included].',
       thick: 'Varies',
       lambda: '—',
-      sd: 'Vapour open',
+      sd: '0.19 W/m·K',
+      price: 'Project specific'
+    },
+    F2: {
+      id: 'F2',
+      title: 'Aerogel Layer 10-30mm',
+      desc: 'Ultra-thin silica aerogel blanket for thermally constrained retrofits where build depth is at a premium — window reveals, recessed frames, and tight junctions. Highest thermal resistance per mm available.',
+      thick: '[5mm, 10mm, 20mm, 30mm]',
+      lambda: '0.017 W/m·K',
+      sd: '0.04 – 0.08 m',
+      price: '£23.25 /m²'
+    },
+    F3: {
+      id: 'F3',
+      title: 'Perlistruct 125-200mm',
+      desc: '[ to complete ].',
+      thick: 'Varies',
+      lambda: '—',
+      sd: '0.19 W/m·K',
+      price: 'Project specific'
+    },
+    F4: {
+      id: 'F4',
+      title: 'Perlibase 75-150mm',
+      desc: '[ to complete].',
+      thick: 'Varies',
+      lambda: '—',
+      sd: '0.048 W/m·K',
       price: 'Project specific'
     },
   };
@@ -206,7 +233,10 @@
   });
 
   /* Brighten the corresponding SVG layer rect on hover */
-  const LAYER_RECTS = { W1: 'lrect-W1', W2: 'lrect-W2', W3: 'lrect-W3', W4: 'lrect-W4', W5: 'lrect-W5' };
+  const LAYER_RECTS = { 
+    W1: 'lrect-W1', W2: 'lrect-W2', W3: 'lrect-W3', W4: 'lrect-W4', W5: 'lrect-W5', 
+    F1: 'lrect-F1', F2: 'lrect-F2', F3: 'lrect-F3', F4: 'lrect-F4'
+  };
   function dimAllRects()  {
     Object.values(LAYER_RECTS).forEach(id => {
       const el = qs(`#${id}`);
