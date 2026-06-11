@@ -327,7 +327,7 @@ em { font-style: italic; }
 
   overflow: hidden;
 
-  background-image: url("assets/images/BT\ hero\ image\ from\ Josh.jpg") ;
+  background-image: url("assets/images/BT-hero-bkg.jpg") ;
   
   background-size: cover ;
   background-position: left;
@@ -382,6 +382,7 @@ em { font-style: italic; }
   max-width: 780px;
   padding: 60px;
   background-color: var(--navy);
+  opacity: 0.9;
 }
 .hero-eyebrow {
   display: flex;
@@ -635,7 +636,7 @@ em { font-style: italic; }
 }
 
 .intro {
-  color: var(--ink);
+  color: var(--cream-deep);
   max-width: 48ch;
   opacity: 0.85;
   margin-bottom: 2.5rem;
@@ -869,7 +870,7 @@ em { font-style: italic; }
 .explorer-hint {
   text-align: center;
   margin-top: 12px;
-  font-size: 0.78rem;
+  font-size: 1rem;
   color: var(--ink-xlight);
   font-style: italic;
   display: flex;
@@ -878,15 +879,15 @@ em { font-style: italic; }
   gap: 8px;
 }
 .hint-dot {
-  width: 6px; height: 6px;
+  width: 12px; height: 12px;
   border-radius: 50%;
   background: var(--terra);
-  opacity: 0.6;
+  opacity: 1;
   animation: hintBlink 2.5s ease-in-out infinite;
 }
 @keyframes hintBlink {
-  0%, 100% { opacity: 0.6; }
-  50%       { opacity: 0.15; }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
 }
 
 @media (max-width: 1000px) { .explorer-layout { grid-template-columns: 1fr; } }
@@ -1009,8 +1010,8 @@ em { font-style: italic; }
   background: var(--ink-xlight);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 20px;
-  color: var(--navy-dark);
-  font-size: 20px;        /* replaces width/height */
+  color: var(--terr);
+  font-size: 30px;        /* replaces width/height */
 }
 .path-card h3        { color: var(--white); font-size: 1.25rem; margin-bottom: 10px; }
 .path-intro-text     { color: rgba(255,255,255,0.55); font-size: 0.875rem; line-height: 1.7; margin-bottom: 20px; }
