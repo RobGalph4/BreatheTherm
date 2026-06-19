@@ -739,7 +739,7 @@ em { font-style: italic; }
 .explorer-layout {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  gap: 64px;
+  gap: 34px;
   align-items: start;
 }
 
@@ -806,12 +806,12 @@ em { font-style: italic; }
 
 /* Layer info card */
 .layer-card {
-  margin-top: 16px;
+  margin-top: 0px;
   border: 1px solid var(--stone-100);
   border-radius: var(--r-xl);
   background: var(--cream);
   overflow: hidden;
-  opacity: 0;
+  opacity: 1;
   transform: translateY(8px);
   transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
 }
@@ -894,7 +894,7 @@ em { font-style: italic; }
 @media (max-width: 640px) {
   .layer-card-specs { grid-template-columns: 1fr 1fr; }
   .spec-box:nth-child(2) { border-right: none; }
-  .explorer-legend { grid-template-columns: 1fr 1fr 1fr; }
+  .explorer-legend { grid-template-columns: 1fr 1fr; }
 }
 
 /* ============================================

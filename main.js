@@ -220,7 +220,7 @@
   function showLayer(id) {
     const d = LAYER_DATA[id];
     if (!d || !layerCard) return;
-    qs('#lcId').textContent    = d.id;
+    // qs('#lcId').textContent    = d.id;
     qs('#lcTitle').textContent = d.title;
     qs('#lcDesc').textContent  = d.desc;
     qs('#lcThick').textContent = d.thick;

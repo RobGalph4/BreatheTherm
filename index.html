@@ -371,15 +371,73 @@
                 <div class="explorer-text">
                     <span class="tag reveal">Interactive Layer Guide</span>
                     <h2 class="reveal d1">Explore Every Layer</h2>
-                    <h2 class="reveal d1">[NEED TO FINALISE LAYERS]</h2>
-                    <p class="reveal d2">Hover or tap any marker on the cross-section to discover the material
+                    <p class="reveal d2">Hover or tap any marker on the diagram to discover the material
                         properties, thermal performance data, and guide pricing for each BreatheTherm component.</p>
                     <p class="reveal d2">Or select a layer directly from the legend below.</p>
+                </div>
 
-                <!-- </div>
+                
+                
+                <!-- <p class="explorer-hint">
+                    <span class="hint-dot"></span>
+                    Hover a marker or tap a legend item to explore each layer
+                    <span class="hint-dot"></span>
+                </p> -->
 
-            
-                <div class="wall-svg-wrap"> -->
+                
+                    
+                    <div class="explorer-legend reveal d3" role="list" aria-label="Wall layer legend">
+                        <p>Walls</p><p></p>
+                        <div class="legend-item" data-layer="W1" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--sage);"></div>
+                            <span class="legend-label">PerliScratch</span>
+                        </div>
+                        <div class="legend-item" data-layer="W2" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-100);"></div>
+                            <span class="legend-label">PerliTherm</span>
+                        </div>
+                        <div class="legend-item" data-layer="W3" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-200);"></div>
+                            <span class="legend-label">AeroBond</span>
+                        </div>
+                        <div class="legend-item" data-layer="W4" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-100);"></div>
+                            <span class="legend-label">AeroGel</span>
+                        </div>
+                        <div class="legend-item" data-layer="W5" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-200);"></div>
+                            <span class="legend-label">PerliFinish</span>
+                        </div>
+                        <br>
+                        <p>Floor</p><p></p>
+                        <div class="legend-item" data-layer="F1" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--cream-deep);"></div>
+                            <span class="legend-label">PerliMat</span>
+                        </div>
+                        <div class="legend-item" data-layer="F2" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-400);"></div>
+                            <span class="legend-label">Perlibase</span>
+                        </div>
+                        <div class="legend-item" data-layer="F3" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-400);"></div>
+                            <span class="legend-label">Perlistruct</span>
+                        </div>
+                        <div class="legend-item" data-layer="F4" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-400);"></div>
+                            <span class="legend-label">AeroBond</span>
+                        </div>
+                        <div class="legend-item" data-layer="F5" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-400);"></div>
+                            <span class="legend-label">AeroGel</span>
+                        </div>
+                        <div class="legend-item" data-layer="F6" role="listitem" tabindex="0">
+                            <div class="legend-dot" style="background: var(--stone-400);"></div>
+                            <span class="legend-label">PerliScreed</span>
+                        </div>
+                    </div>
+
+                
+                <div class="wall-svg-wrap">
                     <svg class="wall-svg" viewBox="0 0 625 470 " xmlns="http://www.w3.org/2000/svg" role="img"
                         aria-label="BreatheTherm wall build-up cross-section">
                         <defs>
@@ -445,98 +503,44 @@
                         </g>
                     </svg>
 
-                        
-                    <p class="explorer-hint">
-                        <span class="hint-dot"></span>
-                        Hover a marker or tap a legend item to explore each layer
-                        <span class="hint-dot"></span>
-                    </p>
+                       
                 </div>
-                
 
-                <div class="reveal d1">
+
+                <!-- <div class="reveal d1"> -->
+                <div class="layer-card" id="layerCard" aria-live="polite">
+                    <div class="layer-card-header">
+                        <!-- <div class="layer-card-id" id="lcId">Select a layer</div> -->
+                        <div class="layer-card-title" id="lcTitle">Select a layer</div>
+                    </div>
+                    <div class="layer-card-desc" id="lcDesc">
+                        Click or hover any hotspot on the diagram to explore that layer's thermal properties, vapour
+                        data, and guide pricing.
+                    </div>
+                    <div class="layer-card-specs">
+                        <div class="spec-box">
+                            <div class="spec-key">Thickness</div>
+                            <div class="spec-val" id="lcThick">—</div>
+                        </div>
+                        <div class="spec-box">
+                            <div class="spec-key">λ Lambda</div>
+                            <div class="spec-val" id="lcLambda">—</div>
+                        </div>
+                        <div class="spec-box">
+                            <div class="spec-key">Sd Value</div>
+                            <div class="spec-val" id="lcSd">—</div>
+                        </div>
+                    </div>
+                    <div class="layer-card-price">
+                        <span class="price-key">Guide price · ex. VAT · supply only</span>
+                        <span class="price-val" id="lcPrice">—</span>
+                    </div>
+                </div>
+                <!-- </div> -->
+
                     
-                    <div class="explorer-legend reveal d3" role="list" aria-label="Wall layer legend">
-                        <p>Walls</p><p></p>
-                        <div class="legend-item" data-layer="W1" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--sage);"></div>
-                            <span class="legend-label">PerliScratch</span>
-                        </div>
-                        <div class="legend-item" data-layer="W2" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-100);"></div>
-                            <span class="legend-label">PerliTherm</span>
-                        </div>
-                        <div class="legend-item" data-layer="W3" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-200);"></div>
-                            <span class="legend-label">AeroBond</span>
-                        </div>
-                        <div class="legend-item" data-layer="W4" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-100);"></div>
-                            <span class="legend-label">AeroGel</span>
-                        </div>
-                        <div class="legend-item" data-layer="W5" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-200);"></div>
-                            <span class="legend-label">PerliFinish</span>
-                        </div>
-                        <br>
-                        <p>Floor</p><p></p>
-                        <div class="legend-item" data-layer="F1" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--cream-deep);"></div>
-                            <span class="legend-label">PerliMat</span>
-                        </div>
-                        <div class="legend-item" data-layer="F2" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-400);"></div>
-                            <span class="legend-label">Perlibase</span>
-                        </div>
-                        <div class="legend-item" data-layer="F3" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-400);"></div>
-                            <span class="legend-label">Perlistruct</span>
-                        </div>
-                        <div class="legend-item" data-layer="F4" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-400);"></div>
-                            <span class="legend-label">AeroBond</span>
-                        </div>
-                        <div class="legend-item" data-layer="F5" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-400);"></div>
-                            <span class="legend-label">AeroGel</span>
-                        </div>
-                        <div class="legend-item" data-layer="F6" role="listitem" tabindex="0">
-                            <div class="legend-dot" style="background: var(--stone-400);"></div>
-                            <span class="legend-label">PerliScreed</span>
-                        </div>
-                    </div>
-                    <br>
 
-                    <div class="layer-card" id="layerCard" aria-live="polite">
-                        <div class="layer-card-header">
-                            <div class="layer-card-id" id="lcId">Select a layer</div>
-                            <div class="layer-card-title" id="lcTitle">Hover a marker above</div>
-                        </div>
-                        <div class="layer-card-desc" id="lcDesc">
-                            Click or hover any hotspot on the diagram to explore that layer's thermal properties, vapour
-                            data, and guide pricing.
-                        </div>
-                        <div class="layer-card-specs">
-                            <div class="spec-box">
-                                <div class="spec-key">Thickness</div>
-                                <div class="spec-val" id="lcThick">—</div>
-                            </div>
-                            <div class="spec-box">
-                                <div class="spec-key">λ Lambda</div>
-                                <div class="spec-val" id="lcLambda">—</div>
-                            </div>
-                            <div class="spec-box">
-                                <div class="spec-key">Sd Value</div>
-                                <div class="spec-val" id="lcSd">—</div>
-                            </div>
-                        </div>
-                        <div class="layer-card-price">
-                            <span class="price-key">Guide price · ex. VAT · supply only</span>
-                            <span class="price-val" id="lcPrice">—</span>
-                        </div>
-                    </div>
 
-                </div>
             </div>
         </div>
     </section>
