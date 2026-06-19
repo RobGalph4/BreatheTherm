@@ -260,24 +260,24 @@
   });
 
   /* Brighten the corresponding SVG layer rect on hover */
-  const LAYER_RECTS = { 
-    W1: 'lrect-W1', W2: 'lrect-W2', W3: 'lrect-W3', W4: 'lrect-W4', W5: 'lrect-W5', 
-    F1: 'lrect-F1', F2: 'lrect-F2', F3: 'lrect-F3', F4: 'lrect-F4', F4: 'lrect-F5', F4: 'lrect-F6'
-  };
-  function dimAllRects()  {
-    Object.values(LAYER_RECTS).forEach(id => {
-      const el = qs(`#${id}`);
-      if (el) { el.style.filter = ''; el.style.transition = 'filter 0.25s'; }
-    });
-  }
-  qsa('.hs-group').forEach(g => {
-    g.addEventListener('mouseenter', () => {
-      dimAllRects();
-      const el = qs(`#${LAYER_RECTS[g.dataset.id]}`);
-      if (el) el.style.filter = 'brightness(1.18) saturate(1.1)';
-    });
-    g.addEventListener('mouseleave', dimAllRects);
-  });
+  // const LAYER_RECTS = { 
+  //   W1: 'lrect-W1', W2: 'lrect-W2', W3: 'lrect-W3', W4: 'lrect-W4', W5: 'lrect-W5', 
+  //   F1: 'lrect-F1', F2: 'lrect-F2', F3: 'lrect-F3', F4: 'lrect-F4', F4: 'lrect-F5', F4: 'lrect-F6'
+  // };
+  // function dimAllRects()  {
+  //   Object.values(LAYER_RECTS).forEach(id => {
+  //     const el = qs(`#${id}`);
+  //     if (el) { el.style.filter = ''; el.style.transition = 'filter 0.25s'; }
+  //   });
+  // }
+  // qsa('.hs-group').forEach(g => {
+  //   g.addEventListener('mouseenter', () => {
+  //     dimAllRects();
+  //     const el = qs(`#${LAYER_RECTS[g.dataset.id]}`);
+  //     if (el) el.style.filter = 'brightness(1.18) saturate(1.1)';
+  //   });
+  //   g.addEventListener('mouseleave', dimAllRects);
+  // });
 
   /* ─────────────────────────────────────────────────────────
      6. AUDIENCE PATH MODALS
