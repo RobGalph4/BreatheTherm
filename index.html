@@ -376,28 +376,110 @@
                         properties, thermal performance data, and guide pricing for each BreatheTherm component.</p>
                     <p class="reveal d2">Or select a layer directly from the legend below.</p>
 
+                <!-- </div>
+
+            
+                <div class="wall-svg-wrap"> -->
+                    <svg class="wall-svg" viewBox="0 0 625 470 " xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-label="BreatheTherm wall build-up cross-section">
+                        <defs>
+                            <pattern id="backgroundImage" width="625" height="470" patternUnits="userSpaceOnUse">
+                                <image href="assets/images/BT cutaway.webp" opacity="1" width="625" height="470"
+                                    preserveAspectRatio="xMidYMid slice" />
+                            </pattern>
+                        </defs>
+
+                        <rect width="625" height="470" fill="url(#backgroundImage)" />
+
+                        <!-- Interior temperature -->
+                        <text x="510" y="50" text-anchor="right" font-family="Playfair Display,serif"
+                            font-size="18" fill="var(--terra-dark)" font-weight="800">INSIDE</text>
+                        <text x="510" y="070" text-anchor="left" font-family="Playfair Display,serif"
+                            font-size="18" fill="var(--terra-dark)" font-weight="800">18–21°C</text>
+
+                        <!-- HOTSPOT MARKERS -->
+                        <g class="hs-group" data-id="W1" tabindex="0" role="button" aria-label="Layer: PerliTherm">
+                            <circle class="hs-dot" cx="220" cy="170" r="30" />
+                            <text class="hs-label" x="220" y="174" text-anchor="middle">PerliScratch</text>
+                        </g>
+                        <g class="hs-group" data-id="W2" tabindex="0" role="button"
+                            aria-label="Layer: Aerogel Boost">
+                            <circle class="hs-dot" cx="245" cy="110" r="30" />
+                            <text class="hs-label" x="245" y="114" text-anchor="middle">PerliTherm</text>
+                        </g>
+                        <g class="hs-group" data-id="W3" tabindex="0" role="button" aria-label="Layer: Perlifinish">
+                            <circle class="hs-dot" cx="270" cy="50" r="30" />
+                            <text class="hs-label" x="270" y="54" text-anchor="middle">AeroBond</text>
+                        </g>
+                        <g class="hs-group" data-id="W4" tabindex="0" role="button" aria-label="Layer: Perlifinish">
+                            <circle class="hs-dot" cx="300" cy="110" r="30" />
+                            <text class="hs-label" x="300" y="114" text-anchor="middle">AeroGel</text>
+                        </g>
+                        <g class="hs-group" data-id="W5" tabindex="0" role="button" aria-label="Layer: Perlifinish">
+                            <circle class="hs-dot" cx="360" cy="50" r="30" />
+                            <text class="hs-label" x="360" y="54" text-anchor="middle">PerliFinish</text>
+                        </g>
+                        <g class="hs-group" data-id="F1" tabindex="0" role="button" aria-label="Layer: PerliMat">
+                            <circle class="hs-dot" cx="425" cy="400 " r="30" />
+                            <text class="hs-label" x="425" y="404" text-anchor="middle">PerliMat</text>
+                        </g>
+                        <g class="hs-group" data-id="F2" tabindex="0" role="button" aria-label="Layer: Perlibase">
+                            <circle class="hs-dot" cx="525" cy="400" r="30" />
+                            <text class="hs-label" x="525" y="404" text-anchor="middle">Perlibase</text>
+                        </g>
+                        <g class="hs-group" data-id="F3" tabindex="0" role="button" aria-label="Layer: Perlistruct">
+                            <circle class="hs-dot" cx="550" cy="330" r="30" />
+                            <text class="hs-label" x="550" y="334" text-anchor="middle">Perlistruct</text>
+                        </g>
+                        <g class="hs-group" data-id="F4" tabindex="0" role="button" aria-label="Layer: AeroBond">
+                            <circle class="hs-dot" cx="500" cy="265" r="30" />
+                            <text class="hs-label" x="500" y="269" text-anchor="middle">AeroBond</text>
+                        </g>
+                        <g class="hs-group" data-id="F5" tabindex="0" role="button" aria-label="Layer: AeroGel">
+                            <circle class="hs-dot" cx="570 " cy="250" r="30" />
+                            <text class="hs-label" x="570" y="254" text-anchor="middle">AeroGel</text>
+                        </g>
+                        <g class="hs-group" data-id="F6" tabindex="0" role="button" aria-label="Layer: PerliScreed">
+                            <circle class="hs-dot" cx="570" cy="170" r="30" />
+                            <text class="hs-label" x="570" y="174" text-anchor="middle">PerliScreed</text>
+                        </g>
+                    </svg>
+
+                        
+                    <p class="explorer-hint">
+                        <span class="hint-dot"></span>
+                        Hover a marker or tap a legend item to explore each layer
+                        <span class="hint-dot"></span>
+                    </p>
+                </div>
+                
+
+                <div class="reveal d1">
+                    
                     <div class="explorer-legend reveal d3" role="list" aria-label="Wall layer legend">
+                        <p>Walls</p><p></p>
                         <div class="legend-item" data-layer="W1" role="listitem" tabindex="0">
                             <div class="legend-dot" style="background: var(--sage);"></div>
-                            <span class="legend-label">W1</span>
+                            <span class="legend-label">PerliScratch</span>
                         </div>
                         <div class="legend-item" data-layer="W2" role="listitem" tabindex="0">
                             <div class="legend-dot" style="background: var(--stone-100);"></div>
-                            <span class="legend-label">W2</span>
+                            <span class="legend-label">PerliTherm</span>
                         </div>
                         <div class="legend-item" data-layer="W3" role="listitem" tabindex="0">
                             <div class="legend-dot" style="background: var(--stone-200);"></div>
-                            <span class="legend-label">W3</span>
+                            <span class="legend-label">AeroBond</span>
                         </div>
                         <div class="legend-item" data-layer="W4" role="listitem" tabindex="0">
                             <div class="legend-dot" style="background: var(--stone-100);"></div>
-                            <span class="legend-label">W4</span>
+                            <span class="legend-label">AeroGel</span>
                         </div>
                         <div class="legend-item" data-layer="W5" role="listitem" tabindex="0">
                             <div class="legend-dot" style="background: var(--stone-200);"></div>
-                            <span class="legend-label">W5</span>
+                            <span class="legend-label">PerliFinish</span>
                         </div>
-                        <div><br></div>
+                        <br>
+                        <p>Floor</p><p></p>
                         <div class="legend-item" data-layer="F1" role="listitem" tabindex="0">
                             <div class="legend-dot" style="background: var(--cream-deep);"></div>
                             <span class="legend-label">PerliMat</span>
@@ -420,84 +502,10 @@
                         </div>
                         <div class="legend-item" data-layer="F6" role="listitem" tabindex="0">
                             <div class="legend-dot" style="background: var(--stone-400);"></div>
-                            <span class="legend-label">[tbc]]</span>
+                            <span class="legend-label">PerliScreed</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="reveal d1">
-                    <div class="wall-svg-wrap">
-                        <svg class="wall-svg" viewBox="0 0 625 470 " xmlns="http://www.w3.org/2000/svg" role="img"
-                            aria-label="BreatheTherm wall build-up cross-section">
-                            <defs>
-                                <pattern id="backgroundImage" width="625" height="470" patternUnits="userSpaceOnUse">
-                                    <image href="assets/images/BT cutaway.webp" opacity="1" width="625" height="470"
-                                        preserveAspectRatio="xMidYMid slice" />
-                                </pattern>
-                            </defs>
-
-                            <rect width="625" height="470" fill="url(#backgroundImage)" />
-
-                            <!-- Interior temperature -->
-                            <text x="510" y="50" text-anchor="right" font-family="Playfair Display,serif"
-                                font-size="18" fill="var(--terra-dark)" font-weight="800">INSIDE</text>
-                            <text x="510" y="070" text-anchor="left" font-family="Playfair Display,serif"
-                                font-size="18" fill="var(--terra-dark)" font-weight="800">18–21°C</text>
-
-                            <!-- HOTSPOT MARKERS -->
-                            <g class="hs-group" data-id="W1" tabindex="0" role="button" aria-label="Layer: PerliTherm">
-                                <circle class="hs-dot" cx="220" cy="170" r="30" />
-                                <text class="hs-label" x="220" y="174" text-anchor="middle">W1</text>
-                            </g>
-                            <g class="hs-group" data-id="W2" tabindex="0" role="button"
-                                aria-label="Layer: Aerogel Boost">
-                                <circle class="hs-dot" cx="245" cy="110" r="30" />
-                                <text class="hs-label" x="245" y="114" text-anchor="middle">W2</text>
-                            </g>
-                            <g class="hs-group" data-id="W3" tabindex="0" role="button" aria-label="Layer: Perlifinish">
-                                <circle class="hs-dot" cx="270" cy="50" r="30" />
-                                <text class="hs-label" x="270" y="54" text-anchor="middle">W3</text>
-                            </g>
-                            <g class="hs-group" data-id="W4" tabindex="0" role="button" aria-label="Layer: Perlifinish">
-                                <circle class="hs-dot" cx="300" cy="110" r="30" />
-                                <text class="hs-label" x="300" y="114" text-anchor="middle">W4</text>
-                            </g>
-                            <g class="hs-group" data-id="W5" tabindex="0" role="button" aria-label="Layer: Perlifinish">
-                                <circle class="hs-dot" cx="360" cy="50" r="30" />
-                                <text class="hs-label" x="360" y="54" text-anchor="middle">W5</text>
-                            </g>
-                            <g class="hs-group" data-id="F1" tabindex="0" role="button" aria-label="Layer: PerliMat">
-                                <circle class="hs-dot" cx="425" cy="400 " r="30" />
-                                <text class="hs-label" x="425" y="404" text-anchor="middle">PerliMat</text>
-                            </g>
-                            <g class="hs-group" data-id="F2" tabindex="0" role="button" aria-label="Layer: Perlibase">
-                                <circle class="hs-dot" cx="525" cy="400" r="30" />
-                                <text class="hs-label" x="525" y="404" text-anchor="middle">Perlibase</text>
-                            </g>
-                            <g class="hs-group" data-id="F3" tabindex="0" role="button" aria-label="Layer: Perlistruct">
-                                <circle class="hs-dot" cx="550" cy="330" r="30" />
-                                <text class="hs-label" x="550" y="334" text-anchor="middle">Perlistruct</text>
-                            </g>
-                            <g class="hs-group" data-id="F4" tabindex="0" role="button" aria-label="Layer: AeroBond">
-                                <circle class="hs-dot" cx="500" cy="265" r="30" />
-                                <text class="hs-label" x="500" y="269" text-anchor="middle">AeroBond</text>
-                            </g>
-                            <g class="hs-group" data-id="F5" tabindex="0" role="button" aria-label="Layer: AeroGel">
-                                <circle class="hs-dot" cx="570 " cy="250" r="30" />
-                                <text class="hs-label" x="570" y="254" text-anchor="middle">AeroGel</text>
-                            </g>
-                            <g class="hs-group" data-id="F6" tabindex="0" role="button" aria-label="Layer: [tbc]]">
-                                <circle class="hs-dot" cx="570" cy="170" r="30" />
-                                <text class="hs-label" x="570" y="174" text-anchor="middle">[tbc]]</text>
-                            </g>
-                        </svg>
-                    </div>
-                    
-                    <p class="explorer-hint">
-                        <span class="hint-dot"></span>
-                        Hover a marker or tap a legend item to explore each layer
-                        <span class="hint-dot"></span>
-                    </p>
+                    <br>
 
                     <div class="layer-card" id="layerCard" aria-live="polite">
                         <div class="layer-card-header">
