@@ -967,7 +967,7 @@ em { font-style: italic; }
   color: var(--cream);
   padding: 2.5rem;
   border-radius: var(--r-sm);
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   gap: 2rem;
