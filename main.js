@@ -115,16 +115,16 @@
   const LAYER_DATA = {
     W1: {
       id: 'W1',
-      title: 'PerliScratch []mm]',
-      desc: '[]',
-      thick: '[]mm',
-      lambda: '[] W/m·K',
-      sd: '[] – [] m',
-      price: '£[].00 /m²'
+      title: 'PerliScratch',
+      desc: 'Vapour-permeable lime-perlite scratch coat designed as a high-adhesion base or key layer. . It provides a keyed surface to ensure maximum bond strength for subsequent insulating renders or finishing coats while remaining lightweight and breathable.',
+      thick: '3mm, 4mm, 5mm',
+      lambda: '0.080 W/m·K',
+      sd: '0.02 – 0.04 m',
+      price: '£4.60 /m²'
     },
     W2: {
       id: 'W2',
-      title: 'PerliTherm 50mm',
+      title: 'PerliTherm',
       desc: 'Mineral breathable wall base insulation providing excellent vapour management alongside thermal performance. The core of the BreatheTherm wall system — expanded perlite bound with hydraulic lime.',
       thick: '50mm',
       lambda: '0.064 W/m·K',
@@ -133,45 +133,45 @@
     },
     W3: {
       id: 'W3',
-      title: 'AeroBond []mm]',
-      desc: '[]',
-      thick: '[]mm',
-      lambda: '[] W/m·K',
-      sd: '[] – [] m',
-      price: '£[].00 /m²'
+      title: 'AeroBond',
+      desc: 'All-in-one breathable adhesive and basecoat render for AeroBoard and mineral substrates [1, 2]. This fibre-reinforced lime-polymer formulation simplifies the insulation process by replacing separate primers, adhesives, and basecoats in a single, crack-resistant product [1-3].',
+      thick: '3mm, 4mm, 5mm, 6mm',
+      lambda: '0.12 W/m·K',
+      sd: '0.02 – 0.04 m',
+      price: '£20.00 /m²'
     },
     W4: {
       id: 'W4',
-      title: 'Aerogel Layer 10mm',
+      title: 'Aerogel Layer',
       desc: 'Ultra-thin silica aerogel blanket for thermally constrained retrofits where build depth is at a premium — window reveals, recessed frames, and tight junctions. Highest thermal resistance per mm available.',
       thick: '10mm',
       lambda: '0.017 W/m·K',
       sd: '0.04 – 0.08 m',
-      price: '£23.25 /m²'
+      price: '£23.70 /m²'
     },
     W5: {
       id: 'W5',
-      title: 'Perlifinish 5mm',
+      title: 'Perlifinish',
       desc: 'Traditional breathable lime finish coat. Fully compatible with historic masonry and allows the wall to manage vapour freely.',
       thick: '20mm',
       lambda: '—',
       sd: '0.10 – 0.20 m',
-      price: 'Project specific'
+      price: '£6.60 /m²'
     },
     F1: {
       id: 'F1',
-      title: 'PerliScratch 5mm', 
-      desc: 'Vapour-permeable lime-perlite scratch coat designed as a high-adhesion base or key layer. . It provides a keyed surface to ensure maximum bond strength for subsequent insulating renders or finishing coats while remaining lightweight and breathable.',
-      thick: '[3mm, 4mm, 5mm]', 
-      lambda: '0.080 W/m·K', 
-      sd: '0.02 – 0.04 m', 
-      price: '£4.60 /m²'
+      title: 'PerliMat', 
+      desc: 'xxx.',
+      thick: '[mm]', 
+      lambda: 'xx W/m·K', 
+      sd: '0.0x – 0.0x m', 
+      price: '£x /m²'
     },
     F2: {
       id: 'F2',
-      title: 'PerliBase []mm', 
+      title: 'PerliBase', 
       desc: 'Vapour-permeable mineral-based insulating floor system designed as a structural underbase layer for internal floor build-ups. Essential for maintaining vapour-open continuity in floor retrofits.', 
-      thick: '[75mm, 100mm, 125mm, 150mm, 175mm, 200mm]', 
+      thick: '75mm, 100mm, 125mm, 150mm, 175mm, 200mm', 
       lambda: '0.045 W/m·K', 
       sd: '0.3 – 0.6 m', 
       price: '£59.25 /m²'
@@ -180,37 +180,37 @@
       id: 'F3',
         title: 'PerliStruct',
         desc: 'Vapour-permeable lime-perlite structural screed and underbase layer for internal floor build-ups, solid wall base layers, or sub-screeds. It provides structural strength while maintaining high vapour permeability for heritage and retrofit projects.',
-        thick: '[30mm, 40mm, 50mm, 75mm, 100mm, 150mm]',
+        thick: '30mm - 150mm',
         lambda: '0.080 – 0.090 W/m·K',
         sd: '0.20 – 0.40 m',
-        price: '£46.00 /m²'
+        price: 'from £46.00 /m²'
     },
     F4: {
       id: 'F4',
         title: 'AeroBond',
-        desc: 'All-in-one breathable adhesive and basecoat render for AeroBoard and mineral substrates [1, 2]. This fibre-reinforced lime-polymer formulation simplifies the insulation process by replacing separate primers, adhesives, and basecoats in a single, crack-resistant product [1-3].',
-        thick: '[3mm, 4mm, 5mm, 6mm]',
+        desc: 'All-in-one breathable adhesive and basecoat render for AeroBoard and mineral substrates. This fibre-reinforced lime-polymer formulation simplifies the insulation process by replacing separate primers, adhesives, and basecoats in a single, crack-resistant product.',
+        thick: '5mm',
         lambda: '0.12 W/m·K',
         sd: '0.02 – 0.04 m',
         price: '£20.00 /m²'
     },
     F5: {
       id: 'F5',
-      title: 'Aerogel []mm',
+      title: 'Aerogel',
       desc: 'Ultra-thin silica aerogel blanket for thermally constrained retrofits where build depth is at a premium — window reveals, recessed frames, and tight junctions. Highest thermal resistance per mm available.',
-      thick: '[5mm, 10mm, 20mm, 30mm]',
+      thick: '5mm',
       lambda: '0.017 W/m·K',
       sd: '0.04 – 0.08 m',
       price: '£23.25 /m²'
     },
     F6: {
       id: 'F6',
-      title: 'Perliscreed []mm',
+      title: 'Perliscreed',
       desc: 'High-performance mineral-based floor insulation system for internal retrofits. Designed to provide a vapour-open, membrane-free floor base that aligns with the BreatheTherm modular breathable hierarchy.',
-      thick: '[75mm, 100mm, 125mm, 150mm, 175mm, 200mm]',
+      thick: '[75mm - 200mm',
       lambda: '0.045 W/m·K',
       sd: '0.3 – 0.6 m',
-      price: '£59.25 /m²'
+      price: '£59.25 /m² @75mm'
     },
   };
 

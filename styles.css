@@ -781,8 +781,11 @@ em { font-style: italic; }
 }
 
 .hs-group:focus-visible {
-  stroke: #00aaff;
-  stroke-width: 2;
+
+  outline: none;
+  filter: drop-shadow(0 0 6px #00aaff)
+          drop-shadow(0 0 12px #00aaff);
+
 }
  /* 
 .hs-outer {
@@ -810,7 +813,15 @@ em { font-style: italic; }
   pointer-events: none;
 }
 .hs-group:hover .hs-dot,
-.hs-group.hactive .hs-dot { fill: var(--primary-dark); opacity: 1; }
+.hs-group.hactive .hs-dot {
+   /* fill: var(--primary-dark); opacity: 1; */
+   
+
+  outline: none;
+  filter: drop-shadow(0 0 6px #00aaff)
+          drop-shadow(0 0 12px #00aaff);
+
+   }
 
 /* Layer info card */
 .layer-card {
@@ -1164,6 +1175,149 @@ em { font-style: italic; }
 .testi-role { font-size: 0.77rem; color: var(--ink-light); display: block; }
 
 @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   TEAM
+   ============================================================ */
+.team-section { background: var(--cream-mid); padding: 100px 0; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.team-card {
+  background: var(--white);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--stone-100);
+  box-shadow: var(--sh-sm);
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.team-card:hover { box-shadow: var(--sh-lg); transform: translateY(-4px); }
+
+.team-photo-wrap {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  background: var(--primary-dark);
+}
+.team-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s var(--ease);
+}
+.team-card:hover .team-photo { transform: scale(1.03); }
+
+.team-photo-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0, 29, 59, 0.72) 0%, transparent 100%);
+  padding: 28px 24px 18px;
+  display: flex;
+  justify-content: flex-start;
+}
+.team-founding-year {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+}
+
+.team-body { padding: 28px 30px 30px; }
+
+.team-name {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+.team-title {
+  display: block;
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 18px;
+}
+
+.team-bio {
+  font-size: 0.9rem;
+  line-height: 1.78;
+  color: var(--ink-light);
+  margin-bottom: 22px;
+}
+
+.team-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--stone-100);
+}
+.team-cred {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  letter-spacing: 0.03em;
+}
+
+/* Origin bar */
+.team-origin {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 56px;
+  padding: 26px 32px;
+  background: var(--primary-dark);
+  border-radius: var(--r-xl);
+}
+.team-origin-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.team-origin-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 4;
+}
+.team-origin-content i {
+  font-size: 1.6rem;
+  color: var(--sage);
+  flex-shrink: 0;
+}
+.team-origin-content p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+}
+
+@media (max-width: 820px) {
+  .team-grid { grid-template-columns: 1fr; max-width: 480px; margin: 60px auto 0; }
+  .team-photo-wrap { height: 320px; }
+  .team-origin { flex-direction: column; gap: 16px; text-align: center; }
+  .team-origin-line { width: 60px; flex: none; }
+  .team-origin-content { flex-direction: column; gap: 12px; }
+}
 
 /* ============================================================
    HOW IT WORKS / PROCESS
