@@ -161,11 +161,11 @@
     F1: {
       id: 'F1',
       title: 'PerliMat', 
-      desc: 'xxx.',
-      thick: '[mm]', 
-      lambda: 'xx W/m·K', 
-      sd: '0.0x – 0.0x m', 
-      price: '£x /m²'
+      desc: 'Vapour-permeable geotextile separator for sub-base layers.',
+      thick: '3.5mm', 
+      lambda: 'n/a', 
+      sd: 'Vapour open', 
+      price: '£3 /m²'
     },
     F2: {
       id: 'F2',

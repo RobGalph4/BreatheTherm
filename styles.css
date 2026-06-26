@@ -409,7 +409,7 @@ em { font-style: italic; }
 
 .hero-stat {
   position: absolute;
-  right: 10%; bottom: 20%;
+  right: 5%; bottom: 20%;
   z-index: 2;
   background: var(--primary-dark);
   border: 1px solid rgba(255,255,255,0.12);
@@ -644,7 +644,7 @@ em { font-style: italic; }
 
 /* RIGHT PANEL */
 .approach__panel {
-  background: var(--cream-mid);
+  background: var(--cream-deep);
   padding: 2.5rem;
   border-radius: var(--r-md);
   margin: auto;
@@ -976,23 +976,29 @@ em { font-style: italic; }
   margin-top: 3rem;
   background: var(--primary-dark);
   color: var(--cream);
-  padding: 2.5rem;
-  border-radius: var(--r-sm);
+  padding: 3% 25%;
+  border-radius: var(--r-xl);
   display: block;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   gap: 2rem;
   flex-wrap: wrap;
-  text-align: center;
+  text-align: left;
 
 }
 .price-callout i { font-size: 2.5rem; color: var(--terra); flex-shrink: 0; }
-.price-callout h4 {
+.price-callout h3 {
   font-family: var(--font-serif);
   font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--terra);
+}
+.price-callout h4 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
   margin-bottom: 0.25rem;
 }
-.price-callout p { font-size: 0.875rem; color: var(--stone-400); }
+.price-callout p { font-size: 1.5rem; color: var(--stone-400); }
 
 /* ============================================================
    AUDIENCE PATHS
@@ -1508,13 +1514,14 @@ em { font-style: italic; }
   color: var(--navy-dark);
   font-size: 20px;        /* replaces width/height */
 }
-
-.trust-row  { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+/* 
+.trust-row  { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; } */
+.trust-row  { align-items: center; gap: 20px; }
 .trust-chip {
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.40);
+  color: var(--sage);
   display: flex; align-items: center; gap: 6px;
 }
 .trust-chip::before {
@@ -1672,7 +1679,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 /* ============================================================
    FOOTER
    ============================================================ */
-.site-footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.05); }
+.site-footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.05); }
 
 .footer-main {
   display: grid;
@@ -1681,11 +1688,11 @@ textarea.form-input { resize: vertical; min-height: 90px; }
   padding: 64px 0 48px;
 }
 .footer-brand .logo   { font-size: 1.1rem; margin-bottom: 12px; color: var(--white); }
-.footer-brand p       { font-size: 0.82rem; color: rgba(255,255,255,0.3); max-width: 260px; line-height: 1.7; }
+.footer-brand p       { font-size: 0.82rem; color: var(--cream-mid); max-width: 260px; line-height: 1.7; }
 .footer-brand address {
   font-style: normal;
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.2);
+  color: var(--cream-mid);
   margin-top: 10px;
   line-height: 1.7;
 }
@@ -1694,13 +1701,13 @@ textarea.form-input { resize: vertical; min-height: 90px; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: var(--cream-mid);
   margin-bottom: 16px;
 }
 .footer-col a {
   display: block;
   font-size: 0.84rem;
-  color: rgba(255,255,255,0.4);
+  color: var(--cream-mid);
   margin-bottom: 8px;
   transition: color 0.2s;
 }
@@ -1714,16 +1721,16 @@ textarea.form-input { resize: vertical; min-height: 90px; }
   flex-wrap: wrap;
   gap: 12px;
 }
-.footer-base span { font-size: 0.72rem; color: rgba(255,255,255,0.2); letter-spacing: 0.04em; }
+.footer-base span { font-size: 0.72rem; color: var(--cream-mid); letter-spacing: 0.04em; }
 .footer-badges    { display: flex; gap: 10px; flex-wrap: wrap; }
 .footer-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.8);
   padding: 4px 10px;
   border-radius: var(--r-pill);
   font-size: 0.68rem;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.9);
   letter-spacing: 0.08em;
 }
 
