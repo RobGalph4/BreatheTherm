@@ -971,20 +971,20 @@ em { font-style: italic; }
 
 .comparison-table tr:hover td { background: rgba(0,0,0,0.02); }
 
-
 .price-callout {
   margin-top: 3rem;
   background: var(--primary-dark);
   color: var(--cream);
   padding: 3% 25%;
   border-radius: var(--r-xl);
-  display: block;
-  align-items: left;
-  justify-content: left;
+
+  display: flex;              /* ✅ important */
+  align-items: center;        /* ✅ vertical centering */
+  justify-content: flex-start;
+
   gap: 2rem;
   flex-wrap: wrap;
   text-align: left;
-
 }
 .price-callout i { font-size: 2.5rem; color: var(--terra); flex-shrink: 0; }
 .price-callout h3 {
@@ -997,6 +997,12 @@ em { font-style: italic; }
   font-family: var(--font-serif);
   font-size: 1.1rem;
   margin-bottom: 0.25rem;
+
+  display: flex;
+  align-items: center;   /* ✅ vertically align icon + text */
+  gap: 5px;             /* replaces inline padding */
+  margin: 0.3rem 0;      /* optional tidy spacing */
+}
 }
 .price-callout p { font-size: 1.5rem; color: var(--stone-400); }
 
