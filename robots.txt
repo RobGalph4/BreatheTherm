@@ -1,0 +1,9 @@
+# BreatheTherm — robots.txt
+# Everything is crawlable. Pages that should not yet be indexed carry a
+# noindex meta tag instead of a Disallow, because a Disallow would stop
+# Google reading the noindex and could leave the URL indexed anyway.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://breathetherm.co.uk/sitemap.xml

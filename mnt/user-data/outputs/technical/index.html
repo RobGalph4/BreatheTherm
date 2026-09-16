@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Technical Specification | Breathable Insulation for Solid Walls | BreatheTherm</title>
+    <meta name="description" content="Lambda and Sd values, U-values, build-up detail, suitability matrix, hygrothermal evidence and specification resources for architects, conservation officers and retrofit coordinators.">
+    <link rel="canonical" href="https://breathetherm.co.uk/technical/">
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BreatheTherm">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:title" content="Technical Specification | Breathable Insulation for Solid Walls | BreatheTherm">
+    <meta property="og:description" content="Lambda and Sd values, U-values, build-up detail, suitability matrix, hygrothermal evidence and specification resources for architects, conservation officers and retrofit coordinators.">
+    <meta property="og:url" content="https://breathetherm.co.uk/technical/">
+    <meta property="og:image" content="https://breathetherm.co.uk/assets/images/BT-hero-bkg.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://breathetherm.co.uk/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Technical Specification",
+          "item": "https://breathetherm.co.uk/technical/"
+        }
+      ]
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7S93FQQKV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-N7S93FQQKV');
+    </script>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header id="main-nav">
+        <div class="container nav-content">
+            <!-- Logo links to the homepage from every page. -->
+            <a href="/" class="nav-logo" aria-label="BreatheTherm home">
+                <img src="/assets/images/Breathatherm-logo-22-3-1.png"
+                    style="height: var(--nav-h); transform: scale(0.9);" alt="BreatheTherm">
+            </a>
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="/internal-wall-insulation-listed-buildings/">Listed Buildings</a>
+                <a href="/breathable-insulation-cost/">Costs</a>
+                <a href="/insulation-grants-heritage-homes/">Grants</a>
+                <a href="/technical/">Technical</a>
+                <a href="/#faq">FAQs</a>
+                <a href="/#contact" class="btn btn-nav">Book Free Assessment</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="/internal-wall-insulation-listed-buildings/">Listed Buildings</a>
+        <a href="/breathable-insulation-cost/">Costs</a>
+        <a href="/insulation-grants-heritage-homes/">Grants</a>
+        <a href="/technical/">Technical</a>
+        <a href="/#faq">FAQs</a>
+        <a href="/#solution">The System</a>
+        <a href="/#explorer">Layer Guide</a>
+        <a href="/#proof">Case Studies</a>
+        <a href="/blog/">Guides</a>
+        <a href="/#contact">Book Free Assessment</a>
+    </nav>
+
+    <main id="main">
+
+        <section class="page-hero">
+            <div class="container">
+                <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="crumb-sep" aria-hidden="true">/</span>
+            <span aria-current="page">Technical Specification</span>
+        </nav>
+                <span class="eyebrow">FOR ARCHITECTS, CONSERVATION OFFICERS &amp; SPECIFIERS</span>
+                <h1>Insulate traditional buildings without trapping moisture</h1>
+                <p class="page-hero-sub">A vapour-permeable insulation system for solid-wall, heritage and hard-to-treat properties. Declared values, build-up detail and specification resources.</p>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════
+             EDITORIAL NOTE — READ BEFORE PUBLISHING
+
+             This page is set to noindex. Several sections below require
+             data that could not be verified from existing BreatheTherm
+             material: fire classification, third-party accreditation,
+             service life, and WUFI modelling examples. They are marked
+             with .needs-input blocks.
+
+             Publishing unverified fire or certification claims on a
+             construction product is a regulatory risk, not just an SEO
+             one. Fill the flagged blocks, delete them, then remove the
+             noindex meta tag in the head and add this URL to sitemap.xml.
+        ══════════════════════════════════════════════════ -->
+
+        <section class="section prose-section">
+            <div class="container prose">
+
+                <div class="proof-strip">
+                    <span>Vapour permeable</span>
+                    <span>Heritage compatible</span>
+                    <span>&lambda; from 0.017 W/m·K</span>
+                    <span>Solid-wall construction</span>
+                    <span>WTA Merkblatt 6-4</span>
+                </div>
+
+                <p class="lead">This page exists to let you decide whether to shortlist BreatheTherm in about a minute,
+                    and to specify it without needing to call us. If something you need is missing,
+                    <a href="mailto:hello@breathetherm.co.uk?subject=Technical%20enquiry">tell us</a> and we will add
+                    it.</p>
+
+                <nav class="page-toc" aria-label="On this page">
+                    <h2>On this page</h2>
+                    <ol>
+                        <li><a href="#problem">The problem with conventional insulation</a></li>
+                        <li><a href="#why">Why the system exists</a></li>
+                        <li><a href="#how">How the system works</a></li>
+                        <li><a href="#performance">Technical performance</a></li>
+                        <li><a href="#specify">Can I specify it for my project?</a></li>
+                        <li><a href="#resources">Detail drawings &amp; specification resources</a></li>
+                        <li><a href="#hygrothermal">Hygrothermal evidence</a></li>
+                        <li><a href="#projects">Technical case studies</a></li>
+                        <li><a href="#faq">Technical FAQs</a></li>
+                        <li><a href="#cpd">CPD &amp; technical support</a></li>
+                    </ol>
+                </nav>
+
+                <h2 id="problem">The problem with conventional insulation</h2>
+
+                <p>Solid-wall buildings constructed before about 1919 were built to a different moisture model. Lime
+                    mortar, solid masonry and permeable finishes allow the wall to absorb moisture and release it
+                    again. There is no cavity, no membrane and no designed drainage plane; the drying capacity of the
+                    assembly <em>is</em> the moisture strategy.</p>
+
+                <p>Introducing a vapour-resistant insulation layer on the internal face changes two things at once. It
+                    lowers the temperature of the masonry behind the insulation, which increases the relative humidity
+                    within the wall, and it removes the drying path that previously ran inwards. The result is
+                    accumulation at the insulation–masonry interface.</p>
+
+                <p>The consequences are well documented and familiar to anyone who has surveyed a failed retrofit:</p>
+
+                <ul class="tick-list">
+                    <li>Interstitial condensation at the cold face of the insulation</li>
+                    <li>Elevated moisture content in embedded timbers, particularly joist ends built into the wall</li>
+                    <li>Frost damage and spalling where masonry cannot dry before a freeze cycle</li>
+                    <li>Salt migration and efflorescence at the interface</li>
+                    <li>Mould growth at thermal bridges, typically reveals and floor junctions</li>
+                    <li>Degraded thermal performance, since wet masonry conducts heat substantially faster than dry</li>
+                </ul>
+
+                <div class="compare-panel">
+                    <div class="compare-side compare-bad">
+                        <h3>Traditional wall + impermeable insulation</h3>
+                        <p>Vapour drive meets a high-S<sub>d</sub> layer and stops. Moisture accumulates at the
+                            interface, where it is coldest and dries slowest.</p>
+                        <p class="compare-verdict">Moisture trapped</p>
+                    </div>
+                    <div class="compare-side compare-good">
+                        <h3>Traditional wall + BreatheTherm</h3>
+                        <p>Every layer is vapour-open and capillary-active. Moisture migrates through the assembly and
+                            is buffered by the hygroscopic lime-perlite matrix.</p>
+                        <p class="compare-verdict">Moisture can migrate and dry</p>
+                    </div>
+                </div>
+
+                <div class="needs-input">
+                    <strong>Content needed: Comparison diagram</strong>
+                    <p>Sammy's brief calls for a simple two-panel graphic showing vapour drive meeting an impermeable layer versus migrating through a vapour-open assembly. The panel above is a text stand-in. A drawn figure will carry far more weight with a specifier than prose.</p>
+                </div>
+
+                <h3>How it compares to the common alternatives</h3>
+
+                <div class="spec-table-wrap">
+                    <table class="spec-table">
+                        <caption>Internal insulation options on a solid masonry wall</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">System</th>
+                                <th scope="col">Typical &lambda;</th>
+                                <th scope="col">Vapour behaviour</th>
+                                <th scope="col">Capillary active</th>
+                                <th scope="col">Junction / reveal detailing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">PIR board</th>
+                                <td>0.022</td>
+                                <td>Vapour-tight; foil facings give very high S<sub>d</sub></td>
+                                <td>No</td>
+                                <td>Rigid board; difficult on irregular substrates, cold bridging at fixings</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Mineral wool (rockwool) on battens</th>
+                                <td>0.035</td>
+                                <td>Vapour-open itself, but normally installed behind a vapour control layer</td>
+                                <td>No</td>
+                                <td>Void behind the insulation is a condensation risk</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Wood fibre board</th>
+                                <td>0.038–0.045</td>
+                                <td>Vapour-open</td>
+                                <td>Yes</td>
+                                <td>Organic; moisture tolerance is finite, and build-up depth is greater</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Wood wool slab</th>
+                                <td>0.065–0.085</td>
+                                <td>Vapour-open</td>
+                                <td>Partial</td>
+                                <td>Usually a carrier board rather than the primary insulant</td>
+                            </tr>
+                            <tr class="row-highlight">
+                                <th scope="row">BreatheTherm (perlite)</th>
+                                <td>0.064</td>
+                                <td>Vapour-open, S<sub>d</sub> 0.2–0.4 m at 50 mm</td>
+                                <td>Yes</td>
+                                <td>Applied wet, monolithic, follows irregular substrates with no void or fixings</td>
+                            </tr>
+                            <tr class="row-highlight">
+                                <th scope="row">BreatheTherm (aerogel layer)</th>
+                                <td>0.017</td>
+                                <td>Vapour-open, S<sub>d</sub> 0.04–0.08 m</td>
+                                <td>Yes</td>
+                                <td>Used selectively where build depth is critically constrained</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="table-note">Comparator lambda values are typical published figures for the generic product
+                    category, not for any named manufacturer's product. BreatheTherm figures are our own declared
+                    values.</p>
+
+                <h2 id="why">Why the system exists</h2>
+
+                <p>BreatheTherm was developed by two builders rather than a materials company. Josh Tetley founded HF
+                    Limited in 2003; Greg Podolak joined in 2007, and together they launched HF Building in 2016
+                    specialising in conservation and retrofit of period properties.</p>
+
+                <p>Across two decades of that work the same pattern recurred: products specified in good faith were
+                    damaging the buildings they were installed to improve. The system was developed to combine the
+                    vapour-open behaviour of traditional lime construction with thermal performance closer to that of
+                    modern insulation, rather than asking a specifier to choose between the two.</p>
+
+                <h2 id="how">How the system works</h2>
+
+                <h3>The wall assembly</h3>
+
+                <p>Applied directly to prepared masonry. No frame, no battens, no service void, no membrane. The absence
+                    of a cavity behind the insulation is deliberate — an air gap at the cold face of an insulation layer
+                    is where interstitial condensation collects.</p>
+
+                <ol class="assembly-list">
+                    <li><strong>Existing substrate</strong> — solid brick, stone, cob, flint or timber-frame infill,
+                        prepared back to sound material</li>
+                    <li><strong>PerliScratch</strong> — lime-perlite scratch coat providing a keyed, high-adhesion
+                        base</li>
+                    <li><strong>PerliTherm</strong> — expanded perlite bound with hydraulic lime; the primary
+                        insulating and moisture-buffering layer</li>
+                    <li><strong>AeroBond + mesh</strong> — fibre-reinforced lime-polymer adhesive and basecoat with
+                        reinforcement, replacing separate primer, adhesive and basecoat</li>
+                    <li><strong>Aerogel layer</strong> — optional, used selectively where build depth is constrained</li>
+                    <li><strong>PerliFinish</strong> — breathable lime finish coat</li>
+                </ol>
+
+                <h3>How moisture moves through the assembly</h3>
+
+                <p>Three mechanisms operate together. Vapour diffusion moves moisture through the assembly along the
+                    vapour pressure gradient; because every layer has a low S<sub>d</sub> value, there is no point at
+                    which that flow is arrested. Capillary transport moves liquid water back towards the drying face
+                    through the pore structure of the lime-perlite matrix, which is the mechanism conventional
+                    insulation lacks entirely. Hygroscopic buffering absorbs moisture at humidity peaks and releases it
+                    as conditions dry, damping the spikes that produce surface condensation.</p>
+
+                <div class="needs-input">
+                    <strong>Content needed: Moisture movement diagram</strong>
+                    <p>A section drawing showing vapour diffusion, capillary return and hygroscopic buffering across the assembly, with an indicative temperature and dewpoint profile overlaid. This is the single most persuasive graphic the page could carry.</p>
+                </div>
+
+                <h3>Why perlite, and why lime</h3>
+
+                <p>Perlite is a naturally occurring volcanic mineral. Heated, it expands and traps air, producing a
+                    lightweight aggregate that is insulating, non-combustible and open-pored. Bound in hydraulic lime it
+                    produces a render that is softer than the masonry it is applied to, vapour-open, and capillary
+                    active — three properties a cement- or gypsum-based product cannot offer simultaneously.</p>
+
+                <p>Lime matters for compatibility as much as for breathability. A binder harder than the substrate
+                    concentrates stress at the interface and causes the render to fail before the wall does. On historic
+                    masonry the sacrificial layer should always be the finish, not the fabric.</p>
+
+                <h3>Why aerogel</h3>
+
+                <p>Silica aerogel has the lowest thermal conductivity of any usable solid insulant at 0.017 W/m·K, and
+                    it remains vapour-open. Its role in the system is specific rather than general: it is used where
+                    build depth is critically constrained and perlite alone cannot reach the target U-value — window
+                    reveals, recessed frames, tight junctions and rooms where losing 50 mm from the wall face would
+                    alter the proportions unacceptably. It costs roughly five times as much per millimetre of build-up
+                    saved, so specifying it across whole elevations is rarely justified.</p>
+
+                <h2 id="performance">Technical performance</h2>
+
+                <h3>Thermal</h3>
+
+                <div class="spec-table-wrap">
+                    <table class="spec-table">
+                        <caption>Wall system — declared thermal and vapour values</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Layer</th>
+                                <th scope="col">Function</th>
+                                <th scope="col">Thickness</th>
+                                <th scope="col">&lambda; (W/m·K)</th>
+                                <th scope="col">S<sub>d</sub> (m)</th>
+                                <th scope="col">Guide price /m&sup2;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>PerliScratch</strong></td>
+                                <td>Lime-perlite scratch / key coat</td>
+                                <td>3–5 mm</td>
+                                <td>0.080</td>
+                                <td>0.02–0.04</td>
+                                <td>£4.60</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PerliTherm</strong></td>
+                                <td>Expanded perlite insulating render, hydraulic lime bound</td>
+                                <td>50 mm</td>
+                                <td>0.064</td>
+                                <td>0.2–0.4</td>
+                                <td>£45.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AeroBond</strong></td>
+                                <td>Fibre-reinforced lime-polymer adhesive and basecoat</td>
+                                <td>3–6 mm</td>
+                                <td>0.12</td>
+                                <td>0.02–0.04</td>
+                                <td>£20.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Aerogel layer</strong></td>
+                                <td>Silica aerogel blanket for constrained build-ups</td>
+                                <td>10 mm</td>
+                                <td>0.017</td>
+                                <td>0.04–0.08</td>
+                                <td>£23.70</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PerliFinish</strong></td>
+                                <td>Breathable lime finish coat</td>
+                                <td>20 mm</td>
+                                <td>—</td>
+                                <td>0.10–0.20</td>
+                                <td>£6.60</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-note">Guide prices are supply only, excluding VAT, and are indicative. Every build-up
+                    is specified per project. <a href="/breathable-insulation-cost/">See the full cost guide</a>.</p>
+
+                <div class="spec-table-wrap">
+                    <table class="spec-table">
+                        <caption>Floor system — declared thermal and vapour values</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Layer</th>
+                                <th scope="col">Function</th>
+                                <th scope="col">Thickness</th>
+                                <th scope="col">&lambda; (W/m·K)</th>
+                                <th scope="col">S<sub>d</sub> (m)</th>
+                                <th scope="col">Guide price /m&sup2;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>PerliMat</strong></td>
+                                <td>Vapour-permeable geotextile separator</td>
+                                <td>3.5 mm</td>
+                                <td>n/a</td>
+                                <td>Vapour open</td>
+                                <td>£3.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PerliBase</strong></td>
+                                <td>Mineral insulating floor underbase</td>
+                                <td>75–200 mm</td>
+                                <td>0.045</td>
+                                <td>0.3–0.6</td>
+                                <td>£59.25</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PerliStruct</strong></td>
+                                <td>Lime-perlite structural screed / underbase</td>
+                                <td>30–150 mm</td>
+                                <td>0.080–0.090</td>
+                                <td>0.20–0.40</td>
+                                <td>from £46.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AeroBond</strong></td>
+                                <td>Fibre-reinforced lime-polymer adhesive and basecoat</td>
+                                <td>5 mm</td>
+                                <td>0.12</td>
+                                <td>0.02–0.04</td>
+                                <td>£20.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Aerogel layer</strong></td>
+                                <td>Silica aerogel blanket</td>
+                                <td>5 mm</td>
+                                <td>0.017</td>
+                                <td>0.04–0.08</td>
+                                <td>£23.25</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PerliScreed</strong></td>
+                                <td>Vapour-open, membrane-free floor screed</td>
+                                <td>75–200 mm</td>
+                                <td>0.045</td>
+                                <td>0.3–0.6</td>
+                                <td>£59.25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-note">Guide prices are supply only, excluding VAT, and are indicative. Every build-up
+                    is specified per project. <a href="/breathable-insulation-cost/">See the full cost guide</a>.</p>
+
+                <div class="spec-table-wrap">
+                    <table class="spec-table">
+                        <caption>Indicative U-values achieved</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Substrate</th>
+                                <th scope="col">Build-up</th>
+                                <th scope="col">U-value (W/m²K)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">215 mm solid brick</th>
+                                <td>50 mm PerliTherm system</td>
+                                <td>≈ 0.35</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Constrained reveal / deep retrofit</th>
+                                <td>PerliTherm + 10 mm aerogel layer</td>
+                                <td>0.17</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Range across all specifications</th>
+                                <td>Varies by substrate and available depth</td>
+                                <td>0.17 – 0.45</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="table-note">A site-specific calculation is produced for every project. Generic figures are
+                    indicative only — the same build-up on a sheltered elevation and an exposed gable will not perform
+                    identically.</p>
+
+                <h3>Moisture</h3>
+
+                <p>S<sub>d</sub> values for every layer are given in the tables above. A complete 50 mm wall build-up
+                    including scratch coat, insulation, basecoat and finish has a total equivalent air layer thickness
+                    in the region of 0.35–0.7 m, which places it firmly in the vapour-open range used in WTA guidance
+                    for internal insulation of historic buildings.</p>
+
+                <p>Condensation risk analysis is produced per project. See
+                    <a href="#hygrothermal">hygrothermal evidence</a> below.</p>
+
+                <h3>Fire</h3>
+
+                <div class="needs-input">
+                    <strong>Content needed: Fire classification and test evidence</strong>
+                    <p>Required: reaction-to-fire classification to BS EN 13501-1 for each product and for the system as installed; the test standard and notified body; any restrictions on use in buildings over 18 m or in relevant buildings under the Building Safety Act. Perlite and silica aerogel are both mineral and non-combustible in raw form, but the bound system's classification must come from actual test data. Do not publish an inferred figure.</p>
+                </div>
+
+                <h3>Durability and maintenance</h3>
+
+                <div class="needs-input">
+                    <strong>Content needed: Service life and maintenance schedule</strong>
+                    <p>Required: expected service life of the system, maintenance requirements for the lime finish, redecoration guidance including which paint systems are compatible (mineral and silicate paints only, presumably, but this needs confirming), and repairability of damaged areas.</p>
+                </div>
+
+                <h3>Accreditation and third-party evidence</h3>
+
+                <p>The system is developed to WTA Merkblatt 6-4, the German technical standard for internal insulation
+                    of historic buildings, which is the reference document conservation officers and building physicists
+                    across Europe use for this application.</p>
+
+                <div class="needs-input">
+                    <strong>Content needed: Certification status</strong>
+                    <p>Required: current status of BBA certification, ETA, or any other third-party product approval, including in-progress applications with expected dates. Also: which independent laboratory produced the declared lambda and Sd values, and whether Declarations of Performance are available for download. Specifiers routinely filter on this, and an honest 'ETA application submitted, expected Q2 2027' is far better than silence.</p>
+                </div>
+
+                <h2 id="specify">Can I specify it for my project?</h2>
+
+                <div class="spec-table-wrap">
+                    <table class="spec-table suitability-table">
+                        <caption>Can BreatheTherm be specified for this construction?</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Construction type</th>
+                                <th scope="col">Suitable?</th>
+                                <th scope="col">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Solid brick walls</th>
+                                <td><span class="rag rag-green"></span>Yes</td>
+                                <td>The core use case. Typically 215 mm or 330 mm solid brick with lime mortar.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Solid stone walls</th>
+                                <td><span class="rag rag-green"></span>Yes</td>
+                                <td>Includes rubble-filled and Cotswold limestone construction.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Cob</th>
+                                <td><span class="rag rag-green"></span>Yes</td>
+                                <td>Vapour-open throughout is essential; cob must be able to dry inwards and outwards.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Timber frame with infill</th>
+                                <td><span class="rag rag-green"></span>Yes</td>
+                                <td>Wattle-and-daub and brick-nogged panels. Junction detailing is specified case by case.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Flint</th>
+                                <td><span class="rag rag-green"></span>Yes</td>
+                                <td>Irregular substrate; a thicker levelling coat is usually required.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Listed buildings (all grades)</th>
+                                <td><span class="rag rag-amber"></span>Yes</td>
+                                <td>Subject to Listed Building Consent. We supply supporting documentation.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Conservation areas</th>
+                                <td><span class="rag rag-green"></span>Yes</td>
+                                <td>Internal work does not alter external appearance, so area restrictions rarely apply.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Walls with active damp</th>
+                                <td><span class="rag rag-amber"></span>Diagnose first</td>
+                                <td>Rising damp, failed rainwater goods or defective pointing must be resolved before insulating.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Modern cavity walls</th>
+                                <td><span class="rag rag-amber"></span>Possible</td>
+                                <td>Not the intended application. Conventional measures are usually more cost-effective.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Basements below ground</th>
+                                <td><span class="rag rag-amber"></span>Case by case</td>
+                                <td>Depends on water table, existing tanking and drainage. Speak to the technical team.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="resources">Detail drawings &amp; specification resources</h2>
+
+                <p>Available on request to specifiers:</p>
+
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>NBS specification clauses</h3>
+                        <p>Ready-to-use clauses for direct incorporation into your specification.</p>
+                        <a href="mailto:hello@breathetherm.co.uk?subject=NBS%20Specification%20Request">Request</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>CAD detail library</h3>
+                        <p>Standard junction details including reveals, joist ends, floor-to-wall and party walls.</p>
+                        <a href="mailto:hello@breathetherm.co.uk?subject=CAD%20Detail%20Library%20Request">Request</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>BIM objects</h3>
+                        <p>System objects for incorporation into your model.</p>
+                        <a href="mailto:hello@breathetherm.co.uk?subject=BIM%20Objects%20Request">Request</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Technical data sheets</h3>
+                        <p>Product-level data for each layer in the wall and floor systems.</p>
+                        <a href="mailto:hello@breathetherm.co.uk?subject=Technical%20Data%20Sheets%20Request">Request</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Installation manual</h3>
+                        <p>Application sequence, curing times, tolerances and substrate preparation.</p>
+                        <a href="mailto:hello@breathetherm.co.uk?subject=Installation%20Manual%20Request">Request</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Project-specific build-up</h3>
+                        <p>Send drawings and we will return a proposed specification with calculated U-values.</p>
+                        <a href="mailto:hello@breathetherm.co.uk?subject=Drawing%20Review%20Request">Send drawings</a>
+                    </div>
+                </div>
+
+                <div class="needs-input">
+                    <strong>Content needed: Direct downloads</strong>
+                    <p>Every resource above is currently a mailto request, which introduces friction at exactly the point where a specifier is ready to act. Sammy's brief is explicit that this is where most manufacturer sites fail. Host the NBS clauses, CAD/DWG details, BIM objects, data sheets and installation manual as direct downloads behind an optional email capture, and replace these links. A U-value calculator would go further still.</p>
+                </div>
+
+                <h2 id="hygrothermal">Hygrothermal evidence</h2>
+
+                <p>Designed around building physics rather than around a product range. Every project receives a
+                    site-specific hygrothermal assessment covering the proposed build-up, the existing wall
+                    construction, exposure and orientation, and internal moisture load.</p>
+
+                <div class="needs-input">
+                    <strong>Content needed: WUFI modelling examples</strong>
+                    <p>Required: two or three worked modelling examples suitable for publication — ideally a 215 mm solid brick wall, a rubble stone wall and a timber-frame infill panel. For each: total water content over a five-year run, relative humidity at the insulation–masonry interface, moisture content at an embedded joist end, and the before/after comparison against an impermeable build-up. Sammy's brief identifies this as the strongest available differentiator, and it is the section a building physicist will look at first.</p>
+                </div>
+
+                <p>Where a project carries unusual risk — a highly exposed elevation, an embedded timber floor structure,
+                    or a wall with a history of moisture ingress — modelling output can be issued directly to support a
+                    Listed Building Consent application or to satisfy a client's own technical reviewer.</p>
+
+                <h2 id="projects">Technical case studies</h2>
+
+                <div class="evidence-grid">
+                    <div class="evidence-card">
+                        <span class="evidence-tag">Grade I listed · Gloucestershire</span>
+                        <h3>17th century Cotswold farmhouse</h3>
+                        <p><strong>Construction:</strong> solid limestone walls, cob partitions, original lime
+                            plaster.<br>
+                            <strong>Constraint:</strong> Historic England requirements; no loss of internal
+                            detail.<br>
+                            <strong>Result:</strong> 0.22 W/m²K, energy bills reduced 52%.</p>
+                    </div>
+                    <div class="evidence-card">
+                        <span class="evidence-tag">Victorian · Bristol</span>
+                        <h3>Mansion block, 12 units</h3>
+                        <p><strong>Construction:</strong> solid brick, multi-occupancy.<br>
+                            <strong>Constraint:</strong> phased works across occupied flats.<br>
+                            <strong>Result:</strong> 0.19 W/m²K, bills reduced 71%, hygrothermal monitoring installed
+                            throughout, zero moisture failures recorded at 36-month review.</p>
+                    </div>
+                    <div class="evidence-card">
+                        <span class="evidence-tag">Period property · Cheltenham</span>
+                        <h3>Bedroom renovation, Upper Park Street</h3>
+                        <p><strong>Construction:</strong> bare brick walls, retained lath ceiling.<br>
+                            <strong>Constraint:</strong> 25 mm maximum build-up.<br>
+                            <strong>Result:</strong> wall heat loss down 46%, ceiling down 38%, using PerliScratch,
+                            AeroBond, mesh and PerliTherm.</p>
+                    </div>
+                </div>
+
+                <div class="needs-input">
+                    <strong>Content needed: Full technical case studies</strong>
+                    <p>Sammy's brief asks for technical case studies rather than marketing ones. For each project: building age, wall construction and thickness, existing defects identified, the specified build-up layer by layer, before and after U-values, the moisture considerations addressed, the conservation constraints, and photographs including during-works shots. Each completed study should become its own indexable page linked from here.</p>
+                </div>
+
+                <h2 id="faq">Technical FAQs</h2>
+
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary class="faq-summary">How does BreatheTherm compare to wood fibre systems?<span
+                                class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg></span></summary>
+                        <div class="faq-body">Both are vapour-open and capillary active, so both are legitimate choices
+                            on a solid wall. The differences are that BreatheTherm is mineral rather than organic, is
+                            applied wet so it follows irregular substrates without a frame or void, and reaches a
+                            comparable U-value in less depth. Wood fibre is generally faster to install on a flat,
+                            regular substrate and has lower embodied carbon.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-summary">How does it compare to PIR?<span class="faq-chevron"><svg
+                                    width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg></span></summary>
+                        <div class="faq-body">PIR has a better lambda value, at roughly 0.022 against 0.064 for
+                            perlite, so it reaches a given U-value in less depth. It is also effectively vapour-tight,
+                            which on a solid wall removes the assembly's inward drying path. On a cavity-walled modern
+                            building that is not a problem. On solid masonry it is the mechanism by which internal
+                            insulation fails.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-summary">What happens if moisture enters the wall?<span
+                                class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg></span></summary>
+                        <div class="faq-body">It moves through and dries out, which is the design intent rather than a
+                            failure mode. The lime-perlite matrix buffers liquid and vapour and returns moisture towards
+                            the drying face by capillary action. What the system cannot do is compensate for an
+                            unresolved defect — a leaking gutter, failed pointing or raised external ground level must
+                            be fixed before insulating.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-summary">Internal or external application?<span class="faq-chevron"><svg
+                                    width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg></span></summary>
+                        <div class="faq-body">The system as documented here is an internal application, which is what
+                            heritage and conservation contexts generally require. For external application on unlisted
+                            buildings, contact the technical team to discuss substrate, exposure and finish.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-summary">What thickness is typically required?<span class="faq-chevron"><svg
+                                    width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg></span></summary>
+                        <div class="faq-body">50 mm of PerliTherm plus scratch and finish coats is the standard wall
+                            build-up, giving a total added depth of around 75 mm. Where that is unacceptable, 25 mm has
+                            been used successfully on completed projects, and a 10 mm aerogel layer can be introduced to
+                            recover performance in constrained areas.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-summary">Can it be used with lime render or lime plaster?<span
+                                class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg></span></summary>
+                        <div class="faq-body">Yes — the system is lime-based throughout and PerliFinish is itself a
+                            lime finish coat. It is compatible with existing lime plaster and with traditional lime
+                            render externally. Gypsum plaster and cement render should not be used over it.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-summary">Is hygrothermal analysis available?<span class="faq-chevron"><svg
+                                    width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg></span></summary>
+                        <div class="faq-body">Yes. A site-specific assessment is produced for every project, and
+                            modelling output can be issued to support a Listed Building Consent application or a
+                            client's technical review.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-summary">Can it be specified on a listed building?<span
+                                class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg></span></summary>
+                        <div class="faq-body">Yes, subject to Listed Building Consent, which is required for internal
+                            works affecting character regardless of the system used. The system has been used in
+                            Grade I, Grade II* and Grade II listed buildings.
+                            <a href="/internal-wall-insulation-listed-buildings/">More on consent</a>.</div>
+                    </details>
+                </div>
+
+                <h2 id="cpd">CPD &amp; technical support</h2>
+
+                <p>A RIBA-accredited CPD session on moisture in traditional buildings and vapour-open retrofit is
+                    available for practices, running approximately 1.5 hours and delivered in your office or remotely.
+                    Project-specific technical advice and drawing review are available at no charge during design
+                    stage.</p>
+            </div>
+        </section>
+
+        <section class="page-cta">
+            <div class="container">
+                <div class="cta-panel">
+                    <h2>For architects &amp; specifiers</h2>
+                    <p>Send us drawings for review, request a project-specific build-up, or book a RIBA-accredited CPD
+                        session for your practice.</p>
+                    <div class="cta-actions">
+                        <a href="mailto:hello@breathetherm.co.uk?subject=Technical%20Pack%20Request"
+                            class="btn btn-terra btn-arrow">Request technical pack</a>
+                        <a href="mailto:hello@breathetherm.co.uk?subject=CPD%20Booking%20Request"
+                            class="btn btn-outline-light">Book a CPD</a>
+                        <a href="https://wa.me/+447887591971" class="btn btn-outline-light" target="_blank"
+                            rel="noopener noreferrer">WhatsApp technical support</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section related-section">
+            <div class="container">
+                <h2>Related guides</h2>
+                <div class="related-grid">
+                    <a class="related-card" href="/internal-wall-insulation-listed-buildings/">
+                        <h3>Listed and period buildings</h3>
+                        <p>Consent routes, build-ups and achievable performance in a historic property.</p>
+                    </a>
+                    <a class="related-card" href="/breathable-insulation-cost/">
+                        <h3>Cost guide</h3>
+                        <p>Layer-by-layer material pricing and realistic installed project ranges.</p>
+                    </a>
+                    <a class="related-card" href="/insulation-grants-heritage-homes/">
+                        <h3>Grants and funding</h3>
+                        <p>What is open in 2026 and how funded schemes interact with heritage constraints.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-main">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo" aria-label="BreatheTherm home">
+                    <img src="/assets/images/Breathatherm-logo-22-3-1.png" loading="lazy"
+                        style="height: var(--nav-h); transform: scale(0.9);" alt="BreatheTherm">
+                </a>
+                <p>Premium breathable insulation systems for the UK's heritage buildings. Protecting historic fabric.
+                    Improving lives. Reducing emissions.</p>
+                <address>
+                    The Old Forge, Todenham<br>
+                    Gloucestershire GL56 9PF<br>
+                    Company no: 16491516 &nbsp;·&nbsp; VAT: 505 972 871
+                </address>
+            </div>
+            <div class="footer-col">
+                <h2>Guides</h2>
+                <a href="/internal-wall-insulation-listed-buildings/">Listed &amp; Period Buildings</a>
+                <a href="/breathable-insulation-cost/">Costs &amp; Pricing</a>
+                <a href="/insulation-grants-heritage-homes/">Grants &amp; Funding</a>
+                <a href="/technical/">Technical Specification</a>
+                <a href="/blog/">All Guides</a>
+            </div>
+            <div class="footer-col">
+                <h2>Navigate</h2>
+                <a href="/#problem">The Problem</a>
+                <a href="/#solution">The System</a>
+                <a href="/#explorer">Layer Guide</a>
+                <a href="/#proof">Case Studies</a>
+                <a href="/#faq">FAQs</a>
+            </div>
+            <div class="footer-col">
+                <h2>Areas We Serve</h2>
+                <a href="/areas/gloucestershire/">Gloucestershire</a>
+                <a href="/areas/cotswolds/">The Cotswolds</a>
+                <a href="/areas/bristol/">Bristol &amp; Bath</a>
+                <a href="/#contact">Elsewhere in the UK</a>
+            </div>
+            <div class="footer-col">
+                <h2>Contact</h2>
+                <a href="tel:01285407088">01285 407088</a>
+                <a href="mailto:hello@breathetherm.co.uk">hello@breathetherm.co.uk</a>
+                <a href="https://wa.me/+447887591971" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a href="https://www.instagram.com/breathetherm_/" target="_blank"
+                    rel="noopener noreferrer">Instagram</a>
+                <a href="https://maps.google.com/?cid=14991791921704986278" target="_blank" rel="noopener noreferrer">Find us on Google</a>
+                <a href="/privacy-policy/" style="opacity: 0.7;">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-base">
+            <div class="container footer-base-inner">
+                <span>&copy; 2026 Breathe Therm Ltd. All rights reserved.</span>
+                <div class="footer-badges">
+                    <span class="footer-badge">WTA Certified</span>
+                    <span class="footer-badge">RIBA CPD</span>
+                    <span class="footer-badge">Green Register</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a class="sticky-wa" href="https://wa.me/+447887591971" target="_blank" rel="noopener noreferrer"
+        aria-label="Chat with a BreatheTherm specialist on WhatsApp" title="WhatsApp a specialist">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="var(--white)" aria-hidden="true">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <script src="/main.js"></script>
+</body>
+
+</html>
